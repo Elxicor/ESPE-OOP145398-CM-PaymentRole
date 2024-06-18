@@ -28,7 +28,7 @@ public class PayrollGenerator {
         JsonArray generalPayrollsJson = new JsonArray();
 
         System.out.println("Roles de Pago:");
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s%n", "Nombre", "Apellido", "Salario Basico", "Ingresos Totales", "Gastos Totales", "Pago Neto");
+        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s%n", "Nombre", "Apellido", "Salario Básico", "Ingresos Totales", "Gastos Totales", "Pago Neto");
         System.out.println("---------------------------------------------------------------------------------");
 
         for (Employee employee : employees) {
@@ -74,8 +74,9 @@ public class PayrollGenerator {
 
         double totalIncome = basicSalary + overtimeHoursValue + bonuses;
         double totalExpenses = iessContribution + biweeklyAdvance + iessLoans + companyLoans + fines + foodDeduction;
+        double netPayment = totalIncome - totalExpenses;
 
-        return new IndividualPayroll(employee, startDate, endDate);
+        return new IndividualPayroll(employee, startDate, endDate, totalIncome, totalExpenses, netPayment);
     }
 
     private List<GeneralPayroll> generateGeneralPayrolls(List<Employee> employees) {
@@ -102,8 +103,7 @@ public class PayrollGenerator {
         try (FileWriter fileWriter = new FileWriter(PAYROLLS_FILE)) {
             GSON.toJson(payrollsJson, fileWriter);
         } catch (IOException e) {
-            // Error al guardar el archivo
+            System.out.println("Error al guardar los roles de pago.");
         }
     }
-
 }

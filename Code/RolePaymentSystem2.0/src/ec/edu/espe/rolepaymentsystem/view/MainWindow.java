@@ -17,5 +17,5 @@ public class MainWindow {
 
         userInterface.showMainMenu();
     }
-  }
+}
  
