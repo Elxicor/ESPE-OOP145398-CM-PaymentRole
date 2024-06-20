@@ -1,21 +1,7 @@
 [
   {
-    "name": "Juan",
-    "lastName": "0",
-    "idNumber": "11111111111",
-    "hireDate": "Jan 1, 2024, 12:00:00 AM",
-    "basicSalary": 460.0,
-    "overtimeHours": 0.0,
-    "absentDays": 0.0,
-    "bonuses": 0.0,
-    "iessLoans": 0.0,
-    "companyLoans": 0.0,
-    "fines": 0.0,
-    "bringOwnFood": true
-  },
-  {
     "name": "Pedro",
-    "lastName": "Flores",
+    "lastName": "asto",
     "idNumber": "2222222222",
     "hireDate": "Jan 1, 2023, 12:00:00 AM",
     "basicSalary": 460.0,
@@ -40,5 +26,19 @@
     "companyLoans": 0.0,
     "fines": 0.0,
     "bringOwnFood": true
+  },
+  {
+    "name": "oscar",
+    "lastName": "sisalema",
+    "idNumber": "1753961968",
+    "hireDate": "Dec 2, 2002, 12:00:00 AM",
+    "basicSalary": 460.0,
+    "overtimeHours": 0.0,
+    "absentDays": 2.0,
+    "bonuses": 0.0,
+    "iessLoans": 2.0,
+    "companyLoans": 0.0,
+    "fines": 1.0,
+    "bringOwnFood": false
   }
 ]

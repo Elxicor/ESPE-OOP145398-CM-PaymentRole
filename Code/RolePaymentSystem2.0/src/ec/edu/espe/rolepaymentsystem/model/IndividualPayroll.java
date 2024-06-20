@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class IndividualPayroll {
     private Employee employee;

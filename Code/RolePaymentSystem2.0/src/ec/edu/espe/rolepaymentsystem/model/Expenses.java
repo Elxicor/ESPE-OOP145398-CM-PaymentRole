@@ -6,7 +6,7 @@ package ec.edu.espe.rolepaymentsystem.model;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class Expenses {
     private double iessContribution;

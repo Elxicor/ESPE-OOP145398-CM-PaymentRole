@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class PayrollGenerator {
     private static final String PAYROLLS_FILE = "payrolls.json";

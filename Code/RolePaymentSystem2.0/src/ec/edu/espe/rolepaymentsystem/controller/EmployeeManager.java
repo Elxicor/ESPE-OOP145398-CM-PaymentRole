@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class EmployeeManager {
     private static final String EMPLOYEES_FILE = "employees.json";

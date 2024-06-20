@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package utils;
+package ec.edu.espe.rolepaymentsystem.utils;
 
 import ec.edu.espe.rolepaymentsystem.model.Constants;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class Calculator {
     public static double calculateBasicSalary(double annualSalary) {
