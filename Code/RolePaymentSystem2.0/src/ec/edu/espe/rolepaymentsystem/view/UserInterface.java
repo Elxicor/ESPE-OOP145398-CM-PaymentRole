@@ -40,7 +40,7 @@ public class UserInterface {
             System.out.println("5. Generar roles de pago");
             System.out.println("6. Salir");
             int option = SCANNER.nextInt();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            SCANNER.nextLine(); 
 
             switch (option) {
                 case 1:
@@ -76,7 +76,7 @@ public class UserInterface {
             String lastName = getUserInput("Apellido vacio\n");
 
             System.out.print("Ingrese el numero de identificacion: ");
-            String idNumber = getUserInput("Número de identificación vacio\n");
+            String idNumber = getUserInput("Número de identificacion vacio\n");
 
             System.out.print("Ingrese la fecha de contratacion (dd/MM/yyyy): ");
             String dateStr = SCANNER.nextLine();
@@ -152,15 +152,13 @@ public class UserInterface {
                         employee.setLastName(newLastName);
                     }
 
-                    // Continúa solicitando y actualizando los demás campos del empleado
-
                     employeeManager.updateEmployee(employeeIndex, employee);
                     System.out.println("Empleado editado correctamente.");
                 } else {
-                    System.out.println("Número de empleado inválido.");
+                    System.out.println("Numero de empleado invalido.");
                 }
             } catch (Exception e) {
-                System.out.println("Error al editar el empleado. Inténtelo nuevamente.");
+                System.out.println("Error al editar el empleado. Intentelo nuevamente.");
             }
         }
     }
@@ -169,18 +167,18 @@ public class UserInterface {
         viewEmployees();
         if (!employeeManager.getEmployees().isEmpty()) {
             try {
-                System.out.print("Ingrese el número del empleado a eliminar: ");
+                System.out.print("Ingrese el numero del empleado a eliminar: ");
                 int employeeIndex = SCANNER.nextInt() - 1;
-                SCANNER.nextLine(); // Consumir el salto de línea
+                SCANNER.nextLine(); 
 
                 if (employeeIndex >= 0 && employeeIndex < employeeManager.getEmployees().size()) {
                     employeeManager.removeEmployee(employeeIndex);
                     System.out.println("Empleado eliminado correctamente.");
                 } else {
-                    System.out.println("Número de empleado inválido.");
+                    System.out.println("Número de empleado invalido.");
                 }
             } catch (Exception e) {
-                System.out.println("Error al eliminar el empleado. Inténtelo nuevamente.");
+                System.out.println("Error al eliminar el empleado. Intentelo nuevamente.");
             }
         }
     }
@@ -227,15 +225,5 @@ public class UserInterface {
         }
     } 
 }
-   /* private static int getIntInput(String errorMessage) {
-        try {
-            int value = SCANNER.nextInt();
-            SCANNER.nextLine(); 
-            return value;
-        } catch (InputMismatchException e) {
-            System.out.print(errorMessage);
-            SCANNER.nextLine();
-            return 0;
-        }
-    }      */  
+  
 
