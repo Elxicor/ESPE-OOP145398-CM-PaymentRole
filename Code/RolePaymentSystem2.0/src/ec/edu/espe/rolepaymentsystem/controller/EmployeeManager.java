@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class EmployeeManager {
     private static final String EMPLOYEES_FILE = "employees.json";
@@ -56,7 +56,7 @@ public class EmployeeManager {
                 employees.add(employee);
             }
         } catch (IOException e) {
-            // No se encontró el archivo o hubo un error al leerlo
+            System.out.println("Error al cargar los empleados.");
         }
         return employees;
     }
@@ -70,7 +70,7 @@ public class EmployeeManager {
         try (FileWriter fileWriter = new FileWriter(EMPLOYEES_FILE)) {
             GSON.toJson(jsonArray, fileWriter);
         } catch (IOException e) {
-            // Error al guardar el archivo
+            System.out.println("Error al guardar los empleados.");
         }
     }
 }

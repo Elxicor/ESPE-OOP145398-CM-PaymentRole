@@ -6,6 +6,7 @@ package ec.edu.espe.rolepaymentsystem.view;
 import ec.edu.espe.rolepaymentsystem.controller.EmployeeManager;
 import ec.edu.espe.rolepaymentsystem.controller.LoginScreen;
 import ec.edu.espe.rolepaymentsystem.controller.PayrollGenerator;
+
 /**
  *
  * @author Code Masters
@@ -17,7 +18,6 @@ public class MainWindow {
             EmployeeManager employeeManager = new EmployeeManager();
             PayrollGenerator payrollGenerator = new PayrollGenerator();
             UserInterface userInterface = new UserInterface(employeeManager, payrollGenerator);
-        
             userInterface.showMainMenu();
     }
 }

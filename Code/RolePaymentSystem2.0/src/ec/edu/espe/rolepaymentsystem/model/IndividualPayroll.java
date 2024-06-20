@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class IndividualPayroll {
     private Employee employee;
@@ -21,7 +21,7 @@ public class IndividualPayroll {
     private double totalExpenses;
     private double totalToPay;
 
-     public IndividualPayroll(Employee employee, Date startMonthDate, Date endMonthDate) {
+     public IndividualPayroll(Employee employee, Date startMonthDate, Date endMonthDate, double totalIncome, double totalExpenses, double totalToPay) {
         this.employee = employee;
         this.startMonthDate = getStartMonthDate();
         this.endMonthDate = getEndMonthDate();

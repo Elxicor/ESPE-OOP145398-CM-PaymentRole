@@ -6,7 +6,7 @@ package ec.edu.espe.rolepaymentsystem.model;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class Constants {
     public static final double IESS_PERCENTAGE = 0.0945;
