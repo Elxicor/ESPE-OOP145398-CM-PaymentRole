@@ -7,15 +7,13 @@ package ec.edu.espe.rolepaymentsystem.view;
 import ec.edu.espe.rolepaymentsystem.controller.EmployeeManager;
 import ec.edu.espe.rolepaymentsystem.controller.PayrollGenerator;
 import ec.edu.espe.rolepaymentsystem.model.Employee;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class UserInterface {
     private static final Scanner SCANNER = new Scanner(System.in);
@@ -23,6 +21,7 @@ public class UserInterface {
     private final PayrollGenerator payrollGenerator;
     private static final double BASIC_SALARY = 460.0; 
 
+    
     public UserInterface(EmployeeManager employeeManager, PayrollGenerator payrollGenerator) {
         this.employeeManager = employeeManager;
         this.payrollGenerator = payrollGenerator;
@@ -31,7 +30,7 @@ public class UserInterface {
     public void showMainMenu() {
         boolean exit = false;
         while (!exit) {
-            System.out.println("Seleccione una opción:");
+            System.out.println("Seleccione una opcion:");
             System.out.println("1. Agregar empleado");
             System.out.println("2. Ver empleados");
             System.out.println("3. Editar empleado");
@@ -68,47 +67,41 @@ public class UserInterface {
 
     private void addEmployee() {
         try {
-            System.out.print("Ingrese el nombre: ");
-            String name = SCANNER.nextLine();
+           System.out.print("Ingrese el nombre: ");
+            String name = getUserInput("Nombre vacio");
 
             System.out.print("Ingrese el apellido: ");
-            String lastName = SCANNER.nextLine();
+            String lastName = getUserInput("Apellido vacio");
 
-            System.out.print("Ingrese el número de identificación: ");
-            String idNumber = SCANNER.nextLine();
+            System.out.print("Ingrese el numero de identificacion: ");
+            String idNumber = getUserInput("Número de identificación vacio");
 
-            System.out.print("Ingrese la fecha de contratación (dd/MM/yyyy): ");
+            System.out.print("Ingrese la fecha de contratacion (dd/MM/yyyy): ");
             String dateStr = SCANNER.nextLine();
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date hireDate = sdf.parse(dateStr);
 
             System.out.print("Ingrese las horas extras: ");
-            double overtimeHours = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            double overtimeHours=getDoubleInput("Horas extras vacias");
 
-            System.out.print("Ingrese los días ausentes: ");
-            double absentDays = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            System.out.print("Ingrese los dias ausentes: ");
+            double absentDays=getDoubleInput("Dias ausentes vacias");
+
 
             System.out.print("Ingrese las bonificaciones: ");
-            double bonuses = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            double bonuses=getDoubleInput("Bonificaciones vacias");
 
-            System.out.print("Ingrese los préstamos del IESS: ");
-            double iessLoans = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            System.out.print("Ingrese los prestamos del IESS: ");
+            double iessLoans =getDoubleInput("Prestamos al IESS vacias");
 
             System.out.print("Ingrese los préstamos de la empresa: ");
-            double companyLoans = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            double companyLoans=getDoubleInput("Prestamo de la empresa vacias");
 
             System.out.print("Ingrese las multas: ");
-            double fines = SCANNER.nextDouble();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            double fines=getDoubleInput("Dias ausentes vacias");
 
             System.out.print("¿El empleado trae su propia comida? (true/false): ");
-            boolean bringOwnFood = SCANNER.nextBoolean();
-            SCANNER.nextLine(); // Consumir el salto de línea
+            boolean bringOwnFood = getBooleanInput("Entrada inválida");
 
             Employee employee = new Employee(name, lastName, idNumber, hireDate, BASIC_SALARY, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
 
@@ -116,9 +109,9 @@ public class UserInterface {
 
             System.out.println("Empleado agregado correctamente.");
         } catch (ParseException e) {
-            System.out.println("Error en el formato de la fecha. Por favor, ingrésela en el formato dd/MM/yyyy.");
+            System.out.println("Error en el formato de la fecha. Por favor, ingresela en el formato dd/MM/yyyy.");
         } catch (Exception e) {
-            System.out.println("Error al ingresar los datos. Inténtelo nuevamente.");
+            System.out.println("Error al ingresar los datos. Intentelo nuevamente.");
         }
     }
 
@@ -136,36 +129,32 @@ public class UserInterface {
     }
 
     private void editEmployee() {
-        viewEmployees();
+       viewEmployees();
         if (!employeeManager.getEmployees().isEmpty()) {
-            try {
-                System.out.print("Ingrese el número del empleado a editar: ");
-                int employeeIndex = SCANNER.nextInt() - 1;
-                SCANNER.nextLine();
+            System.out.print("Ingrese el número del empleado a editar: ");
+            int employeeIndex = SCANNER.nextInt() - 1;
+            SCANNER.nextLine(); 
 
-                if (employeeIndex >= 0 && employeeIndex < employeeManager.getEmployees().size()) {
-                    Employee employee = employeeManager.getEmployees().get(employeeIndex);
-                    System.out.print("Ingrese el nuevo nombre (presione Enter para mantener el actual): ");
-                    String newName = SCANNER.nextLine();
-                    if (!newName.isEmpty()) {
-                        employee.setName(newName);
-                    }
-
-                    System.out.print("Ingrese el nuevo apellido (presione Enter para mantener el actual): ");
-                    String newLastName = SCANNER.nextLine();
-                    if (!newLastName.isEmpty()) {
-                        employee.setLastName(newLastName);
-                    }
-
-                    // Continúa solicitando y actualizando los demás campos del empleado
-
-                    employeeManager.updateEmployee(employeeIndex, employee);
-                    System.out.println("Empleado editado correctamente.");
-                } else {
-                    System.out.println("Número de empleado inválido.");
+            if (employeeIndex >= 0 && employeeIndex < employeeManager.getEmployees().size()) {
+                Employee employee = employeeManager.getEmployees().get(employeeIndex);
+                System.out.print("Ingrese el nuevo nombre (presione Enter para mantener el actual): ");
+                String newName = SCANNER.nextLine();
+                if (!newName.isEmpty()) {
+                    employee.setName(newName);
                 }
-            } catch (Exception e) {
-                System.out.println("Error al editar el empleado. Inténtelo nuevamente.");
+
+                System.out.print("Ingrese el nuevo apellido (presione Enter para mantener el actual): ");
+                String newLastName = SCANNER.nextLine();
+                if (!newLastName.isEmpty()) {
+                    employee.setLastName(newLastName);
+                }
+
+                // Continúa solicitando y actualizando los demás campos del empleado
+
+                employeeManager.updateEmployee(employeeIndex, employee);
+                System.out.println("Empleado editado correctamente.");
+            } else {
+                System.out.println("Número de empleado inválido.");
             }
         }
     }
@@ -173,20 +162,47 @@ public class UserInterface {
     private void deleteEmployee() {
         viewEmployees();
         if (!employeeManager.getEmployees().isEmpty()) {
-            try {
-                System.out.print("Ingrese el número del empleado a eliminar: ");
-                int employeeIndex = SCANNER.nextInt() - 1;
-                SCANNER.nextLine(); // Consumir el salto de línea
+            System.out.print("Ingrese el número del empleado a eliminar: ");
+            int employeeIndex = SCANNER.nextInt() - 1;
+            SCANNER.nextLine(); // Consumir el salto de línea
 
-                if (employeeIndex >= 0 && employeeIndex < employeeManager.getEmployees().size()) {
-                    employeeManager.removeEmployee(employeeIndex);
-                    System.out.println("Empleado eliminado correctamente.");
-                } else {
-                    System.out.println("Número de empleado inválido.");
-                }
-            } catch (Exception e) {
-                System.out.println("Error al eliminar el empleado. Inténtelo nuevamente.");
+            if (employeeIndex >= 0 && employeeIndex < employeeManager.getEmployees().size()) {
+                employeeManager.removeEmployee(employeeIndex);
+                System.out.println("Empleado eliminado correctamente.");
+            } else {
+                System.out.println("Número de empleado inválido.");
             }
+        }
+    }
+    private static String getUserInput(String errorMessage) {
+    try {
+        return SCANNER.nextLine().toLowerCase().trim();
+    } catch (Exception e){
+        System.out.print(errorMessage);
+        return "";
+    }
+}
+    private static double getDoubleInput(String errorMessage) {
+        try {
+            double value = SCANNER.nextDouble();
+            SCANNER.nextLine(); 
+            return value;
+        } catch (InputMismatchException e) {
+            System.out.print(errorMessage);
+            SCANNER.nextLine(); 
+            return 0.0;
+        }
+    }
+
+    private static boolean getBooleanInput(String errorMessage) {
+        try {
+            boolean value = SCANNER.nextBoolean();
+            SCANNER.nextLine(); 
+            return value;
+        } catch (InputMismatchException e) {
+            System.out.print(errorMessage);
+            SCANNER.nextLine();
+            return false;
         }
     }
 }

@@ -4,18 +4,21 @@
  */
 package ec.edu.espe.rolepaymentsystem.view;
 import ec.edu.espe.rolepaymentsystem.controller.EmployeeManager;
+import ec.edu.espe.rolepaymentsystem.controller.LoginScreen;
 import ec.edu.espe.rolepaymentsystem.controller.PayrollGenerator;
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class MainWindow {
     public static void main(String[] args) {
-        EmployeeManager employeeManager = new EmployeeManager();
-        PayrollGenerator payrollGenerator = new PayrollGenerator();
-        UserInterface userInterface = new UserInterface(employeeManager, payrollGenerator);
-
-        userInterface.showMainMenu();
+            LoginScreen loginScreen = new LoginScreen();
+            loginScreen.checkPassword();
+            EmployeeManager employeeManager = new EmployeeManager();
+            PayrollGenerator payrollGenerator = new PayrollGenerator();
+            UserInterface userInterface = new UserInterface(employeeManager, payrollGenerator);
+        
+            userInterface.showMainMenu();
     }
 }
  

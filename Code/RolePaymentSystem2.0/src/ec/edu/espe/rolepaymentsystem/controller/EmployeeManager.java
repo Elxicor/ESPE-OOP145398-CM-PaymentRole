@@ -56,7 +56,7 @@ public class EmployeeManager {
                 employees.add(employee);
             }
         } catch (IOException e) {
-            System.out.println("Error al cargar los empleados.");
+            // No se encontró el archivo o hubo un error al leerlo
         }
         return employees;
     }
@@ -70,7 +70,7 @@ public class EmployeeManager {
         try (FileWriter fileWriter = new FileWriter(EMPLOYEES_FILE)) {
             GSON.toJson(jsonArray, fileWriter);
         } catch (IOException e) {
-            System.out.println("Error al guardar los empleados.");
+            // Error al guardar el archivo
         }
     }
 }

@@ -1,7 +1,7 @@
 [
   {
     "name": "Juan",
-    "lastName": "0",
+    "lastName": "Ramirez",
     "idNumber": "11111111111",
     "hireDate": "Jan 1, 2024, 12:00:00 AM",
     "basicSalary": 460.0,
@@ -18,20 +18,6 @@
     "lastName": "Flores",
     "idNumber": "2222222222",
     "hireDate": "Jan 1, 2023, 12:00:00 AM",
-    "basicSalary": 460.0,
-    "overtimeHours": 0.0,
-    "absentDays": 0.0,
-    "bonuses": 0.0,
-    "iessLoans": 0.0,
-    "companyLoans": 0.0,
-    "fines": 0.0,
-    "bringOwnFood": true
-  },
-  {
-    "name": "Oscar",
-    "lastName": "Perez",
-    "idNumber": "3333333333",
-    "hireDate": "Mar 12, 2022, 12:00:00 AM",
     "basicSalary": 460.0,
     "overtimeHours": 0.0,
     "absentDays": 0.0,
