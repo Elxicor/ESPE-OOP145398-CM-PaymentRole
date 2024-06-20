@@ -43,7 +43,6 @@ public class PayrollGenerator {
                 generalPayrollsJson.add(GSON.toJsonTree(generalPayroll));
             }
 
-            // Imprimir el rol de pago individual
             String nombre = employee.getName();
             String apellido = employee.getLastName();
             double salarioBasico = employee.getBasicSalary();
@@ -85,10 +84,10 @@ public class PayrollGenerator {
         for (Employee employee : employees) {
             String name = employee.getName();
             String lastName = employee.getLastName();
-            double hoursWorked = 0; // Ajustar según la lógica de negocio
-            double daysWorked = 0; // Ajustar según la lógica de negocio
+            double hoursWorked = 0; 
+            double daysWorked = 0; 
             double salary = employee.getBasicSalary();
-            double reserveFunds = 0; // Calcular según la lógica de negocio
+            double reserveFunds = 0; 
             double bonuses = employee.getBonuses();
             double overtimeHours = employee.getOvertimeHours();
 
