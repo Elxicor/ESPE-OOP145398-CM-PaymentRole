@@ -39,35 +39,21 @@ public class UserInterface {
             System.out.println("4. Eliminar empleado");
             System.out.println("5. Generar roles de pago");
             System.out.println("6. Salir");
-            int option = SCANNER.nextInt();
-            SCANNER.nextLine(); 
+            int option = getIntInput("Opcion invalida\n");
 
             switch (option) {
-                case 1:
-                    addEmployee();
-                    break;
-                case 2:
-                    viewEmployees();
-                    break;
-                case 3:
-                    editEmployee();
-                    break;
-                case 4:
-                    deleteEmployee();
-                    break;
-                case 5:
-                    payrollGenerator.generatePayrolls(employeeManager.getEmployees());
-                    break;
-                case 6:
-                    exit = true;
-                    break;
-                default:
-                    System.out.println("Opcion invalida");
+                case 1 -> addEmployee();
+                case 2 -> viewEmployees();
+                case 3 -> editEmployee();
+                case 4 -> deleteEmployee();
+                case 5 -> payrollGenerator.generatePayrolls(employeeManager.getEmployees());
+                case 6 -> exit = true;
             }
         }
     }
 
     private void addEmployee() {
+        List<Employee> employees = employeeManager.getEmployees();
         try {
            System.out.print("Ingrese el nombre: ");
             String name = getUserInput("Nombre vacio\n");
@@ -106,10 +92,20 @@ public class UserInterface {
             boolean bringOwnFood = getBooleanInput("Entrada invalida\n");
 
             Employee employee = new Employee(name, lastName, idNumber, hireDate, BASIC_SALARY, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
+            boolean employeeExisting = false;
+            for (Employee emp : employees) {
+                if (emp.getIdNumber().equals(employee.getIdNumber())) {
+                    employeeExisting = true;
+                    break;
+                }
+            }
 
-            employeeManager.addEmployee(employee);
-
-            System.out.println("Empleado agregado correctamente.");
+            if (employeeExisting) {
+                System.out.println("!!ESTE EMPLEADO YA FUE INGRESADO!!");
+            } else {
+                employeeManager.addEmployee(employee);
+                System.out.println("Empleado agregado correctamente.");
+            }
         } catch (ParseException e) {
             System.out.println("Error en el formato de la fecha. Por favor, ingresela en el formato dd/MM/yyyy.");
         } catch (Exception e) {
@@ -175,7 +171,7 @@ public class UserInterface {
                     employeeManager.removeEmployee(employeeIndex);
                     System.out.println("Empleado eliminado correctamente.");
                 } else {
-                    System.out.println("Número de empleado invalido.");
+                    System.out.println("Numero de empleado invalido.");
                 }
             } catch (Exception e) {
                 System.out.println("Error al eliminar el empleado. Intentelo nuevamente.");
