@@ -21,22 +21,22 @@
         "basicSalary": 460.0,
         "overtimeHours": {
           "quantity": 0.0,
-          "value": 0.0
+          "value": -690.0
         },
         "bonuses": 0.0,
-        "totalIncome": 460.0
+        "totalIncome": -230.0
       },
       "expenses": {
-        "iessContribution": 39.848949000000005,
+        "iessContribution": -25.356050999999997,
         "biweeklyAdvance": 230.0,
         "iessLoans": 0.0,
         "companyLoans": 0.0,
         "fines": 0.0,
         "foodDeduction": 0.0,
-        "totalExpenses": 269.848949
+        "totalExpenses": 204.643949
       },
-      "totalIncome": 460.0,
-      "totalExpenses": 269.848949,
+      "totalIncome": -230.0,
+      "totalExpenses": 204.643949,
       "totalToPay": 186.99
     },
     {
@@ -60,22 +60,22 @@
         "basicSalary": 460.0,
         "overtimeHours": {
           "quantity": 0.0,
-          "value": 0.0
+          "value": -690.0
         },
         "bonuses": 0.0,
-        "totalIncome": 460.0
+        "totalIncome": -230.0
       },
       "expenses": {
-        "iessContribution": 39.848949000000005,
+        "iessContribution": -25.356050999999997,
         "biweeklyAdvance": 230.0,
         "iessLoans": 0.0,
         "companyLoans": 0.0,
         "fines": 0.0,
         "foodDeduction": 0.0,
-        "totalExpenses": 269.848949
+        "totalExpenses": 204.643949
       },
-      "totalIncome": 460.0,
-      "totalExpenses": 269.848949,
+      "totalIncome": -230.0,
+      "totalExpenses": 204.643949,
       "totalToPay": 186.99
     },
     {
@@ -99,22 +99,22 @@
         "basicSalary": 460.0,
         "overtimeHours": {
           "quantity": 0.0,
-          "value": 0.0
+          "value": -690.0
         },
         "bonuses": 0.0,
-        "totalIncome": 460.0
+        "totalIncome": -230.0
       },
       "expenses": {
-        "iessContribution": 39.848949000000005,
+        "iessContribution": -25.356050999999997,
         "biweeklyAdvance": 230.0,
         "iessLoans": 2.0,
         "companyLoans": 0.0,
         "fines": 1.0,
         "foodDeduction": 0.0,
-        "totalExpenses": 272.848949
+        "totalExpenses": 207.643949
       },
-      "totalIncome": 460.0,
-      "totalExpenses": 272.848949,
+      "totalIncome": -230.0,
+      "totalExpenses": 207.643949,
       "totalToPay": 158.99
     }
   ],

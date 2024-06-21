@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.espe.rolepaymentsystem.model;
-
+import ec.edu.espe.rolepaymentsystem.utils.Calculator;
 /**
  *
  * @author Code Masters
