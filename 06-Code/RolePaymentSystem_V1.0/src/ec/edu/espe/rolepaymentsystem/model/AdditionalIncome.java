@@ -14,11 +14,11 @@ public class AdditionalIncome {
     private double commissions;
     private double otherBenefits;
 
-    public AdditionalIncome(int id, double bonuses, double commissions, double otherBenefits) {
-        this.id = id;
-        this.bonuses = bonuses;
-        this.commissions = commissions;
-        this.otherBenefits = otherBenefits;
+    public AdditionalIncome() {
+        this.id = 0;
+        this.bonuses = 0.0;
+        this.commissions = 0.0;
+        this.otherBenefits = 0.0;
     }
 
     public int getId() {

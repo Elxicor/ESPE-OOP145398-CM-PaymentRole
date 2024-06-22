@@ -1,0 +1,44 @@
+[
+    {
+        "name": "oscar",
+        "last_name": "sisalema",
+        "id_number": "22222222",
+        "hire_date": "2014-12-12",
+        "basic_salary": 460.0,
+        "overtime_hours": 23.0,
+        "absent_days": 2.0,
+        "bonuses": 112.0,
+        "iess_loans": 230.0,
+        "company_loans": 120.0,
+        "fines": 2.0,
+        "bring_own_food": false
+    },
+    {
+        "name": "ulloa",
+        "last_name": "flores",
+        "id_number": "33333333333",
+        "hire_date": "2010-02-02",
+        "basic_salary": 460.0,
+        "overtime_hours": 232.0,
+        "absent_days": 1.0,
+        "bonuses": 24345.0,
+        "iess_loans": 21.0,
+        "company_loans": 3123.0,
+        "fines": 1.0,
+        "bring_own_food": true
+    },
+    {
+        "name": "ulloa",
+        "last_name": "molina",
+        "id_number": "44444444444",
+        "hire_date": "2002-12-02",
+        "basic_salary": 460.0,
+        "overtime_hours": 2.0,
+        "absent_days": 1.0,
+        "bonuses": 12324.0,
+        "iess_loans": 213.0,
+        "company_loans": 321.0,
+        "fines": 1.0,
+        "bring_own_food": true
+    }
+]

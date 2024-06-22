@@ -33,7 +33,7 @@ public class LoginScreen {
             return;
         }
 
-        char[] passwordArray = console.readPassword("Ingrese la contraseña: ");
+        char[] passwordArray = console.readPassword("Ingrese la contrasenia: ");
         String password = new String(passwordArray);
 
         users.put(username, password);
@@ -57,14 +57,14 @@ public class LoginScreen {
             return false;
         }
 
-        char[] passwordArray = console.readPassword("Ingrese la contraseña: ");
+        char[] passwordArray = console.readPassword("Ingrese la contrasenia: ");
         String enteredPassword = new String(passwordArray);
 
         if (enteredPassword.equals(users.get(username))) {
-            System.out.println("Contraseña correcta.");
+            System.out.println("Contrasenia correcta.");
             return true;
         } else {
-            System.out.println("Contraseña incorrecta.");
+            System.out.println("Contrasenia incorrecta.");
             return false;
         }
     }

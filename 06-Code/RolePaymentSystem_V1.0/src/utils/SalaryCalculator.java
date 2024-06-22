@@ -6,7 +6,7 @@ package utils;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Masters
  */
 public class SalaryCalculator {
     

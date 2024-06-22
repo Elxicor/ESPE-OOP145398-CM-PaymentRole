@@ -21,7 +21,7 @@ public class MainWindow {
 
         while (!exit) {
             try {
-                System.out.println("¿Desea registrar un nuevo usuario? (s/n) o presione 0 para salir: ");
+                System.out.println("Desea registrar un nuevo usuario? (s/n) o presione 0 para salir: ");
                 String response = scanner.nextLine();
 
                 if (response.equals("0")) {

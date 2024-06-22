@@ -9,20 +9,20 @@ package ec.edu.espe.rolepaymentsystem.model;
  * @author Code Masters
  */
 public class Deduction {
-    private String[] name;
+    private int type;
     private double value;
 
-    public Deduction(String[] name, double value) {
-        this.name = name;
+    public Deduction(int type, double value) {
+        this.type = type;
         this.value = value;
     }
 
-    public String[] getName() {
-        return name;
+    public int getType() {
+        return type;
     }
 
-    public void setName(String[] name) {
-        this.name = name;
+    public void setType(int name) {
+        this.type = type;
     }
 
     public double getValue() {

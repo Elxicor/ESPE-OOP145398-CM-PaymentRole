@@ -4,11 +4,10 @@
  */
 package ec.edu.espe.rolepaymentsystem.view;
 
+import ec.edu.espe.rolepaymentsystem.model.AdditionalIncome;
+import ec.edu.espe.rolepaymentsystem.model.Deduction;
 import ec.edu.espe.rolepaymentsystem.model.Employee;
-import ec.edu.espe.rolepaymentsystem.model.PaymentRole;
-import ec.edu.espe.rolepaymentsystem.model.HoursWorked;
 import ec.edu.espe.rolepaymentsystem.model.Deductions;
-import ec.edu.espe.rolepaymentsystem.model.ReserveFunds;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -92,47 +91,48 @@ public class RolePaymentSystem {
     } 
 
 private static void addEmployee(Scanner scanner, int numberEmployee, List<Employee> employees) {
-    List<Deductions> deduction = new ArrayList<>();
     for (int i = 0; i < numberEmployee; i++) {
         System.out.println(".Employee Facts:\n" + (i + 1) + ".-Enter employee ID:");
         int idEmployee = scanner.nextInt();
-
+        scanner.nextLine();
         System.out.println((i + 1) + ".-Enter employee name: ");
         String nameEmployee = scanner.nextLine().toLowerCase();
 
         System.out.println((i + 1) + ".-Enter the employee's minimum wage: ");
         double basicSalaryEmployee = scanner.nextDouble();
-
+        scanner.nextLine();
         System.out.println((i + 1) + ".-Enter the employee's hours worked(hours)");
         int hoursWorked = scanner.nextInt();
-
+        scanner.nextLine();
         System.out.println((i + 1) + ".-Enter the day the employee started(dd/MM/yyyy): ");
         String entryDate = scanner.nextLine();
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate entryDates = LocalDate.parse(entryDate, dateFormat);
         System.out.println((i + 1) + ".-Enter the employee's overtime hours:");
         int overtimeHours = scanner.nextInt();
-        System.out.println("Select how many deductions you are going to put");
-        int numberDeductions = scanner.nextInt();
-        
-        calculateDeductions(deduction, numberDeductions);
-        Deductions deductions=calculateDeductions;
-        Employee employee = new Employee(idEmployee, nameEmployee, entryDates, basicSalaryEmployee, hoursWorked,deductions,overtimeHours);
+        scanner.nextLine();
+        List<Deduction> deductionsList = new ArrayList<>();
+        Deductions deductions = calculateDeductions(scanner, deductionsList);
+        Employee employee = new Employee(idEmployee, nameEmployee, entryDates, basicSalaryEmployee, hoursWorked, deductions, overtimeHours);
         employees.add(employee); 
     }
 }
 
-private static void calculateDeductions(List<Deductions> deductions,int numberDeductions) {
-    for (int j = 0; j < numberDeductions; j++) {
-        System.out.println("cuantas deducciones desea poner");
-        int numberDeductionsString=scanner.nextInt();
-        for (int k = 0; k < numberDeductions; k++) {
-        
+    private static Deductions calculateDeductions(Scanner scanner, List<Deduction> deductionsList) {
+        System.out.println("Select how many deductions you are going to put");
+        int numberDeductions = scanner.nextInt();
+        scanner.nextLine();
+        for (int j = 0; j < numberDeductions; j++) {
+            System.out.println("Enter deduction type (1 for Bonuses, 2 for otherBenefits):");
+            int deductionType = scanner.nextInt();
+            scanner.nextLine();
+            System.out.println("Enter deduction value:");
+            double deductionValue = scanner.nextDouble();
+            scanner.nextLine();
+            Deduction deduction = new Deduction(deductionType, deductionValue);
+            deductionsList.add(deduction);
         }
-        System.out.println("Cosas Adiccionales \n1.-Bonuses \n2.- otherBenefits");
-        
+        AdditionalIncome additionalIncome = new AdditionalIncome();
+        return new Deductions(deductionsList, additionalIncome);
     }
-    double totalDeductions = deductions.getContributionIESS() + deductions.getAdvancesFortnight() + deductions.getLoans() + deductions.getFines() + deductions.getMealDeduction();
-    return totalDeductions;
-}
 }
