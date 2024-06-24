@@ -22,7 +22,7 @@ public class UserInterface {
     private static final Scanner SCANNER = new Scanner(System.in);
     private final EmployeeManager employeeManager;
     private final PayrollGenerator payrollGenerator;
-    private static final double BASIC_SALARY = 460.0; 
+    private static final double basicSalary = 460.0; 
 
     public UserInterface(EmployeeManager employeeManager, PayrollGenerator payrollGenerator) {
         this.employeeManager = employeeManager;
@@ -91,7 +91,7 @@ public class UserInterface {
             System.out.print("El empleado trae su propia comida? (true/false): ");
             boolean bringOwnFood = getBooleanInput("Entrada invalida\n");
 
-            Employee employee = new Employee(name, lastName, idNumber, hireDate, BASIC_SALARY, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
+            Employee employee = new Employee(name, lastName, idNumber, hireDate, basicSalary, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
             boolean employeeExisting = false;
             for (Employee emp : employees) {
                 if (emp.getIdNumber().equals(employee.getIdNumber())) {

@@ -9,10 +9,10 @@ package ec.edu.espe.rolepaymentsystem.model;
  * @author Code Masters
  */
 public class Constants {
-    public static final double IESS_PERCENTAGE = 0.0945;
-    public static final double OVERTIME_HOUR_INCREASE = 1.5;
-    public static final double RESERVE_FUNDS_PERCENTAGE = 0.0833;
-    public static final double EMPLOYER_CONTRIBUTION_PERCENTAGE = 0.1215;
-    public static final double REGULAR_HOURS_PER_MONTH = 240.0;
-    
+    public static final double iessPercentage = 0.0945;
+    public static final double overtimeHourIncrease = 1.5;
+    public static final double reserveFundsPercentage = 0.0833;
+    public static final double employerContributionPercentage = 0.1215;
+    public static final double regularHoursPerMonth = 240.0;
 }
+

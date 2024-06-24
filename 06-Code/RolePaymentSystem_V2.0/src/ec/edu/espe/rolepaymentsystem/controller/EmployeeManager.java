@@ -20,7 +20,7 @@ import java.util.List;
  * @author Code Masters
  */
 public class EmployeeManager {
-    private static final String EMPLOYEES_FILE = "employees.json";
+    private static final String employeesFile = "employees.json";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private List<Employee> employees;
 
@@ -49,7 +49,7 @@ public class EmployeeManager {
 
     private List<Employee> loadEmployees() {
         List<Employee> employees = new ArrayList<>();
-        try (FileReader fileReader = new FileReader(EMPLOYEES_FILE)) {
+        try (FileReader fileReader = new FileReader(employeesFile)) {
             JsonArray jsonArray = JsonParser.parseReader(fileReader).getAsJsonArray();
             for (int i = 0; i < jsonArray.size(); i++) {
                 Employee employee = GSON.fromJson(jsonArray.get(i), Employee.class);
@@ -67,7 +67,7 @@ public class EmployeeManager {
             jsonArray.add(GSON.toJsonTree(employee));
         }
 
-        try (FileWriter fileWriter = new FileWriter(EMPLOYEES_FILE)) {
+        try (FileWriter fileWriter = new FileWriter(employeesFile)) {
             GSON.toJson(jsonArray, fileWriter);
         } catch (IOException e) {
             System.out.println("Error al guardar los empleados.");

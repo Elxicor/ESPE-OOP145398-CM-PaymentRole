@@ -16,7 +16,7 @@ public class Income {
     
    public Income(Employee employee) {
         this.basicSalary = employee.getBasicSalary();
-        this.overtimeHours = new OvertimeHours(employee.getOvertimeHours(), Calculator.calculateOvertimeHours(employee.getOvertimeHours(), Constants.REGULAR_HOURS_PER_MONTH, basicSalary / Constants.REGULAR_HOURS_PER_MONTH));
+        this.overtimeHours = new OvertimeHours(employee.getOvertimeHours(), Calculator.calculateOvertimeHours(employee.getOvertimeHours(), Constants.regularHoursPerMonth, basicSalary / Constants.regularHoursPerMonth));
         this.bonuses = employee.getBonuses();
         this.totalIncome = calculateTotalIncome();
     }

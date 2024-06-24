@@ -17,16 +17,16 @@ public class Calculator {
 
     public static double calculateOvertimeHours(double hoursWorked, double regularHours, double hourlyRate) {
         double overtimeHours = hoursWorked - regularHours;
-        double overtimeValue = overtimeHours * hourlyRate * Constants.OVERTIME_HOUR_INCREASE;
+        double overtimeValue = overtimeHours * hourlyRate * Constants.overtimeHourIncrease;
         return overtimeValue;
     }
 
     public static double calculateReserveFunds(double basicSalary) {
-        return basicSalary * Constants.RESERVE_FUNDS_PERCENTAGE;
+        return basicSalary * Constants.reserveFundsPercentage;
     }
 
     public static double calculateIessContribution(double totalIncome, double reserveFunds) {
-        double iessContribution = (totalIncome - reserveFunds) * Constants.IESS_PERCENTAGE;
+        double iessContribution = (totalIncome - reserveFunds) * Constants.iessPercentage;
         return iessContribution;
     }
     
@@ -51,7 +51,7 @@ public class Calculator {
     }
 
     public static double calculateEmployerContribution(double totalIncome, double reserveFunds) {
-        return (totalIncome + reserveFunds) * Constants.EMPLOYER_CONTRIBUTION_PERCENTAGE;
+        return (totalIncome + reserveFunds) * Constants.employerContributionPercentage;
     }
 
     public static double calculateTotalEmployeeCost(double netPayment, double employerContribution) {

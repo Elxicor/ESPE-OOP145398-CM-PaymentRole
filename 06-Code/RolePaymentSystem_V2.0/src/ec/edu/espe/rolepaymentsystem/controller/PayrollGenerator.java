@@ -20,7 +20,7 @@ import java.util.List;
  * @author Code Masters
  */
 public class PayrollGenerator {
-    private static final String PAYROLLS_FILE = "payrolls.json";
+    private static final String payrollsFile = "payrolls.json";
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
     public void generatePayrolls(List<Employee> employees) {
@@ -99,7 +99,7 @@ public class PayrollGenerator {
     }
 
     private void savePayrollsToFile(JsonObject payrollsJson) {
-        try (FileWriter fileWriter = new FileWriter(PAYROLLS_FILE)) {
+        try (FileWriter fileWriter = new FileWriter(payrollsFile)) {
             GSON.toJson(payrollsJson, fileWriter);
         } catch (IOException e) {
             System.out.println("Error al guardar los roles de pago.");
