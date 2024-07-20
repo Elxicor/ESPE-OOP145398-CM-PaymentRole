@@ -1,4 +1,4 @@
-package ec.espe.edu.roleplaymentsystem.view;
+package ec.espe.edu.rolepaymentsystem.view;
 
 /**
  *
@@ -22,10 +22,10 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
     private void initComponents() {
 
         PanelRolPlaymentSystem = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -34,13 +34,9 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
         PanelRolPlaymentSystem.setBackground(new java.awt.Color(255, 255, 255));
         PanelRolPlaymentSystem.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
-        jLabel1.setText("Role Payment System");
-        PanelRolPlaymentSystem.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("(c)Code Master");
-        PanelRolPlaymentSystem.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 150, 180, 50));
+        PanelRolPlaymentSystem.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 120, 50));
 
         jButton1.setText("Iniciar Sesion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -52,25 +48,34 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setText("Role Payment System");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        PanelRolPlaymentSystem.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 420, 70));
+        PanelRolPlaymentSystem.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 420, 60));
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("V1.0.0");
-        PanelRolPlaymentSystem.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 120, -1, -1));
+        PanelRolPlaymentSystem.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        PanelRolPlaymentSystem.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 420, -1));
+        PanelRolPlaymentSystem.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 73, 420, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,9 +85,10 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(PanelRolPlaymentSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();

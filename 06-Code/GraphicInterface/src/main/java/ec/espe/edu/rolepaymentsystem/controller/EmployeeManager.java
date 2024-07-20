@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.espe.rolepaymentsystem.controller;
+package ec.espe.edu.rolepaymentsystem.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
-import ec.edu.espe.rolepaymentsystem.model.Employee;
+import ec.espe.edu.rolepaymentsystem.model.Employee;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,12 +17,12 @@ import java.util.List;
 
 /**
  *
- * @author Code Masters
+ * @author PAOLA-SSD
  */
 public class EmployeeManager {
-    private static final String employeesFile = "employees.json";
-    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private List<Employee> employees;
+   private final String employeesFile = "employees.json";
+    private final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private final List<Employee> employees;
 
     public EmployeeManager() {
         employees = loadEmployees();
@@ -30,17 +30,17 @@ public class EmployeeManager {
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
-        saveEmployees();
+//        saveEmployees();
     }
 
     public void updateEmployee(int index, Employee employee) {
         employees.set(index, employee);
-        saveEmployees();
+//        saveEmployees();
     }
 
     public void removeEmployee(int index) {
         employees.remove(index);
-        saveEmployees();
+//        saveEmployees();
     }
 
     public List<Employee> getEmployees() {

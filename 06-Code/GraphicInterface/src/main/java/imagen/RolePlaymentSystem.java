@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package ec.espe.edu.roleplaymentsystem;
+package imagen;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;

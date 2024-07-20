@@ -2,19 +2,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package ec.espe.edu.roleplaymentsystem.view;
-
+package ec.espe.edu.rolepaymentsystem.view;
+import ec.espe.edu.rolepaymentsystem.model.Employee;
+import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author PAOLA-SSD
  */
 public class FrmAllEmployee extends javax.swing.JFrame {
-
+    Employee employee;
+    EmployeeManager employeeManager;
+    DefaultTableModel defaultTableModel;
     /**
      * Creates new form Frm
      */
     public FrmAllEmployee() {
+        this.employeeManager = employeeManager;
         initComponents();
+        defaultTableModel = new DefaultTableModel();
+        String[] titulo = new String[]{"Nombre", "Apellido", "Numero de Identidad", "Fecha de Contratacion"};
+        defaultTableModel.setColumnIdentifiers(titulo);
+        tableAllEmployee.setModel(defaultTableModel);
+
+        List<Employee> employees = employeeManager.getEmployees();
+        for (Employee emp : employees) {
+            defaultTableModel.addRow(new Object[]{
+                emp.getName(), emp.getLastName(), emp.getIdNumber()
+            });
+        }
     }
 
     /**
@@ -30,8 +47,8 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAllEmployee = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         txtIniciarSesion = new javax.swing.JLabel();
 
@@ -66,16 +83,22 @@ public class FrmAllEmployee extends javax.swing.JFrame {
                 return types [columnIndex];
             }
         });
+        tableAllEmployee.setToolTipText("");
         jScrollPane1.setViewportView(tableAllEmployee);
 
-        jButton1.setBackground(new java.awt.Color(0, 255, 204));
-        jButton1.setText("Eliminar");
-
-        jButton3.setBackground(new java.awt.Color(0, 255, 204));
-        jButton3.setText("Editar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnDelete.setBackground(new java.awt.Color(0, 255, 204));
+        btnDelete.setText("Eliminar");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        btnUpdate.setBackground(new java.awt.Color(0, 255, 204));
+        btnUpdate.setText("Editar");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
             }
         });
 
@@ -112,11 +135,11 @@ public class FrmAllEmployee extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 415, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnDelete)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3)
+                        .addComponent(btnUpdate)
                         .addGap(94, 94, 94)))
                 .addContainerGap(39, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -132,8 +155,8 @@ public class FrmAllEmployee extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3))
+                            .addComponent(btnDelete)
+                            .addComponent(btnUpdate))
                         .addContainerGap(26, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -163,9 +186,18 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        int fila=tableAllEmployee.getSelectedRow();
+        defaultTableModel.setValueAt(employee.getName(),fila,0);
+        defaultTableModel.setValueAt(employee.getLastName(),fila,0);
+        defaultTableModel.setValueAt(employee.getIdNumber(),fila,0);
+    }//GEN-LAST:event_btnUpdateActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+       int fila=tableAllEmployee.getSelectedRow();
+        defaultTableModel.removeRow(fila);
+        employeeManager.removeEmployee(fila);
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,9 +266,9 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
