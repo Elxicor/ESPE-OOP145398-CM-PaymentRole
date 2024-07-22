@@ -4,6 +4,8 @@
  */
 package ec.espe.edu.rolepaymentsystem.view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author PAOLA-SSD
@@ -32,8 +34,8 @@ public class FrmLogin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         txtIniciarSesion = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtUser = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
@@ -68,16 +70,23 @@ public class FrmLogin extends javax.swing.JFrame {
         txtIniciarSesion.setText("INICIAR SESIÓN");
         jPanel1.add(txtIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Ingrese el nombre del usuario");
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, -1));
+        txtUser.setForeground(new java.awt.Color(204, 204, 204));
+        txtUser.setText("Ingrese el nombre del usuario");
+        txtUser.setToolTipText("\"admin\"");
+        txtUser.setBorder(null);
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUserActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 250, -1));
 
-        jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.setCaretColor(new java.awt.Color(204, 204, 204));
-        jPanel1.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 250, -1));
+        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
+        txtPassword.setText("jPasswordField1");
+        txtPassword.setToolTipText("\"123456\"");
+        txtPassword.setBorder(null);
+        txtPassword.setCaretColor(new java.awt.Color(204, 204, 204));
+        jPanel1.add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 250, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 240, 10));
@@ -97,12 +106,20 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(true){//read users from database and compare used nameand 
-        FrmRolePaymentSystem frmRolePlaymentSystem=new FrmRolePaymentSystem(); 
+    String username = txtUser.getText();
+    String password = txtPassword.getText();
+    if(username.equals("admin") && password.equals("123456")) { // read users from database and compare username and password
+        FrmRolePaymentSystem frmRolePlaymentSystem = new FrmRolePaymentSystem(); 
         this.setVisible(false); 
         frmRolePlaymentSystem.setVisible(true);
-        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Ingreso de datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
+
+    }//GEN-LAST:event_txtUserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,10 +167,10 @@ public class FrmLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel txtIniciarSesion;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

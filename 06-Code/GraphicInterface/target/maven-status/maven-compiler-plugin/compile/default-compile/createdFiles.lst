@@ -13,6 +13,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$11.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$2.class
+ec\espe\edu\rolepaymentsystem\view\FrmLogin$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$8.class
 ec\espe\edu\rolepaymentsystem\view\FrmLogin$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$6.class
@@ -30,6 +31,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$8.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateEmployee$1.class
+ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee.class
@@ -44,7 +46,9 @@ ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$10.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$13.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$5.class
+ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$8.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$2.class
+ec\espe\edu\rolepaymentsystem\controller\EmployeeManager$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$5.class
 ec\espe\edu\rolepaymentsystem\model\Employee.class
@@ -53,6 +57,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystemSplash$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$5.class
+ec\espe\edu\rolepaymentsystem\controller\EmployeeManager$DateAdapter.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$6.class

@@ -5,6 +5,7 @@
 package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +17,7 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     private Employee employee;
     private final EmployeeManager employeeManager;
     private DefaultTableModel defaultTableModel;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM,yyyy");
 
     public FrmAllEmployee() {
         initComponents();
@@ -23,7 +25,6 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         initializeTable();
         updateTable();
     }
-
     public void initializeTable() {
         defaultTableModel = new DefaultTableModel(
             new Object [][] {},
@@ -31,7 +32,7 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Esto hace que la tabla no sea editable
+                return false; 
             }
         };
         tableAllEmployee.setModel(defaultTableModel);
@@ -39,12 +40,20 @@ public class FrmAllEmployee extends javax.swing.JFrame {
 
     public void updateTable() {
         defaultTableModel.setRowCount(0);
-    List<Employee> employees = employeeManager.getEmployees();
-    for (Employee emp : employees) {
-        defaultTableModel.addRow(new Object[]{
-            emp.getName(), emp.getLastName(), emp.getIdNumber(), emp.getHireDate()
-        });
+        List<Employee> employees = employeeManager.getEmployees();
+        for (Employee emp : employees) {
+            String hireDateEmployee = simpleDateFormat.format(emp.getHireDate());
+            defaultTableModel.addRow(new Object[]{
+                emp.getName(), emp.getLastName(), emp.getIdNumber(), hireDateEmployee
+            });
+        }
     }
+        @Override
+    public void setVisible(boolean visible) {
+        super.setVisible(visible);
+        if (visible) {
+            updateTable();
+        }
     }
     public EmployeeManager getEmployeeManager() {
         return employeeManager;
@@ -216,10 +225,11 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       int fila=tableAllEmployee.getSelectedRow();
-        if (fila != -1) {  
+    int fila = tableAllEmployee.getSelectedRow();
+    if (fila != -1) {  
         employeeManager.removeEmployee(fila);
-        defaultTableModel.removeRow(fila); 
+        employeeManager.saveEmployees(employeeManager.getEmployees()); 
+        updateTable(); 
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione un empleado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
     }

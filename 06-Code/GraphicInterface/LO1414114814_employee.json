@@ -1,0 +1,14 @@
+{
+  "name": "Ulloa",
+  "lastName": "Flores",
+  "idNumber": "LO1414114814",
+  "hireDate": "05/07/2024",
+  "basicSalary": 460.0,
+  "overtimeHours": 34.0,
+  "absentDays": 6.0,
+  "bonuses": 23.0,
+  "iessLoans": 1200.0,
+  "companyLoans": 1200.0,
+  "fines": 2.0,
+  "bringOwnFood": false
+}

@@ -16,10 +16,11 @@ import java.awt.event.KeyEvent;
  * @author Code Masters
  */
 public class FrmEditEmployee extends javax.swing.JFrame {
-    private FrmAllEmployee parentForm;
-    private Employee employeeToEdit;
-    private EmployeeManager employeeManager;
+    private final FrmAllEmployee parentForm;
+    private final Employee employeeToEdit;
+    private final EmployeeManager employeeManager;
     Validations validations=new Validations();
+    
     
     public FrmEditEmployee(FrmAllEmployee parentForm, Employee employee) {
         initComponents();
@@ -33,13 +34,14 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     txtName.setText(employeeToEdit.getName());
     txtLastname.setText(employeeToEdit.getLastName());
     txtId.setText(employeeToEdit.getIdNumber());
+    jDateEmployee.setDate(employeeToEdit.getHireDate());
     txtOvertimeHours.setText(String.valueOf(employeeToEdit.getOvertimeHours()));
     txtAbsentDays.setText(String.valueOf(employeeToEdit.getAbsentDays()));
     txtBonuses.setText(String.valueOf(employeeToEdit.getBonuses()));
     txtIessLoans.setText(String.valueOf(employeeToEdit.getIessLoans()));
     txtCompanyLoans.setText(String.valueOf(employeeToEdit.getCompanyLoans()));
     txtFines.setText(String.valueOf(employeeToEdit.getFines()));
-    cmbBringOwnFood.setSelectedIndex(employeeToEdit.getBringOwnFood());
+    cmbBringOwnFood.setSelectedItem(employeeToEdit.getBringOwnFood() ? "Si" : "No");
 }
     private boolean validateFields() {
     boolean isValid = true;
@@ -58,10 +60,6 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     }
     return isValid;
 }
-
-    
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -76,9 +74,6 @@ public class FrmEditEmployee extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jSpinner2 = new javax.swing.JSpinner();
-        jSpinner3 = new javax.swing.JSpinner();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -99,6 +94,7 @@ public class FrmEditEmployee extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         txtOvertimeHours = new javax.swing.JTextField();
         btnCancel = new javax.swing.JButton();
+        jDateEmployee = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -157,13 +153,6 @@ public class FrmEditEmployee extends javax.swing.JFrame {
         );
 
         jLabel5.setText("Fecha de contratacion:");
-
-        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(1, 1, 31, 1));
-        jSpinner1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
-        jSpinner2.setModel(new javax.swing.SpinnerListModel(new String[] {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Octubre", "Diciembre"}));
-
-        jSpinner3.setModel(new javax.swing.SpinnerListModel(new String[] {"2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020", "2021", "2022", "2023", "2024"}));
 
         jLabel6.setText("Horas Extras:");
 
@@ -273,6 +262,7 @@ public class FrmEditEmployee extends javax.swing.JFrame {
             }
         });
 
+        btnCancel.setBackground(new java.awt.Color(204, 204, 204));
         btnCancel.setText("Cancelar");
         btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -305,16 +295,10 @@ public class FrmEditEmployee extends javax.swing.JFrame {
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtId)))
-                                .addGap(23, 23, 23)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(53, 53, 53)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel5)
-                                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(94, 94, 94)
-                                        .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(76, 76, 76)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jDateEmployee, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btnCancel)
@@ -355,31 +339,29 @@ public class FrmEditEmployee extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtOvertimeHours, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtCompanyLoans, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(17, 17, 17)))
+                        .addGap(17, 290, Short.MAX_VALUE)))
                 .addGap(8, 8, 8))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtLastname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jDateEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -447,19 +429,20 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     if (!validateFields()) {
         return;
     }
-
     employeeToEdit.setName(txtName.getText());
     employeeToEdit.setLastName(txtLastname.getText());
     employeeToEdit.setIdNumber(txtId.getText());
+    employeeToEdit.setHireDate(jDateEmployee.getDate());
     employeeToEdit.setOvertimeHours(Double.parseDouble(txtOvertimeHours.getText()));
     employeeToEdit.setAbsentDays(Double.parseDouble(txtAbsentDays.getText()));
     employeeToEdit.setBonuses(Double.parseDouble(txtBonuses.getText()));
     employeeToEdit.setIessLoans(Double.parseDouble(txtIessLoans.getText()));
     employeeToEdit.setCompanyLoans(Double.parseDouble(txtCompanyLoans.getText()));
     employeeToEdit.setFines(Double.parseDouble(txtFines.getText()));
-    employeeToEdit.setBringOwnFood(cmbBringOwnFood.getSelectedIndex());
+    employeeToEdit.setBringOwnFood(cmbBringOwnFood.getSelectedItem().toString().equals("Si"));
 
     employeeManager.updateEmployee(employeeToEdit);
+    employeeManager.saveEmployees(employeeManager.getEmployees());
     parentForm.updateTable();
     JOptionPane.showMessageDialog(this, "Empleado actualizado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     this.dispose();
@@ -559,6 +542,7 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRegisterEmployee;
     private javax.swing.JComboBox<String> cmbBringOwnFood;
+    private com.toedter.calendar.JDateChooser jDateEmployee;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -576,9 +560,6 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JSpinner jSpinner2;
-    private javax.swing.JSpinner jSpinner3;
     private javax.swing.JTextField txtAbsentDays;
     private javax.swing.JTextField txtBonuses;
     private javax.swing.JTextField txtCompanyLoans;

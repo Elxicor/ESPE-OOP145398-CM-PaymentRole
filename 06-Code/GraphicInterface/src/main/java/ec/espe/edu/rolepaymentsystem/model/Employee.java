@@ -22,9 +22,9 @@ public class Employee {
     private double iessLoans;
     private double companyLoans;
     private double fines;
-    private int bringOwnFood;
+    private boolean bringOwnFood;
 
-    public Employee(String name, String lastName, String idNumber, Date hireDate, double basicSalary, double overtimeHours, double absentDays, double bonuses, double iessLoans, double companyLoans, double fines, int bringOwnFood) {
+    public Employee(String name, String lastName, String idNumber, Date hireDate, double basicSalary, double overtimeHours, double absentDays, double bonuses, double iessLoans, double companyLoans, double fines, boolean bringOwnFood) {
         this.name = name;
         this.lastName = lastName;
         this.idNumber = idNumber;
@@ -127,12 +127,11 @@ public class Employee {
         this.fines = fines;
     }
 
-    public int getBringOwnFood() {
+    public boolean getBringOwnFood() {
         return bringOwnFood;
     }
 
-    public void setBringOwnFood(int bringOwnFood) {
+    public void setBringOwnFood(boolean bringOwnFood) {
         this.bringOwnFood = bringOwnFood;
     }
-
 }

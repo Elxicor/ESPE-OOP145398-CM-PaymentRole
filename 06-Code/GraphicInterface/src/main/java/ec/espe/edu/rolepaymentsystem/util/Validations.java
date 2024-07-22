@@ -63,6 +63,7 @@ public class Validations {
             }
         });
     }
+}
 //     public static void validate(JTextField field, Class<?> type) {
 //        try {
 //            if (type == Integer.class) {
@@ -81,4 +82,3 @@ public class Validations {
 //            field.setBackground(Color.YELLOW);
 //        }
 //    }
-}

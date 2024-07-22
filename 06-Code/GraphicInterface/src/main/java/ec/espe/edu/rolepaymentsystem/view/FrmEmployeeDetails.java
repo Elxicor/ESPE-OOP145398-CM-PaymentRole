@@ -47,8 +47,8 @@ public class FrmEmployeeDetails extends javax.swing.JFrame {
     txtFinesDetail.setText(String.valueOf(employee.getFines()));
     txtFinesDetail.setEditable(false);
 
-    if (employee.getBringOwnFood() == 1) {
-        txtFoodDetails.setText("Sí");
+    if (employee.getBringOwnFood()) {
+    txtFoodDetails.setText("Si");
     } else {
         txtFoodDetails.setText("No");
     }
