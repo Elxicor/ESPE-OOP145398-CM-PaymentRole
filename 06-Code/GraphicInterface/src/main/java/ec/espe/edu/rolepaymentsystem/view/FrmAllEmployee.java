@@ -6,34 +6,52 @@ package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public class FrmAllEmployee extends javax.swing.JFrame {
-    Employee employee;
-    EmployeeManager employeeManager;
-    DefaultTableModel defaultTableModel;
-    /**
-     * Creates new form Frm
-     */
-    public FrmAllEmployee() {
-        this.employeeManager = employeeManager;
-        initComponents();
-        defaultTableModel = new DefaultTableModel();
-        String[] titulo = new String[]{"Nombre", "Apellido", "Numero de Identidad", "Fecha de Contratacion"};
-        defaultTableModel.setColumnIdentifiers(titulo);
-        tableAllEmployee.setModel(defaultTableModel);
+    private Employee employee;
+    private final EmployeeManager employeeManager;
+    private DefaultTableModel defaultTableModel;
 
-        List<Employee> employees = employeeManager.getEmployees();
-        for (Employee emp : employees) {
-            defaultTableModel.addRow(new Object[]{
-                emp.getName(), emp.getLastName(), emp.getIdNumber()
-            });
-        }
+    public FrmAllEmployee() {
+        initComponents();
+        employeeManager = new EmployeeManager();
+        initializeTable();
+        updateTable();
     }
 
+    public void initializeTable() {
+        defaultTableModel = new DefaultTableModel(
+            new Object [][] {},
+            new String [] {"Nombre", "Apellido", "Numero de Identidad", "Fecha de Contratacion"}
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Esto hace que la tabla no sea editable
+            }
+        };
+        tableAllEmployee.setModel(defaultTableModel);
+    }
+
+    public void updateTable() {
+        defaultTableModel.setRowCount(0);
+    List<Employee> employees = employeeManager.getEmployees();
+    for (Employee emp : employees) {
+        defaultTableModel.addRow(new Object[]{
+            emp.getName(), emp.getLastName(), emp.getIdNumber(), emp.getHireDate()
+        });
+    }
+    }
+    public EmployeeManager getEmployeeManager() {
+        return employeeManager;
+    }
+    public DefaultTableModel getTableModel() {
+    return defaultTableModel;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -141,15 +159,14 @@ public class FrmAllEmployee extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(btnUpdate)
                         .addGap(94, 94, 94)))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -187,16 +204,25 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int fila=tableAllEmployee.getSelectedRow();
-        defaultTableModel.setValueAt(employee.getName(),fila,0);
-        defaultTableModel.setValueAt(employee.getLastName(),fila,0);
-        defaultTableModel.setValueAt(employee.getIdNumber(),fila,0);
+        int selectedRow = tableAllEmployee.getSelectedRow();
+    if (selectedRow != -1) {
+        Employee selectedEmployee = employeeManager.getEmployees().get(selectedRow);
+        FrmEditEmployee editForm = new FrmEditEmployee(this, selectedEmployee);
+        editForm.setVisible(true);
+        this.setVisible(false);
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un empleado para editar", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
        int fila=tableAllEmployee.getSelectedRow();
-        defaultTableModel.removeRow(fila);
+        if (fila != -1) {  
         employeeManager.removeEmployee(fila);
+        defaultTableModel.removeRow(fila); 
+    } else {
+        JOptionPane.showMessageDialog(this, "Seleccione un empleado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     /**

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Yostin",
+    "lastName": "Sisalema",
+    "idNumber": "lo1414114814",
+    "hireDate": "Jul 20, 2024, 2:22:21 PM",
+    "basicSalary": 460.0,
+    "overtimeHours": 2.0,
+    "absentDays": 4.0,
+    "bonuses": 1121.0,
+    "iessLoans": 14.0,
+    "companyLoans": 1.0,
+    "fines": 8.0,
+    "bringOwnFood": 0
+  },
+  {
+    "name": "Ulloa",
+    "lastName": "Flores",
+    "idNumber": "LO1414114814",
+    "hireDate": "Jul 20, 2024, 5:44:00 PM",
+    "basicSalary": 460.0,
+    "overtimeHours": 1.0,
+    "absentDays": 4.0,
+    "bonuses": 1121.0,
+    "iessLoans": 14.0,
+    "companyLoans": 1.0,
+    "fines": 8.0,
+    "bringOwnFood": 0
+  }
+]

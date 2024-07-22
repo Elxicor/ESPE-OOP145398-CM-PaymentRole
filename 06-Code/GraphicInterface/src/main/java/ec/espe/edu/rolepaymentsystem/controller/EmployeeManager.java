@@ -9,6 +9,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
+import ec.espe.edu.rolepaymentsystem.view.FrmAllEmployee;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,27 +21,35 @@ import java.util.List;
  * @author PAOLA-SSD
  */
 public class EmployeeManager {
-   private final String employeesFile = "employees.json";
+//    FrmAllEmployee frmAllEmployee=new FrmAllEmployee();
+    private final String employeesFile = "employees.json";
     private final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private final List<Employee> employees;
 
-    public EmployeeManager() {
+    public EmployeeManager () {
         employees = loadEmployees();
     }
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
-//        saveEmployees();
+        saveEmployees();
     }
 
-    public void updateEmployee(int index, Employee employee) {
-        employees.set(index, employee);
-//        saveEmployees();
+    public void updateEmployee(Employee updatedEmployee) {
+    for (int i = 0; i < employees.size(); i++) {
+        if (employees.get(i).getIdNumber().equals(updatedEmployee.getIdNumber())) {
+            employees.set(i, updatedEmployee);
+            break;
+        }
     }
+    saveEmployees();
+}
 
     public void removeEmployee(int index) {
-        employees.remove(index);
-//        saveEmployees();
+       if (index >= 0 && index < employees.size()) {
+            employees.remove(index);
+        }
+        saveEmployees();
     }
 
     public List<Employee> getEmployees() {
@@ -61,7 +70,7 @@ public class EmployeeManager {
         return employees;
     }
 
-    private void saveEmployees() {
+    public void saveEmployees() {
         JsonArray jsonArray = new JsonArray();
         for (Employee employee : employees) {
             jsonArray.add(GSON.toJsonTree(employee));
