@@ -2,8 +2,8 @@
   {
     "name": "Ulloa",
     "lastName": "Flores",
-    "idNumber": "LO1414114814",
-    "hireDate": "05/07/2024",
+    "idNumber": "LO14253698",
+    "hireDate": "Jul 5, 2024, 12:00:00 AM",
     "basicSalary": 460.0,
     "overtimeHours": 34.0,
     "absentDays": 6.0,
@@ -14,10 +14,10 @@
     "bringOwnFood": false
   },
   {
-    "name": "Plamas",
+    "name": "Palmas",
     "lastName": "Klinter",
-    "idNumber": "LO0974512313",
-    "hireDate": "11/07/2020",
+    "idNumber": "LO12345678",
+    "hireDate": "Jul 11, 2020, 12:00:00 AM",
     "basicSalary": 460.0,
     "overtimeHours": 12.0,
     "absentDays": 5.0,
@@ -26,5 +26,33 @@
     "companyLoans": 23.0,
     "fines": 2.0,
     "bringOwnFood": true
+  },
+  {
+    "name": "Yostin",
+    "lastName": "Sisalema",
+    "idNumber": "LO32814654",
+    "hireDate": "Jul 5, 2024, 12:00:00 AM",
+    "basicSalary": 460.0,
+    "overtimeHours": 12.0,
+    "absentDays": 42.0,
+    "bonuses": 1121.0,
+    "iessLoans": 42.0,
+    "companyLoans": 12.0,
+    "fines": 12.0,
+    "bringOwnFood": true
+  },
+  {
+    "name": "Ulloa",
+    "lastName": "Hernandez",
+    "idNumber": "LO12331434",
+    "hireDate": "Jul 5, 2024, 12:00:00 AM",
+    "basicSalary": 460.0,
+    "overtimeHours": 48.0,
+    "absentDays": 6.0,
+    "bonuses": 120.0,
+    "iessLoans": 12.0,
+    "companyLoans": 1200.0,
+    "fines": 9.0,
+    "bringOwnFood": false
   }
 ]

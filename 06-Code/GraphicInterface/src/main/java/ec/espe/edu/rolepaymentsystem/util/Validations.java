@@ -20,7 +20,11 @@ public class Validations {
         String regex = "^[LOlo][a-zA-Z0-9]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
+        if(matcher.matches()&& value.length()==10){
         return matcher.matches();
+        }else {
+        return false;
+        }
     }
 
     public boolean getIntInput(String value) {

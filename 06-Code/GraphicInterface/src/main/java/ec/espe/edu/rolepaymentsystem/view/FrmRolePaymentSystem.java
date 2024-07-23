@@ -6,9 +6,12 @@ package ec.espe.edu.rolepaymentsystem.view;
 
 //import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 
+import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+
+
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public class FrmRolePaymentSystem extends javax.swing.JFrame {
     private FrmAllEmployee allEmployeeForm;
@@ -34,26 +37,26 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        mnLogin = new javax.swing.JMenuItem();
+        mnExit = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        mnAllEmployee = new javax.swing.JMenuItem();
         mnAddEmployee = new javax.swing.JMenuItem();
+        mnAllEmployee = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
+        itemGenaratePaymentRoles = new javax.swing.JMenuItem();
+        itemNominalHistory = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenu9 = new javax.swing.JMenu();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        mnPayrollPeriodReport = new javax.swing.JMenuItem();
+        mnAnnualPayrollReport = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        mnUserManual = new javax.swing.JMenuItem();
+        mnFAQ = new javax.swing.JMenuItem();
+        mnSupportContact = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,35 +84,27 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
 
         jMenu1.setText("Role Payment");
 
-        jMenuItem1.setText("Login");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        mnLogin.setText("Login");
+        mnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                mnLoginActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(mnLogin);
 
-        jMenuItem9.setText("Salir");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        mnExit.setText("Salir");
+        mnExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                mnExitActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem9);
+        jMenu1.add(mnExit);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Empleados");
 
-        mnAllEmployee.setText("Agregar Empleado");
-        mnAllEmployee.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                mnAllEmployeeActionPerformed(evt);
-            }
-        });
-        jMenu2.add(mnAllEmployee);
-
-        mnAddEmployee.setText("Todos los Empleados");
+        mnAddEmployee.setText("Agregar Empleado");
         mnAddEmployee.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnAddEmployeeActionPerformed(evt);
@@ -117,20 +112,33 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
         });
         jMenu2.add(mnAddEmployee);
 
+        mnAllEmployee.setText("Todos los Empleados");
+        mnAllEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAllEmployeeActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mnAllEmployee);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Nómina");
 
-        jMenuItem3.setText("Generar roles de pago");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        itemGenaratePaymentRoles.setText("Generar roles de pago");
+        itemGenaratePaymentRoles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                itemGenaratePaymentRolesActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem3);
+        jMenu3.add(itemGenaratePaymentRoles);
 
-        jMenuItem13.setText("Ver historial de nómina");
-        jMenu3.add(jMenuItem13);
+        itemNominalHistory.setText("Ver historial de nómina");
+        itemNominalHistory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemNominalHistoryActionPerformed(evt);
+            }
+        });
+        jMenu3.add(itemNominalHistory);
 
         jMenuBar1.add(jMenu3);
 
@@ -138,16 +146,21 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
 
         jMenu9.setText("Informe resumido del empleado");
 
-        jMenuItem12.setText("Informe del período de nómina");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+        mnPayrollPeriodReport.setText("Informe del período de nómina");
+        mnPayrollPeriodReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
+                mnPayrollPeriodReportActionPerformed(evt);
             }
         });
-        jMenu9.add(jMenuItem12);
+        jMenu9.add(mnPayrollPeriodReport);
 
-        jMenuItem2.setText("Informe Anual de Nómina");
-        jMenu9.add(jMenuItem2);
+        mnAnnualPayrollReport.setText("Informe Anual de Nómina");
+        mnAnnualPayrollReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnAnnualPayrollReportActionPerformed(evt);
+            }
+        });
+        jMenu9.add(mnAnnualPayrollReport);
 
         jMenu4.add(jMenu9);
 
@@ -173,19 +186,29 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
 
         jMenu6.setText("Help");
 
-        jMenuItem6.setText("User manual");
-        jMenu6.add(jMenuItem6);
-
-        jMenuItem7.setText("FAQ");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        mnUserManual.setText("User manual");
+        mnUserManual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                mnUserManualActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem7);
+        jMenu6.add(mnUserManual);
 
-        jMenuItem8.setText("Contacto de soporte");
-        jMenu6.add(jMenuItem8);
+        mnFAQ.setText("FAQ");
+        mnFAQ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnFAQActionPerformed(evt);
+            }
+        });
+        jMenu6.add(mnFAQ);
+
+        mnSupportContact.setText("Contacto de soporte");
+        mnSupportContact.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnSupportContactActionPerformed(evt);
+            }
+        });
+        jMenu6.add(mnSupportContact);
 
         jMenuBar1.add(jMenu6);
 
@@ -205,52 +228,78 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void mnAllEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAllEmployeeActionPerformed
+    private void mnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAddEmployeeActionPerformed
         FrmAddEmployee frmAddEmployee = new FrmAddEmployee(allEmployeeForm); 
         this.setVisible(false); 
         frmAddEmployee.setVisible(true);
-    }//GEN-LAST:event_mnAllEmployeeActionPerformed
+    }//GEN-LAST:event_mnAddEmployeeActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void mnFAQActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnFAQActionPerformed
+        FrmFAQ frmFAQ=new FrmFAQ();
+        this.setVisible(false);
+        frmFAQ.setVisible(true);
+    }//GEN-LAST:event_mnFAQActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void mnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_mnExitActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+    private void mnPayrollPeriodReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnPayrollPeriodReportActionPerformed
+        EmployeeManager employeeManager=new EmployeeManager();
+        FrmPayrollPeriodReport frmPayrollPeriodReport=new FrmPayrollPeriodReport(employeeManager);
+        this.setVisible(false);
+        frmPayrollPeriodReport.setVisible(true);        
+    }//GEN-LAST:event_mnPayrollPeriodReportActionPerformed
 
-    private void mnAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAddEmployeeActionPerformed
+    private void mnAllEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAllEmployeeActionPerformed
         if(true){//read users from database and compare used nameand 
         FrmAllEmployee frmAllEmployee=new FrmAllEmployee(); 
         this.setVisible(false); 
         frmAllEmployee.setVisible(true);
         }
-    }//GEN-LAST:event_mnAddEmployeeActionPerformed
+    }//GEN-LAST:event_mnAllEmployeeActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void mnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnLoginActionPerformed
         FrmLogin frmLogin=new FrmLogin();
         this.setVisible(false);
         frmLogin.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_mnLoginActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
+                
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-//        if(true){//read users from database and compare used nameand 
-//        FrmGeneratePaymentRoles frmGeneratePaymentRoles=new FrmGeneratePaymentRoles(); 
-//        this.setVisible(false); 
-//        frmGeneratePaymentRoles.setVisible(true);
-//        }
+    private void itemGenaratePaymentRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenaratePaymentRolesActionPerformed
     FrmGeneratePaymentRoles frmGeneratePaymentRoles = new FrmGeneratePaymentRoles(allEmployeeForm); 
     this.setVisible(false); 
     frmGeneratePaymentRoles.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_itemGenaratePaymentRolesActionPerformed
+
+    private void itemNominalHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemNominalHistoryActionPerformed
+    FrmNominalHistory frmNominalHistory = new FrmNominalHistory(allEmployeeForm); 
+    this.setVisible(false); 
+    frmNominalHistory.setVisible(true);
+    }//GEN-LAST:event_itemNominalHistoryActionPerformed
+
+    private void mnUserManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnUserManualActionPerformed
+       FrmUseManual frmUseManual = new FrmUseManual();
+       this.setVisible(false); 
+       frmUseManual.setVisible(true);
+    }//GEN-LAST:event_mnUserManualActionPerformed
+
+    private void mnSupportContactActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnSupportContactActionPerformed
+       FrmSupportContact frmSupportContact = new FrmSupportContact();
+       this.setVisible(false); 
+       frmSupportContact.setVisible(true);
+    }//GEN-LAST:event_mnSupportContactActionPerformed
+
+    private void mnAnnualPayrollReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAnnualPayrollReportActionPerformed
+        EmployeeManager employeeManager=new EmployeeManager();
+        FrmAnnualPayrollReport frmAnnualPayrollReport=new FrmAnnualPayrollReport(employeeManager);
+        this.setVisible(false);
+        frmAnnualPayrollReport.setVisible(true);     
+        
+    }//GEN-LAST:event_mnAnnualPayrollReportActionPerformed
 
     /**
      * @param args the command line arguments
@@ -289,6 +338,8 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem itemGenaratePaymentRoles;
+    private javax.swing.JMenuItem itemNominalHistory;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
@@ -298,20 +349,18 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnAddEmployee;
     private javax.swing.JMenuItem mnAllEmployee;
+    private javax.swing.JMenuItem mnAnnualPayrollReport;
+    private javax.swing.JMenuItem mnExit;
+    private javax.swing.JMenuItem mnFAQ;
+    private javax.swing.JMenuItem mnLogin;
+    private javax.swing.JMenuItem mnPayrollPeriodReport;
+    private javax.swing.JMenuItem mnSupportContact;
+    private javax.swing.JMenuItem mnUserManual;
     // End of variables declaration//GEN-END:variables
 }

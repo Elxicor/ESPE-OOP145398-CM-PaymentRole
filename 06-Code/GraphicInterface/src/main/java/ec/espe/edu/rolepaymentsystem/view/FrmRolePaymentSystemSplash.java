@@ -1,8 +1,10 @@
 package ec.espe.edu.rolepaymentsystem.view;
 
+//import Images.Images;
+
 /**
  *
- * @author Yostin Sisalema,Code Master
+ * @author Code Master
  */
 public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
     /**
@@ -36,7 +38,7 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("(c)Code Master");
-        PanelRolPlaymentSystem.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 200, 120, 50));
+        PanelRolPlaymentSystem.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 120, 50));
 
         jButton1.setText("Iniciar Sesion");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -44,7 +46,7 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        PanelRolPlaymentSystem.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, -1, -1));
+        PanelRolPlaymentSystem.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, -1, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
@@ -72,7 +74,7 @@ public class FrmRolePaymentSystemSplash extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("V1.0.0");
-        PanelRolPlaymentSystem.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, -1, -1));
+        PanelRolPlaymentSystem.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
         PanelRolPlaymentSystem.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 73, 420, 20));

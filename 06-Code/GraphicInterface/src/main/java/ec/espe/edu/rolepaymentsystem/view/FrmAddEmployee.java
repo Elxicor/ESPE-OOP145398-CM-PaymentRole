@@ -9,6 +9,9 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import ec.espe.edu.rolepaymentsystem.util.Validations;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
+import ec.espe.edu.rolepaymentsystem.util.Calculator;
+import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.List;
@@ -20,15 +23,19 @@ import java.util.List;
 public class FrmAddEmployee extends javax.swing.JFrame {
     private final FrmAllEmployee allEmployeeForm;
     private final EmployeeManager employeeManager;
+    private final Calculator calculator;
     Validations validations=new Validations();
+    SaveManager saveManager;
     /**
      * Creates new form FrmBusqueda9noDigito
      * @param allEmployeeForm
      */
     public FrmAddEmployee(FrmAllEmployee allEmployeeForm) {
     initComponents();
+    this.saveManager = new SaveManager();
     this.allEmployeeForm = allEmployeeForm;
     this.employeeManager = allEmployeeForm.getEmployeeManager();
+    this.calculator = new Calculator();
     validations.addKeyListener(txtName, true);
     validations.addKeyListener(txtLastname, true);
     validations.addKeyListener(txtOvertimeHours, false);
@@ -417,11 +424,13 @@ public class FrmAddEmployee extends javax.swing.JFrame {
 
     private void btnRegisterEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEmployeeActionPerformed
     List<Employee> employees = employeeManager.getEmployees();
+    Calculator calculator =new Calculator();
     Employee employee;
     String name = "";
     String lastName = "";
     String idNumber = "";
     Date hireDate = new Date();
+    double basicSalary=460;
     double overtimeHours = 0;
     double absentDays = 0;
     double bonuses = 0;
@@ -459,22 +468,34 @@ public class FrmAddEmployee extends javax.swing.JFrame {
         companyLoans = Double.parseDouble(txtCompanyLoans.getText());
         fines = Double.parseDouble(txtFines.getText());
         bringOwnFood = cmbBringOwnFood.getSelectedItem().toString().equals("Si");
-
+        
+        double overtimePayment = calculator.calculateOvertimeHours(overtimeHours, 40, basicSalary / 160); 
+        double reserveFunds = calculator.calculateReserveFunds(basicSalary);
+        double totalIncome = calculator.calculateTotalIncome(basicSalary, overtimePayment, bonuses);
+        double iessContribution = calculator.calculateIessContribution(totalIncome, reserveFunds);
+        double biweeklyAdvance = calculator.calculateBiweeklyAdvance(basicSalary);
+        double foodDeduction = calculator.calculateFoodDeduction(bringOwnFood, 50); 
+        double totalExpenses = calculator.calculateTotalExpenses(iessContribution, biweeklyAdvance, iessLoans, companyLoans, fines, foodDeduction);
+        double netPayment = calculator.calculateNetPayment(totalIncome, totalExpenses);
+        double employerContribution = calculator.calculateEmployerContribution(totalIncome, reserveFunds);
+        double totalEmployeeCost = calculator.calculateTotalEmployeeCost(netPayment, employerContribution);
+        
+        EmployeePaymentDetails paymentDetails = new EmployeePaymentDetails(overtimePayment, reserveFunds, totalIncome, iessContribution, biweeklyAdvance, foodDeduction, totalExpenses, netPayment, employerContribution, totalEmployeeCost);
+        
         employee = new Employee(name, lastName, idNumber, hireDate, 460, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
         JOptionPane.showMessageDialog(this, "Se registró el empleado --> " + employee.getName() + " " + employee.getLastName(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showConfirmDialog(this, "txt" + employee.getIdNumber());
         employeeManager.addEmployee(employee);
-        employeeManager.saveEmployees(employeeManager.getEmployees()); // Guarda los empleados en el archivo
-        allEmployeeForm.updateTable(); // Actualiza la tabla en FrmAllEmployee
-    
+        saveManager.saveEmployees(employeeManager.getEmployees()); 
+        allEmployeeForm.updateTable(); 
         clearFields();
     }//GEN-LAST:event_btnRegisterEmployeeActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         if(true){//read users from database and compare used nameand 
-        FrmRolePaymentSystem frmRolePlaymentSystem=new FrmRolePaymentSystem(); 
+        FrmRolePaymentSystem frmRolePaymentSystem=new FrmRolePaymentSystem(); 
         this.setVisible(false); 
-        frmRolePlaymentSystem.setVisible(true);
+        frmRolePaymentSystem.setVisible(true);
         }
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -540,7 +561,8 @@ public class FrmAddEmployee extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 FrmAllEmployee frmAllEmployee = new FrmAllEmployee();
-                frmAllEmployee.setVisible(true);
+                FrmAddEmployee frmAddEmployee= new FrmAddEmployee(frmAllEmployee);
+                frmAddEmployee.setVisible(true);
             }
         });
     }

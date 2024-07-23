@@ -31,10 +31,9 @@ import java.util.Locale;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Maters
  */
 public class EmployeeManager {
-//    FrmAllEmployee frmAllEmployee=new FrmAllEmployee();
     private final String employeesFile = "employees.json";
     private Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private final List<Employee> employees;
@@ -66,7 +65,6 @@ public class EmployeeManager {
         }
 //        saveEmployees();
     }
-
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -80,23 +78,6 @@ public class EmployeeManager {
             System.out.println("Error al cargar los empleados: " + e.getMessage());
         }
         return employees != null ? employees : new ArrayList<>();
-    }
-
-    public void saveEmployees(List<Employee> employees) {
-        try (Writer writer = new FileWriter(employeesFile)) {
-            GSON.toJson(employees, writer);
-        } catch (IOException e) {
-            System.out.println("Error al guardar los empleados: " + e.getMessage());
-        }
-    }
-    public void saveIndividualEmployee(Employee employee) {
-        String fileName = employee.getIdNumber() + "_employee.json";
-        try (Writer writer = new FileWriter(fileName)) {
-            GSON.toJson(employee, writer);
-            System.out.println("Empleado guardado en: " + fileName);
-        } catch (IOException e) {
-            System.out.println("Error al guardar el empleado individual: " + e.getMessage());
-        }
     }
     private static class DateAdapter implements JsonSerializer<Date>, JsonDeserializer<Date> {
         private final SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");

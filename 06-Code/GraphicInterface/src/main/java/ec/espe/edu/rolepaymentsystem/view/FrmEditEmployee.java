@@ -7,6 +7,7 @@ package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import javax.swing.JOptionPane;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import ec.espe.edu.rolepaymentsystem.util.Validations;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -20,10 +21,11 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     private final Employee employeeToEdit;
     private final EmployeeManager employeeManager;
     Validations validations=new Validations();
-    
+    SaveManager saveManager;
     
     public FrmEditEmployee(FrmAllEmployee parentForm, Employee employee) {
         initComponents();
+        this.saveManager = new SaveManager();
         this.parentForm = parentForm;
         this.employeeToEdit = employee;
         this.employeeManager = parentForm.getEmployeeManager();
@@ -35,12 +37,12 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     txtLastname.setText(employeeToEdit.getLastName());
     txtId.setText(employeeToEdit.getIdNumber());
     jDateEmployee.setDate(employeeToEdit.getHireDate());
-    txtOvertimeHours.setText(String.valueOf(employeeToEdit.getOvertimeHours()));
-    txtAbsentDays.setText(String.valueOf(employeeToEdit.getAbsentDays()));
-    txtBonuses.setText(String.valueOf(employeeToEdit.getBonuses()));
-    txtIessLoans.setText(String.valueOf(employeeToEdit.getIessLoans()));
-    txtCompanyLoans.setText(String.valueOf(employeeToEdit.getCompanyLoans()));
-    txtFines.setText(String.valueOf(employeeToEdit.getFines()));
+    txtOvertimeHours.setText(String.valueOf((int)employeeToEdit.getOvertimeHours()));
+    txtAbsentDays.setText(String.valueOf((int)employeeToEdit.getAbsentDays()));
+    txtBonuses.setText(String.valueOf((int)employeeToEdit.getBonuses()));
+    txtIessLoans.setText(String.valueOf((int)employeeToEdit.getIessLoans()));
+    txtCompanyLoans.setText(String.valueOf((int)employeeToEdit.getCompanyLoans()));
+    txtFines.setText(String.valueOf((int)employeeToEdit.getFines()));
     cmbBringOwnFood.setSelectedItem(employeeToEdit.getBringOwnFood() ? "Si" : "No");
 }
     private boolean validateFields() {
@@ -442,7 +444,7 @@ public class FrmEditEmployee extends javax.swing.JFrame {
     employeeToEdit.setBringOwnFood(cmbBringOwnFood.getSelectedItem().toString().equals("Si"));
 
     employeeManager.updateEmployee(employeeToEdit);
-    employeeManager.saveEmployees(employeeManager.getEmployees());
+    saveManager.saveEmployees(employeeManager.getEmployees());
     parentForm.updateTable();
     JOptionPane.showMessageDialog(this, "Empleado actualizado con éxito", "Éxito", JOptionPane.INFORMATION_MESSAGE);
     this.dispose();

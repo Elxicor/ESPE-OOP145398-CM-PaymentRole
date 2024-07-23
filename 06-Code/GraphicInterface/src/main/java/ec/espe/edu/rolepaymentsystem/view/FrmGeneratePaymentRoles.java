@@ -6,10 +6,11 @@ package ec.espe.edu.rolepaymentsystem.view;
 
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
+import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -22,9 +23,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Code Master
  */
 public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
-private final EmployeeManager employeeManager;
-private final FrmAllEmployee frmAllEmployee;
-private DefaultTableModel tableModel;
+    private final EmployeeManager employeeManager;
+    private final FrmAllEmployee frmAllEmployee;
+    private DefaultTableModel tableModel;
+    private EmployeeToMongo employeeToMongo;
+    SaveManager saveManager;
     /**
      * Creates new form FrmGenerarPayroll
      * @param frmAllEmployee
@@ -33,22 +36,23 @@ private DefaultTableModel tableModel;
         initComponents();
         this.employeeManager = frmAllEmployee.getEmployeeManager();
         this.frmAllEmployee = frmAllEmployee;
+        this.saveManager = new SaveManager();
+        this.employeeToMongo = new EmployeeToMongo();
         initializeTable();
         setupTableSelectionListener();
         cmbMonth.addPropertyChangeListener("month", new PropertyChangeListener() {
-         @Override
-         public void propertyChange(PropertyChangeEvent evt) {
-             setPeriod();
-         }
-     });
-
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                setPeriod();
+            }
+        });
         cmbYears.addPropertyChangeListener("year", new PropertyChangeListener() {
-         @Override
-         public void propertyChange(PropertyChangeEvent evt) {
-             setPeriod();
-         }
-     });
-    setPeriod();
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                setPeriod();
+            }
+        });
+        setPeriod();
     }
     private void initializeTable() {
         tableModel = frmAllEmployee.getTableModel();
@@ -56,6 +60,7 @@ private DefaultTableModel tableModel;
     }
     private void populateEmployeeComboBox(int selectedMonth, int selectedYear) {
         cmbAddEmployee.removeAllItems();
+        cmbAddEmployee.addItem("Seleccione un empleado");
         List<Employee> employees = employeeManager.getEmployees();
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM");
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
@@ -111,8 +116,7 @@ private DefaultTableModel tableModel;
         cmbAddEmployee = new javax.swing.JComboBox<>();
         btnGeneratePayroll = new javax.swing.JButton();
         btnGenerateIndividually = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableAllEmployee = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
@@ -157,14 +161,11 @@ private DefaultTableModel tableModel;
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(0, 255, 204));
-        jButton3.setText("Imprimir");
-
-        jButton4.setBackground(new java.awt.Color(0, 255, 204));
-        jButton4.setText("Atrás");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setBackground(new java.awt.Color(0, 255, 204));
+        btnBack.setText("Atrás");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
@@ -219,33 +220,32 @@ private DefaultTableModel tableModel;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(27, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addGap(52, 52, 52)
-                        .addComponent(jButton4)
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                    .addComponent(jLabel4)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(35, 35, 35)
-                                .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmbYears, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(cmbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbYears, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cmbAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnGenerateIndividually, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnGeneratePayroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(24, 24, 24))))
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(cmbAddEmployee, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnGenerateIndividually, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGeneratePayroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(183, 183, 183))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,9 +277,7 @@ private DefaultTableModel tableModel;
                         .addGap(41, 41, 41)
                         .addComponent(btnGeneratePayroll)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                .addComponent(btnBack)
                 .addGap(14, 14, 14))
         );
 
@@ -302,42 +300,43 @@ private DefaultTableModel tableModel;
     private void btnGeneratePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePayrollActionPerformed
     List<Employee> employees = employeeManager.getEmployees();
     if(!employees.isEmpty()){
-    employeeManager.saveEmployees(employees); 
-    JOptionPane.showMessageDialog(this,"Se generó el rol de pagos","Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
-    }else{
-    JOptionPane.showMessageDialog(this, "Debe generar la lista de empleados ", "Error", JOptionPane.ERROR_MESSAGE);
+        saveManager.saveEmployees(employees); 
+        for (Employee employee : employees) {
+                employeeToMongo.uploadEmployeeData(employee);
+            }
+        JOptionPane.showMessageDialog(this, "Se generó el rol de pagos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+        }else{
+        JOptionPane.showMessageDialog(this, "Debe generar la lista de empleados ", "Error", JOptionPane.ERROR_MESSAGE);
     }
-    
     }//GEN-LAST:event_btnGeneratePayrollActionPerformed
 
     private void btnGenerateIndividuallyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateIndividuallyActionPerformed
     int selected = cmbAddEmployee.getSelectedIndex();
-    if(selected != -1){  // Cambiado de 0 a -1 para manejar correctamente la selección
+    if(selected != -1){ 
         Employee selectedEmployee = employeeManager.getEmployees().get(selected);
-        employeeManager.saveIndividualEmployee(selectedEmployee);
-        JOptionPane.showMessageDialog(this, 
-            "Se generó el archivo JSON para el empleado: " + selectedEmployee.getName() + " " + selectedEmployee.getLastName(), 
-            "Generación Exitosa", 
-            JOptionPane.INFORMATION_MESSAGE);
+        saveManager.saveIndividualEmployee(selectedEmployee);
+        employeeToMongo.uploadEmployeeData(selectedEmployee);
+        JOptionPane.showMessageDialog(this, "Se guardaron los datos del empleado: " + selectedEmployee.getName() + " " + selectedEmployee.getLastName() + " localmente y en la base de datos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione el empleado que desea generar ", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnGenerateIndividuallyActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         if(true){//read users from database and compare used nameand 
         FrmRolePaymentSystem frmRolePlaymentSystem=new FrmRolePaymentSystem(); 
         this.setVisible(false); 
         frmRolePlaymentSystem.setVisible(true);
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
+    }//GEN-LAST:event_btnBackActionPerformed
+    @Override
+    public void dispose() {
+        if (employeeToMongo != null) {
+            employeeToMongo.closeConnection();
+        }
+        super.dispose();
+    }
     private void cmbAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAddEmployeeActionPerformed
-//    int selected = cmbAddEmployee.getSelectedIndex();
-//    if (selected != -1) {
-//        Employee selectedEmployee = employeeManager.getEmployees().get(selected);
-//        showEmployeeDetails(selectedEmployee);
-//    }
     }//GEN-LAST:event_cmbAddEmployeeActionPerformed
 
     /**
@@ -373,20 +372,20 @@ private DefaultTableModel tableModel;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                FrmAllEmployee frmAllEmployee = new FrmAllEmployee();
+                FrmAllEmployee frmAllEmployee=new FrmAllEmployee();
+                FrmGeneratePaymentRoles frmGeneratePaymentRoles = new FrmGeneratePaymentRoles(frmAllEmployee);
                 frmAllEmployee.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnGenerateIndividually;
     private javax.swing.JButton btnGeneratePayroll;
     private javax.swing.JComboBox<String> cmbAddEmployee;
     private com.toedter.calendar.JMonthChooser cmbMonth;
     private com.toedter.calendar.JYearChooser cmbYears;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

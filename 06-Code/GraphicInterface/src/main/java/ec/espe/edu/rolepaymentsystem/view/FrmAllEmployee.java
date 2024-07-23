@@ -5,6 +5,7 @@
 package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -14,14 +15,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Code Master
  */
 public class FrmAllEmployee extends javax.swing.JFrame {
-    private Employee employee;
     private final EmployeeManager employeeManager;
     private DefaultTableModel defaultTableModel;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM,yyyy");
+    SaveManager saveManager;
 
     public FrmAllEmployee() {
         initComponents();
         employeeManager = new EmployeeManager();
+        this.saveManager = new SaveManager();
         initializeTable();
         updateTable();
     }
@@ -42,18 +44,11 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         defaultTableModel.setRowCount(0);
         List<Employee> employees = employeeManager.getEmployees();
         for (Employee emp : employees) {
-            String hireDateEmployee = simpleDateFormat.format(emp.getHireDate());
-            defaultTableModel.addRow(new Object[]{
-                emp.getName(), emp.getLastName(), emp.getIdNumber(), hireDateEmployee
+            String hireDateEmployee = (emp.getHireDate() != null) ? simpleDateFormat.format(emp.getHireDate()) : "";
+            defaultTableModel.addRow(new Object[]{emp.getName(), emp.getLastName(), emp.getIdNumber(), hireDateEmployee
             });
         }
-    }
-        @Override
-    public void setVisible(boolean visible) {
-        super.setVisible(visible);
-        if (visible) {
-            updateTable();
-        }
+        tableAllEmployee.repaint();
     }
     public EmployeeManager getEmployeeManager() {
         return employeeManager;
@@ -228,7 +223,7 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     int fila = tableAllEmployee.getSelectedRow();
     if (fila != -1) {  
         employeeManager.removeEmployee(fila);
-        employeeManager.saveEmployees(employeeManager.getEmployees()); 
+        saveManager.saveEmployees(employeeManager.getEmployees()); 
         updateTable(); 
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione un empleado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
