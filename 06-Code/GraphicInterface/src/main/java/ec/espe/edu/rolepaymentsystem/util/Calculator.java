@@ -29,16 +29,16 @@ public class Calculator {
     }
     public static double calculateOvertimeHours(double hoursWorked, double regularHours, double hourlyRate) {
         double overtimeHours = hoursWorked - regularHours;
-        double overtimeValue = overtimeHours * hourlyRate * Constants.overtimeHourIncrease;
+        double overtimeValue = overtimeHours * hourlyRate * Constants.getOvertimeHourIncrease();
         return overtimeValue;
     }
 
     public static double calculateReserveFunds(double basicSalary) {
-        return basicSalary * Constants.reserveFundsPercentage;
+        return basicSalary * Constants.getReserveFundsPercentage();
     }
 
     public static double calculateIessContribution(double totalIncome, double reserveFunds) {
-        double iessContribution = (totalIncome - reserveFunds) * Constants.iessPercentage;
+        double iessContribution = (totalIncome - reserveFunds) * Constants.getIessPercentage();
         return iessContribution;
     }
     
@@ -63,7 +63,7 @@ public class Calculator {
     }
 
     public static double calculateEmployerContribution(double totalIncome, double reserveFunds) {
-        return (totalIncome + reserveFunds) * Constants.employerContributionPercentage;
+        return (totalIncome + reserveFunds) * Constants.getEmployerContributionPercentage();
     }
 
     public static double calculateTotalEmployeeCost(double netPayment, double employerContribution) {

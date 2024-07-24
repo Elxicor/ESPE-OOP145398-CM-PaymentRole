@@ -1,4 +1,3 @@
-ec\espe\edu\rolepaymentsystem\view\Frm.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmSupportContact$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$7.class
@@ -7,6 +6,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$5.class
 ec\espe\edu\rolepaymentsystem\util\EmployeeToMongo.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$7.class
+ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$2.class
@@ -16,12 +16,13 @@ ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$12.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$10.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystemSplash.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport$3.class
+ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateEmployee$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory.class
 FrmRolePaymentSystem.class
+ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$10.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$2.class
-ec\espe\edu\rolepaymentsystem\view\Frm$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails.class
 ec\espe\edu\rolepaymentsystem\view\FrmLogin$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmUseManual$1.class
@@ -59,10 +60,11 @@ ec\espe\edu\rolepaymentsystem\view\FrmLogin.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$11.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$2.class
+ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmAnnualPayrollReport$2.class
+ec\espe\edu\rolepaymentsystem\model\EmployeePaymentDetails.class
 ec\espe\edu\rolepaymentsystem\view\FrmLogin$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmAnnualPayrollReport.class
-ec\espe\edu\rolepaymentsystem\view\Frm$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystemSplash$2.class
@@ -76,6 +78,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$8.class
+ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$12.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$5.class

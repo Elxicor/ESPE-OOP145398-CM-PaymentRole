@@ -9,6 +9,7 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import ec.espe.edu.rolepaymentsystem.util.Validations;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.model.Constants;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
@@ -430,7 +431,7 @@ public class FrmAddEmployee extends javax.swing.JFrame {
     String lastName = "";
     String idNumber = "";
     Date hireDate = new Date();
-    double basicSalary=460;
+    double basicSalary= Constants.getBasicSalary();
     double overtimeHours = 0;
     double absentDays = 0;
     double bonuses = 0;
@@ -482,7 +483,7 @@ public class FrmAddEmployee extends javax.swing.JFrame {
         
         EmployeePaymentDetails paymentDetails = new EmployeePaymentDetails(overtimePayment, reserveFunds, totalIncome, iessContribution, biweeklyAdvance, foodDeduction, totalExpenses, netPayment, employerContribution, totalEmployeeCost);
         
-        employee = new Employee(name, lastName, idNumber, hireDate, 460, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
+        employee = new Employee(name, lastName, idNumber, hireDate, Constants.getBasicSalary(), overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
         JOptionPane.showMessageDialog(this, "Se registró el empleado --> " + employee.getName() + " " + employee.getLastName(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         JOptionPane.showConfirmDialog(this, "txt" + employee.getIdNumber());
         employeeManager.addEmployee(employee);
