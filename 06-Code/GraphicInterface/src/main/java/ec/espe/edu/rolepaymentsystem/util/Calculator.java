@@ -12,61 +12,68 @@ import ec.espe.edu.rolepaymentsystem.model.Employee;
  * @author PAOLA-SSD
  */
 public class Calculator {
-    public double calculateTotalAmount(Employee emp) {
-    double totalAmount = emp.getBasicSalary();
-    totalAmount += emp.getBonuses();
-    totalAmount += emp.getOvertimeHours() * (emp.getBasicSalary() / 160);
-    totalAmount -= emp.getIessLoans();
-    totalAmount -= emp.getCompanyLoans();
-    totalAmount -= emp.getFines();
-    double dailySalary = emp.getBasicSalary() / 30; 
-    totalAmount -= emp.getAbsentDays() * dailySalary;
-    
-    return Math.max(totalAmount, 0);
-}
-    public static double OtherDeduccion(double totalDeductions, Employee emp) {
-        return totalDeductions += emp.getAbsentDays() + emp.getFines() + emp.getCompanyLoans() + emp.getIessLoans();
+    public static double calculateTotalAmount(Employee emp) {
+        double totalAmount = emp.getBasicSalary();
+        totalAmount += emp.getBonuses();
+        totalAmount += calculateOvertimeHours(emp.getOvertimeHours(), Constants.getRegularHoursPerMonth(), emp.getBasicSalary() / 160);
+        totalAmount -= calculateTotalDeductions(emp);
+        return Math.max(totalAmount, 0);
     }
+
     public static double calculateOvertimeHours(double hoursWorked, double regularHours, double hourlyRate) {
-        double overtimeHours = hoursWorked - regularHours;
+        double overtimeHours = Math.max(hoursWorked - regularHours, 0);
         double overtimeValue = overtimeHours * hourlyRate * Constants.getOvertimeHourIncrease();
-        return overtimeValue;
+        return Math.round(overtimeValue * 100.0) / 100.0;
     }
 
     public static double calculateReserveFunds(double basicSalary) {
-        return basicSalary * Constants.getReserveFundsPercentage();
+        return Math.round(basicSalary * Constants.getReserveFundsPercentage() * 100.0) / 100.0;
     }
 
     public static double calculateIessContribution(double totalIncome, double reserveFunds) {
         double iessContribution = (totalIncome - reserveFunds) * Constants.getIessPercentage();
-        return iessContribution;
+        return Math.round(iessContribution * 100.0) / 100.0;
     }
     
     public static double calculateBiweeklyAdvance(double basicSalary) {
-    return basicSalary / 2;
+        return (basicSalary < 0.01) ? 0 : Math.round((basicSalary / 2) * 100.0) / 100.0;
     }
     
     public static double calculateFoodDeduction(boolean bringsOwnFood, double foodDeductionAmount) {
-    return bringsOwnFood ? 0 : foodDeductionAmount;
+        return bringsOwnFood ? 0 : Math.max(foodDeductionAmount, 0);
     }
 
     public static double calculateTotalIncome(double basicSalary, double overtimePayment, double bonuses) {
-        return basicSalary + overtimePayment + bonuses;
+        double totalIncome = basicSalary + overtimePayment + bonuses;
+        return (totalIncome > Double.MAX_VALUE) ? Double.POSITIVE_INFINITY : totalIncome;
     }
 
     public static double calculateTotalExpenses(double iessContribution, double biweeklyAdvance, double iessLoans, double companyLoans, double fines, double foodDeduction) {
-        return iessContribution + biweeklyAdvance + iessLoans + companyLoans + fines + foodDeduction;
+        double totalExpenses = iessContribution + biweeklyAdvance + iessLoans + companyLoans + fines + foodDeduction;
+        return (totalExpenses > Double.MAX_VALUE) ? Double.POSITIVE_INFINITY : totalExpenses;
     }
 
     public static double calculateNetPayment(double totalIncome, double totalExpenses) {
-        return totalIncome - totalExpenses;
+        double result = Math.max(Math.round((totalIncome - totalExpenses) * 100.0) / 100.0, 0);
+        return (result < 1e-10) ? 0 : result;
     }
 
     public static double calculateEmployerContribution(double totalIncome, double reserveFunds) {
-        return (totalIncome + reserveFunds) * Constants.getEmployerContributionPercentage();
+        return Math.round((totalIncome + reserveFunds) * Constants.getEmployerContributionPercentage() * 100.0) / 100.0;
     }
 
     public static double calculateTotalEmployeeCost(double netPayment, double employerContribution) {
-        return netPayment + employerContribution;
+        double totalCost = netPayment + employerContribution;
+        return (totalCost > Double.MAX_VALUE) ? Double.POSITIVE_INFINITY : totalCost;
+    }
+
+    public static double calculateTotalDeductions(Employee emp) {
+        double totalDeductions = emp.getIessLoans();
+        totalDeductions += emp.getCompanyLoans();
+        totalDeductions += emp.getFines();
+        totalDeductions += emp.getAbsentDays() * (emp.getBasicSalary() / 30);
+        totalDeductions += calculateFoodDeduction(emp.getBringOwnFood(), 50);
+        totalDeductions += calculateIessContribution(calculateTotalIncome(emp.getBasicSalary(), calculateOvertimeHours(emp.getOvertimeHours(), Constants.getRegularHoursPerMonth(), emp.getBasicSalary() / 160), emp.getBonuses()), calculateReserveFunds(emp.getBasicSalary()));
+        return Math.round(totalDeductions * 100.0) / 100.0;
     }
 }

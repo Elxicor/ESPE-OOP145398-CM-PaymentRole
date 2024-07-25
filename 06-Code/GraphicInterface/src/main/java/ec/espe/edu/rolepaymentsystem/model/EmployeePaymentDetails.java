@@ -1,14 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ec.espe.edu.rolepaymentsystem.model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Code Master
  */
 public class EmployeePaymentDetails {
+    private static final List<EmployeePaymentDetails> allDetails = new ArrayList<>();
     private double overtimePayment;
     private double reserveFunds;
     private double totalIncome;
@@ -31,6 +32,10 @@ public class EmployeePaymentDetails {
         this.netPayment = netPayment;
         this.employerContribution = employerContribution;
         this.totalEmployeeCost = totalEmployeeCost;
+        allDetails.add(this);
+    }
+    public static List<EmployeePaymentDetails> getAllDetails() {
+        return allDetails;
     }
 
     public double getOvertimePayment() {

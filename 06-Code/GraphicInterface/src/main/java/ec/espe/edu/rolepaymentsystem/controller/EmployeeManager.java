@@ -16,12 +16,9 @@ import com.google.gson.JsonSerializer;
 import com.google.gson.reflect.TypeToken;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
-import java.io.Writer;
 import java.lang.reflect.Type;
-import java.nio.file.Files;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,12 +39,12 @@ public class EmployeeManager {
             .setPrettyPrinting()
             .registerTypeAdapter(Date.class, new DateAdapter())
             .create();
-        employees = loadEmployees();
+    List<Employee> loadedEmployees = loadEmployees();
+    employees = (loadedEmployees != null) ? loadedEmployees : new ArrayList<>();
     }
 
     public void addEmployee(Employee employee) {
         employees.add(employee);
-//        saveEmployees();
     }
 
     public void updateEmployee(Employee updatedEmployee) {
@@ -57,18 +54,15 @@ public class EmployeeManager {
             break;
         }
     }
-//    saveEmployees();
     }
     public void removeEmployee(int index) {
-       if (index >= 0 && index < employees.size()) {
+        if (index >= 0 && index < employees.size()) {
             employees.remove(index);
         }
-//        saveEmployees();
     }
     public List<Employee> getEmployees() {
         return employees;
     }
-
    private List<Employee> loadEmployees() {
         List<Employee> employees = new ArrayList<>();
         try (Reader reader = new FileReader(employeesFile)) {

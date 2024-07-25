@@ -9,7 +9,6 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import ec.espe.edu.rolepaymentsystem.util.Validations;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
-import ec.espe.edu.rolepaymentsystem.model.Constants;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
@@ -425,13 +424,15 @@ public class FrmAddEmployee extends javax.swing.JFrame {
 
     private void btnRegisterEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEmployeeActionPerformed
     List<Employee> employees = employeeManager.getEmployees();
-    Calculator calculator =new Calculator();
+    Calculator calculator = new Calculator();
     Employee employee;
+    boolean isValid = true;
+    StringBuilder errorMessage = new StringBuilder("Error: Los siguientes campos son inválidos o están vacíos:\n");
+
     String name = "";
     String lastName = "";
     String idNumber = "";
-    Date hireDate = new Date();
-    double basicSalary= Constants.getBasicSalary();
+    double basicSalary=460;
     double overtimeHours = 0;
     double absentDays = 0;
     double bonuses = 0;
@@ -439,23 +440,45 @@ public class FrmAddEmployee extends javax.swing.JFrame {
     double companyLoans = 0;
     double fines = 0;
     boolean bringOwnFood =true;
-    boolean isValid = true;
-    isValid &= validations.getStringInput(txtName.getText());
-    isValid &= validations.getStringInput(txtLastname.getText());
-    isValid &= validations.isValidId(txtId.getText());
-    isValid &= validations.getDoubleInput(txtOvertimeHours.getText());
-    isValid &= validations.getDoubleInput(txtAbsentDays.getText());
-    isValid &= validations.getDoubleInput(txtBonuses.getText());
-    isValid &= validations.getDoubleInput(txtIessLoans.getText());
-    isValid &= validations.getDoubleInput(txtCompanyLoans.getText());
-    isValid &= validations.getDoubleInput(txtFines.getText());
-    hireDate = jDateEmployee.getDate();
+    
+    // Validate string inputs
+    if (!validations.getStringInput(txtName.getText())) {
+        isValid = false;
+        errorMessage.append("- Nombre\n");
+    }
+    if (!validations.getStringInput(txtLastname.getText())) {
+        isValid = false;
+        errorMessage.append("- Apellido\n");
+    }
+
+    // Validate ID
+    if (!validations.isValidId(txtId.getText())) {
+        isValid = false;
+        errorMessage.append("- Número de identificación\n");
+    }
+
+    // Validate numeric inputs
+    String[] numericFields = {txtOvertimeHours.getText(), txtAbsentDays.getText(), txtBonuses.getText(), 
+                              txtIessLoans.getText(), txtCompanyLoans.getText(), txtFines.getText()};
+    String[] fieldNames = {"Horas extras", "Días ausentes", "Bonificaciones", "Préstamos IESS", 
+                           "Préstamos de empresa", "Multas"};
+    
+    for (int i = 0; i < numericFields.length; i++) {
+        if (!validations.getDoubleInput(numericFields[i])) {
+            isValid = false;
+            errorMessage.append("- ").append(fieldNames[i]).append("\n");
+        }
+    }
+
+    // Validate date
+    Date hireDate = jDateEmployee.getDate();
     if (hireDate == null) {
         isValid = false;
+        errorMessage.append("- Fecha de contratación\n");
     }
 
     if (!isValid) {
-        JOptionPane.showMessageDialog(this, "Error: Hay campos inválidos o vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, errorMessage.toString(), "Error de validación", JOptionPane.ERROR_MESSAGE);
         return;
     }
         name = txtName.getText();
@@ -480,12 +503,11 @@ public class FrmAddEmployee extends javax.swing.JFrame {
         double netPayment = calculator.calculateNetPayment(totalIncome, totalExpenses);
         double employerContribution = calculator.calculateEmployerContribution(totalIncome, reserveFunds);
         double totalEmployeeCost = calculator.calculateTotalEmployeeCost(netPayment, employerContribution);
-        
+
         EmployeePaymentDetails paymentDetails = new EmployeePaymentDetails(overtimePayment, reserveFunds, totalIncome, iessContribution, biweeklyAdvance, foodDeduction, totalExpenses, netPayment, employerContribution, totalEmployeeCost);
-        
-        employee = new Employee(name, lastName, idNumber, hireDate, Constants.getBasicSalary(), overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
+
+        employee = new Employee(name, lastName, idNumber, hireDate, 460, overtimeHours, absentDays, bonuses, iessLoans, companyLoans, fines, bringOwnFood);
         JOptionPane.showMessageDialog(this, "Se registró el empleado --> " + employee.getName() + " " + employee.getLastName(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
-        JOptionPane.showConfirmDialog(this, "txt" + employee.getIdNumber());
         employeeManager.addEmployee(employee);
         saveManager.saveEmployees(employeeManager.getEmployees()); 
         allEmployeeForm.updateTable(); 

@@ -15,11 +15,9 @@ ec\espe\edu\rolepaymentsystem\view\FrmLogin$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$12.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$10.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystemSplash.class
-ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateEmployee$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory.class
-FrmRolePaymentSystem.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$10.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$2.class
@@ -86,7 +84,6 @@ ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee.class
 ec\espe\edu\rolepaymentsystem\util\Calculator.class
 ec\espe\edu\rolepaymentsystem\model\Constants.class
-ec\espe\edu\rolepaymentsystem\model\GeneralPayroll.class
 ec\espe\edu\rolepaymentsystem\util\Validations.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$7.class
@@ -104,6 +101,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ.class
+Images\GeneralPayroll.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$11.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$1.class

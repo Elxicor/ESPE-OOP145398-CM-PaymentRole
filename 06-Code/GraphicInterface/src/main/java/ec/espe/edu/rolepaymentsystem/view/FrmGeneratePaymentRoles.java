@@ -314,9 +314,41 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     int selected = cmbAddEmployee.getSelectedIndex();
     if(selected != -1){ 
         Employee selectedEmployee = employeeManager.getEmployees().get(selected);
-        saveManager.saveIndividualEmployee(selectedEmployee);
-        employeeToMongo.uploadEmployeeData(selectedEmployee);
-        JOptionPane.showMessageDialog(this, "Se guardaron los datos del empleado: " + selectedEmployee.getName() + " " + selectedEmployee.getLastName() + " localmente y en la base de datos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+        boolean savedLocally = false;
+        boolean savedToMongo = false;
+
+        try {
+            saveManager.saveIndividualEmployee(selectedEmployee);
+            savedLocally = true;
+        } catch (Exception e) {
+            System.err.println("Error al guardar localmente: " + e.getMessage());
+        }
+
+        try {
+            employeeToMongo.uploadEmployeeData(selectedEmployee);
+            savedToMongo = true;
+        } catch (Exception e) {
+            System.err.println("Error al guardar en MongoDB: " + e.getMessage());
+        }
+
+        if (savedLocally && savedToMongo) {
+            JOptionPane.showMessageDialog(this, 
+                "Se guardaron los datos del empleado: " + selectedEmployee.getName() + " " + selectedEmployee.getLastName() + 
+                " localmente y en la base de datos MongoDB", 
+                "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+        } else if (savedLocally) {
+            JOptionPane.showMessageDialog(this, 
+                "Se guardaron los datos del empleado localmente, pero hubo un error al guardar en MongoDB", 
+                "Generación Parcial", JOptionPane.WARNING_MESSAGE);
+        } else if (savedToMongo) {
+            JOptionPane.showMessageDialog(this, 
+                "Se guardaron los datos del empleado en MongoDB, pero hubo un error al guardar localmente", 
+                "Generación Parcial", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, 
+                "Hubo un error al guardar los datos del empleado tanto localmente como en MongoDB", 
+                "Error de Generación", JOptionPane.ERROR_MESSAGE);
+        }
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione el empleado que desea generar ", "Error", JOptionPane.ERROR_MESSAGE);
     }

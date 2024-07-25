@@ -5,6 +5,7 @@
 package ec.espe.edu.rolepaymentsystem.model;
 
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -133,5 +134,17 @@ public class Employee {
 
     public void setBringOwnFood(boolean bringOwnFood) {
         this.bringOwnFood = bringOwnFood;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(idNumber, employee.idNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(idNumber);
     }
 }

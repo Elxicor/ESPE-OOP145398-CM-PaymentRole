@@ -16,20 +16,19 @@ import java.awt.*;
 import java.util.List;
 import java.util.Calendar;
 
-
 public class FrmAnnualPayrollReport extends javax.swing.JFrame {
     private final EmployeeManager employeeManager;
     private DefaultPieDataset dataset;
     private JFreeChart chart;
     private ChartPanel chartPanel;
 
-   public FrmAnnualPayrollReport(EmployeeManager employeeManager) {
+    public FrmAnnualPayrollReport(EmployeeManager employeeManager) {
         initComponents();
         this.employeeManager = employeeManager;
         dataset = new DefaultPieDataset();
         initializeChart();
         setupYearChooser();
-        updateChart(); 
+        updateChart();
     }
 
     private void initializeChart() {
@@ -42,7 +41,7 @@ public class FrmAnnualPayrollReport extends javax.swing.JFrame {
         );
 
         chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(300, 200));
+        chartPanel.setPreferredSize(new Dimension(600, 400));
         PanelGrafich.setLayout(new BorderLayout());
         PanelGrafich.add(chartPanel, BorderLayout.CENTER);
     }
@@ -55,33 +54,48 @@ private void updateChart() {
     int selectedYear = jYears.getYear();
     List<Employee> employees = employeeManager.getEmployees();
     dataset.clear();
-    double totalSalary = 0;
-    double totalBonuses = 0;
+    double totalIncome = 0;
     double totalDeductions = 0;
+    double totalNetPayment = 0;
     boolean dataFound = false;
+    Calculator calculator = new Calculator();
     Calendar cal = Calendar.getInstance();
+
     for (Employee emp : employees) {
         cal.setTime(emp.getHireDate());
         int hireYear = cal.get(Calendar.YEAR);
 
         if (hireYear == selectedYear) {
-            totalSalary += emp.getBasicSalary();
-            totalBonuses += emp.getBonuses();
-            Calculator.OtherDeduccion(totalDeductions, emp);
+            double overtimePayment = calculator.calculateOvertimeHours(emp.getOvertimeHours(), 40, emp.getBasicSalary() / 160);
+            double reserveFunds = calculator.calculateReserveFunds(emp.getBasicSalary());
+            double totalEmployeeIncome = calculator.calculateTotalIncome(emp.getBasicSalary(), overtimePayment, emp.getBonuses());
+            double iessContribution = calculator.calculateIessContribution(totalEmployeeIncome, reserveFunds);
+            double biweeklyAdvance = calculator.calculateBiweeklyAdvance(emp.getBasicSalary());
+            double totalExpenses = calculator.calculateTotalExpenses(iessContribution, biweeklyAdvance, emp.getIessLoans(), emp.getCompanyLoans(), emp.getFines(), calculator.calculateFoodDeduction(emp.getBringOwnFood(), 50));
+            double netPayment = calculator.calculateNetPayment(totalEmployeeIncome, totalExpenses);
+            double Deductions = calculator.calculateTotalDeductions(emp);
+
+            totalIncome += totalEmployeeIncome;
+            totalDeductions += Deductions;
+            totalNetPayment += netPayment;
+
             dataFound = true;
         }
     }
+
     if (!dataFound) {
-        totalSalary = 0;
-        totalBonuses = 0;
+        totalIncome = 0;
         totalDeductions = 0;
+        totalNetPayment = 0;
     }
-    dataset.setValue("Salario Base", totalSalary);
-    dataset.setValue("Bonos", totalBonuses);
-    dataset.setValue("Deducciones", totalDeductions);
+
+    dataset.setValue("Ingresos Totales", totalIncome);
+    dataset.setValue("Deducciones Totales", totalDeductions);
+    dataset.setValue("Pago Neto Total", totalNetPayment);
     chart.fireChartChanged();
     PanelGrafich.revalidate();
     PanelGrafich.repaint();
+
     if (!dataFound) {
         JOptionPane.showMessageDialog(this, "No hay datos para el año " + selectedYear, "Sin datos", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -118,17 +132,17 @@ private void updateChart() {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(181, 181, 181)
                 .addComponent(txtIniciarSesion)
-                .addGap(115, 115, 115))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(16, 16, 16)
                 .addComponent(txtIniciarSesion)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Año:");
@@ -137,11 +151,11 @@ private void updateChart() {
         PanelGrafich.setLayout(PanelGrafichLayout);
         PanelGrafichLayout.setHorizontalGroup(
             PanelGrafichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 383, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
         PanelGrafichLayout.setVerticalGroup(
             PanelGrafichLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 187, Short.MAX_VALUE)
+            .addGap(0, 344, Short.MAX_VALUE)
         );
 
         btnBack.setBackground(new java.awt.Color(0, 153, 153));
@@ -165,12 +179,12 @@ private void updateChart() {
                         .addGap(18, 18, 18)
                         .addComponent(jYears, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
+                        .addGap(15, 15, 15)
                         .addComponent(PanelGrafich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(177, 177, 177)
+                        .addGap(277, 277, 277)
                         .addComponent(btnBack)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,18 +194,18 @@ private void updateChart() {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jYears, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(PanelGrafich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(PanelGrafich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12)
                 .addComponent(btnBack)
-                .addGap(24, 24, 24))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

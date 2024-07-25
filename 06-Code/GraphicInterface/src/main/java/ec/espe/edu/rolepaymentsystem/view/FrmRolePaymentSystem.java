@@ -266,10 +266,9 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnLoginActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-     
         FrmUpdateBasicSalary frmUpdateBasicSalary=new FrmUpdateBasicSalary();
         this.setVisible(false);
-        frmUpdateBasicSalary.setVisible(true);        
+        frmUpdateBasicSalary.setVisible(true);    
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void itemGenaratePaymentRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenaratePaymentRolesActionPerformed

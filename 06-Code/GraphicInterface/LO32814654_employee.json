@@ -1,0 +1,14 @@
+{
+  "name": "Yostin",
+  "lastName": "Sisalema",
+  "idNumber": "LO32814654",
+  "hireDate": "Jul 5, 2024, 12:00:00 AM",
+  "basicSalary": 460.0,
+  "overtimeHours": 12.0,
+  "absentDays": 42.0,
+  "bonuses": 1121.0,
+  "iessLoans": 42.0,
+  "companyLoans": 12.0,
+  "fines": 12.0,
+  "bringOwnFood": true
+}
