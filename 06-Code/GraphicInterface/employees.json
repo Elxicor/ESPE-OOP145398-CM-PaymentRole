@@ -68,5 +68,19 @@
     "companyLoans": 1.0,
     "fines": 8.0,
     "bringOwnFood": true
+  },
+  {
+    "name": "Damian",
+    "lastName": "Toscano",
+    "idNumber": "LO12341990",
+    "hireDate": "Jul 30, 2024, 12:00:00 AM",
+    "basicSalary": 460.0,
+    "overtimeHours": 1.0,
+    "absentDays": 4.0,
+    "bonuses": 1121.0,
+    "iessLoans": 14.0,
+    "companyLoans": 1.0,
+    "fines": 8.0,
+    "bringOwnFood": true
   }
 ]

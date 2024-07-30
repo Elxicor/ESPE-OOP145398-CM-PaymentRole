@@ -71,7 +71,6 @@ ec\espe\edu\rolepaymentsystem\controller\EmployeeManager.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmSupportContact$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$3.class
-Images\Images.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$2.class
@@ -101,7 +100,6 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ.class
-Images\GeneralPayroll.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$11.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$1.class
