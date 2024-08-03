@@ -11,6 +11,7 @@ import ec.espe.edu.rolepaymentsystem.util.Validations;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
+import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -423,6 +424,7 @@ public class FrmAddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnRegisterEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEmployeeActionPerformed
+    EmployeeToMongo employeeToMongo=new EmployeeToMongo();
     List<Employee> employees = employeeManager.getEmployees();
     Calculator calculator = new Calculator();
     Employee employee;
@@ -510,7 +512,8 @@ public class FrmAddEmployee extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, "Se registró el empleado --> " + employee.getName() + " " + employee.getLastName(), "Registro Exitoso", JOptionPane.INFORMATION_MESSAGE);
         employeeManager.addEmployee(employee);
         saveManager.saveEmployees(employeeManager.getEmployees()); 
-        allEmployeeForm.updateTable(); 
+        allEmployeeForm.updateTable();
+        employeeToMongo.uploadEmployeeData(employee,paymentDetails);
         clearFields();
     }//GEN-LAST:event_btnRegisterEmployeeActionPerformed
 

@@ -5,6 +5,7 @@
 package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -15,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Code Master
  */
 public class FrmAllEmployee extends javax.swing.JFrame {
+    private final EmployeeToMongo employeeToMongo;
     private final EmployeeManager employeeManager;
     private DefaultTableModel defaultTableModel;
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("d MMM,yyyy");
@@ -23,6 +25,7 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     public FrmAllEmployee() {
         initComponents();
         employeeManager = new EmployeeManager();
+        employeeToMongo=new EmployeeToMongo();
         this.saveManager = new SaveManager();
         initializeTable();
         updateTable();
@@ -208,12 +211,13 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        int selectedRow = tableAllEmployee.getSelectedRow();
+     int selectedRow = tableAllEmployee.getSelectedRow();
     if (selectedRow != -1) {
         Employee selectedEmployee = employeeManager.getEmployees().get(selectedRow);
         FrmEditEmployee editForm = new FrmEditEmployee(this, selectedEmployee);
         editForm.setVisible(true);
         this.setVisible(false);
+        employeeToMongo.updateEmployeeData(selectedEmployee);
     } else {
         JOptionPane.showMessageDialog(this, "Por favor, seleccione un empleado para editar", "Error", JOptionPane.ERROR_MESSAGE);
     }
@@ -222,9 +226,16 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
     int fila = tableAllEmployee.getSelectedRow();
     if (fila != -1) {  
-        employeeManager.removeEmployee(fila);
-        saveManager.saveEmployees(employeeManager.getEmployees()); 
-        updateTable(); 
+        Employee selectedEmployee = employeeManager.getEmployees().get(fila);
+        String employeeId = selectedEmployee.getIdNumber(); 
+        String nombreEmpleado = (String) tableAllEmployee.getValueAt(fila, 1);
+        int confirmacion = JOptionPane.showConfirmDialog(this, "¿Está seguro de que desea eliminar a " + nombreEmpleado + "?", "Confirmar eliminación", JOptionPane.YES_NO_OPTION);
+        if (confirmacion == JOptionPane.YES_OPTION) {
+            employeeToMongo.deleteEmployeeData(employeeId);
+            employeeManager.removeEmployee(fila);
+            saveManager.saveEmployees(employeeManager.getEmployees()); 
+            updateTable(); 
+        }
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione un empleado para eliminar", "Error", JOptionPane.ERROR_MESSAGE);
     }
