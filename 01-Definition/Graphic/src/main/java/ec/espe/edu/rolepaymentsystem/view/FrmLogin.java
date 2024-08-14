@@ -1,17 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ec.espe.edu.rolepaymentsystem.view;
 
+import ec.espe.edu.rolepaymentsystem.model.Password;
+import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public class FrmLogin extends javax.swing.JFrame {
-
+EmployeeToMongo employeeToMongo=new EmployeeToMongo(); 
     /**
      * Creates new form FrmLogin
      */
@@ -106,14 +105,20 @@ public class FrmLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    String username = txtUser.getText();
-    String password = txtPassword.getText();
-    if(username.equals("admin") && password.equals("123456")) { // read users from database and compare username and password
-        FrmRolePaymentSystem frmRolePlaymentSystem = new FrmRolePaymentSystem(); 
+    Password passwords;
+    String username = "";
+    String password = "";
+    
+    username = txtUser.getText();
+    password = txtPassword.getText();
+    if(username.isEmpty() || password.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Ingreso de datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
+    } else {
+        passwords = new Password(username, password);
+        employeeToMongo.uploadPasswordData(passwords);
+        FrmRolePaymentSystem frmRolePlaymentSystem = new FrmRolePaymentSystem();
         this.setVisible(false); 
         frmRolePlaymentSystem.setVisible(true);
-    } else {
-        JOptionPane.showMessageDialog(this, "Ingreso de datos incorrectos", "ERROR", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_jButton1ActionPerformed
 

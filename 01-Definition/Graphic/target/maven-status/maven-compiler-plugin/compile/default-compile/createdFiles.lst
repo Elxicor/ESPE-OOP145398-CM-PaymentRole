@@ -51,6 +51,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory$2.class
+ec\espe\edu\rolepaymentsystem\model\Password.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$7.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem.class

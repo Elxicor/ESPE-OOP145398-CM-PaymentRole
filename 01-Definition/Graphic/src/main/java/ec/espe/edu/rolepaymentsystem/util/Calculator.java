@@ -9,7 +9,7 @@ import ec.espe.edu.rolepaymentsystem.model.Employee;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public class Calculator {
     public static double calculateTotalAmount(Employee emp) {

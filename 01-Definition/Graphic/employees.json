@@ -14,48 +14,6 @@
     "bringOwnFood": false
   },
   {
-    "name": "Palmas",
-    "lastName": "Klinter",
-    "idNumber": "LO12345678",
-    "hireDate": "Jul 11, 2020, 12:00:00 AM",
-    "basicSalary": 460.0,
-    "overtimeHours": 12.0,
-    "absentDays": 5.0,
-    "bonuses": 1233.0,
-    "iessLoans": 1233.0,
-    "companyLoans": 23.0,
-    "fines": 2.0,
-    "bringOwnFood": true
-  },
-  {
-    "name": "Yostin",
-    "lastName": "Sisalema",
-    "idNumber": "LO32814654",
-    "hireDate": "Jul 5, 2024, 12:00:00 AM",
-    "basicSalary": 460.0,
-    "overtimeHours": 12.0,
-    "absentDays": 42.0,
-    "bonuses": 1121.0,
-    "iessLoans": 42.0,
-    "companyLoans": 12.0,
-    "fines": 12.0,
-    "bringOwnFood": true
-  },
-  {
-    "name": "Ulloa",
-    "lastName": "Hernandez",
-    "idNumber": "LO12331434",
-    "hireDate": "Jul 5, 2024, 12:00:00 AM",
-    "basicSalary": 460.0,
-    "overtimeHours": 48.0,
-    "absentDays": 6.0,
-    "bonuses": 120.0,
-    "iessLoans": 12.0,
-    "companyLoans": 1200.0,
-    "fines": 9.0,
-    "bringOwnFood": false
-  },
-  {
     "name": "Edgar",
     "lastName": "Toscano",
     "idNumber": "LO14114814",
@@ -81,6 +39,34 @@
     "iessLoans": 14.0,
     "companyLoans": 1.0,
     "fines": 8.0,
+    "bringOwnFood": true
+  },
+  {
+    "name": "Oscar",
+    "lastName": "Sisalema",
+    "idNumber": "LO02345678",
+    "hireDate": "Aug 3, 2024, 12:00:00 AM",
+    "basicSalary": 460.0,
+    "overtimeHours": 21.0,
+    "absentDays": 3.0,
+    "bonuses": 34341.0,
+    "iessLoans": 14.0,
+    "companyLoans": 432.0,
+    "fines": 43.0,
+    "bringOwnFood": false
+  },
+  {
+    "name": "Palmas",
+    "lastName": "Klinter",
+    "idNumber": "LO09876543",
+    "hireDate": "Aug 15, 2024, 7:28:39 PM",
+    "basicSalary": 460.0,
+    "overtimeHours": 48.0,
+    "absentDays": 12.0,
+    "bonuses": 23.0,
+    "iessLoans": 345.0,
+    "companyLoans": 12.0,
+    "fines": 23.0,
     "bringOwnFood": true
   }
 ]

@@ -6,6 +6,7 @@ package ec.espe.edu.rolepaymentsystem.view;
 
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
+import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.beans.PropertyChangeEvent;
@@ -26,7 +27,6 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     private final EmployeeManager employeeManager;
     private final FrmAllEmployee frmAllEmployee;
     private DefaultTableModel tableModel;
-    private EmployeeToMongo employeeToMongo;
     SaveManager saveManager;
     /**
      * Creates new form FrmGenerarPayroll
@@ -37,7 +37,6 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
         this.employeeManager = frmAllEmployee.getEmployeeManager();
         this.frmAllEmployee = frmAllEmployee;
         this.saveManager = new SaveManager();
-        this.employeeToMongo = new EmployeeToMongo();
         initializeTable();
         setupTableSelectionListener();
         cmbMonth.addPropertyChangeListener("month", new PropertyChangeListener() {
@@ -146,7 +145,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
         });
 
         btnGeneratePayroll.setBackground(new java.awt.Color(0, 255, 204));
-        btnGeneratePayroll.setText("Generar");
+        btnGeneratePayroll.setText("Imprimir");
         btnGeneratePayroll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGeneratePayrollActionPerformed(evt);
@@ -154,7 +153,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
         });
 
         btnGenerateIndividually.setBackground(new java.awt.Color(0, 255, 204));
-        btnGenerateIndividually.setText("Generar");
+        btnGenerateIndividually.setText("Imprimir");
         btnGenerateIndividually.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerateIndividuallyActionPerformed(evt);
@@ -218,7 +217,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(27, Short.MAX_VALUE)
+                .addContainerGap(23, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -299,55 +298,30 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
 
     private void btnGeneratePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePayrollActionPerformed
     List<Employee> employees = employeeManager.getEmployees();
-    if(!employees.isEmpty()){
-        saveManager.saveEmployees(employees); 
-        for (Employee employee : employees) {
-                employeeToMongo.uploadEmployeeData(employee);
-            }
-        JOptionPane.showMessageDialog(this, "Se generó el rol de pagos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
-        }else{
+
+    if (!employees.isEmpty()) {
+        try {
+            saveManager.saveEmployees(employees); 
+            JOptionPane.showMessageDialog(this, "Se generó el rol de pagos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            System.err.println("Error al generar el rol de pagos: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Error al generar el rol de pagos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    } else {
         JOptionPane.showMessageDialog(this, "Debe generar la lista de empleados ", "Error", JOptionPane.ERROR_MESSAGE);
     }
     }//GEN-LAST:event_btnGeneratePayrollActionPerformed
 
     private void btnGenerateIndividuallyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateIndividuallyActionPerformed
     int selected = cmbAddEmployee.getSelectedIndex();
-    if(selected != -1){ 
+    if (selected != -1) { 
         Employee selectedEmployee = employeeManager.getEmployees().get(selected);
-        boolean savedLocally = false;
-        boolean savedToMongo = false;
-
         try {
             saveManager.saveIndividualEmployee(selectedEmployee);
-            savedLocally = true;
+            JOptionPane.showMessageDialog(this, "Se generó el rol de pago para el empleado seleccionado", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.err.println("Error al guardar localmente: " + e.getMessage());
-        }
-
-        try {
-            employeeToMongo.uploadEmployeeData(selectedEmployee);
-            savedToMongo = true;
-        } catch (Exception e) {
-            System.err.println("Error al guardar en MongoDB: " + e.getMessage());
-        }
-
-        if (savedLocally && savedToMongo) {
-            JOptionPane.showMessageDialog(this, 
-                "Se guardaron los datos del empleado: " + selectedEmployee.getName() + " " + selectedEmployee.getLastName() + 
-                " localmente y en la base de datos MongoDB", 
-                "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
-        } else if (savedLocally) {
-            JOptionPane.showMessageDialog(this, 
-                "Se guardaron los datos del empleado localmente, pero hubo un error al guardar en MongoDB", 
-                "Generación Parcial", JOptionPane.WARNING_MESSAGE);
-        } else if (savedToMongo) {
-            JOptionPane.showMessageDialog(this, 
-                "Se guardaron los datos del empleado en MongoDB, pero hubo un error al guardar localmente", 
-                "Generación Parcial", JOptionPane.WARNING_MESSAGE);
-        } else {
-            JOptionPane.showMessageDialog(this, 
-                "Hubo un error al guardar los datos del empleado tanto localmente como en MongoDB", 
-                "Error de Generación", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al generar el rol de pago para el empleado seleccionado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     } else {
         JOptionPane.showMessageDialog(this, "Seleccione el empleado que desea generar ", "Error", JOptionPane.ERROR_MESSAGE);
@@ -361,13 +335,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
         frmRolePlaymentSystem.setVisible(true);
         }
     }//GEN-LAST:event_btnBackActionPerformed
-    @Override
-    public void dispose() {
-        if (employeeToMongo != null) {
-            employeeToMongo.closeConnection();
-        }
-        super.dispose();
-    }
+
     private void cmbAddEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAddEmployeeActionPerformed
     }//GEN-LAST:event_cmbAddEmployeeActionPerformed
 
