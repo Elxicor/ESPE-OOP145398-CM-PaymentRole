@@ -9,97 +9,58 @@ package ec.espe.edu.rolepaymentsystem.model;
  * @author Code Master
  */
 public class Constants {
-    private static double iessPercentage = 0.0945;
-    private static double overtimeHourIncrease = 1.5;
-    private static double reserveFundsPercentage = 0.0833;
-    private static double employerContributionPercentage = 0.1215;
-    private static double regularHoursPerMonth = 240.0;
-    private static double basicSalary = 460.0;
+    private static double iessPercentage;
+    private static double overtimeHourIncrease;
+    private static double reserveFundsPercentage;
+    private static double employerContributionPercentage;
+    private static double regularHoursPerMonth;
+    private static double basicSalary;
 
-    /**
-     * @return the iessPercentage
-     */
     public static double getIessPercentage() {
         return iessPercentage;
     }
 
-    /**
-     * @param aIessPercentage the iessPercentage to set
-     */
-    public static void setIessPercentage(double aIessPercentage) {
-        iessPercentage = aIessPercentage;
+    public static void setIessPercentage(double iessPercentage) {
+        Constants.iessPercentage = iessPercentage;
     }
 
-    /**
-     * @return the overtimeHourIncrease
-     */
     public static double getOvertimeHourIncrease() {
         return overtimeHourIncrease;
     }
 
-    /**
-     * @param aOvertimeHourIncrease the overtimeHourIncrease to set
-     */
-    public static void setOvertimeHourIncrease(double aOvertimeHourIncrease) {
-        overtimeHourIncrease = aOvertimeHourIncrease;
+    public static void setOvertimeHourIncrease(double overtimeHourIncrease) {
+        Constants.overtimeHourIncrease = overtimeHourIncrease;
     }
 
-    /**
-     * @return the reserveFundsPercentage
-     */
     public static double getReserveFundsPercentage() {
         return reserveFundsPercentage;
     }
 
-    /**
-     * @param aReserveFundsPercentage the reserveFundsPercentage to set
-     */
-    public static void setReserveFundsPercentage(double aReserveFundsPercentage) {
-        reserveFundsPercentage = aReserveFundsPercentage;
+    public static void setReserveFundsPercentage(double reserveFundsPercentage) {
+        Constants.reserveFundsPercentage = reserveFundsPercentage;
     }
 
-    /**
-     * @return the employerContributionPercentage
-     */
     public static double getEmployerContributionPercentage() {
         return employerContributionPercentage;
     }
 
-    /**
-     * @param aEmployerContributionPercentage the employerContributionPercentage to set
-     */
-    public static void setEmployerContributionPercentage(double aEmployerContributionPercentage) {
-        employerContributionPercentage = aEmployerContributionPercentage;
+    public static void setEmployerContributionPercentage(double employerContributionPercentage) {
+        Constants.employerContributionPercentage = employerContributionPercentage;
     }
 
-    /**
-     * @return the regularHoursPerMonth
-     */
     public static double getRegularHoursPerMonth() {
         return regularHoursPerMonth;
     }
 
-    /**
-     * @param aRegularHoursPerMonth the regularHoursPerMonth to set
-     */
-    public static void setRegularHoursPerMonth(double aRegularHoursPerMonth) {
-        regularHoursPerMonth = aRegularHoursPerMonth;
+    public static void setRegularHoursPerMonth(double regularHoursPerMonth) {
+        Constants.regularHoursPerMonth = regularHoursPerMonth;
     }
 
-    /**
-     * @return the basicSalary
-     */
     public static double getBasicSalary() {
         return basicSalary;
     }
 
-    /**
-     * @param aBasicSalary the basicSalary to set
-     */
-    public static void setBasicSalary(double aBasicSalary) {
-        basicSalary = aBasicSalary;
+    public static void setBasicSalary(double basicSalary) {
+        Constants.basicSalary = basicSalary;
     }
-    
-    
-    
 }

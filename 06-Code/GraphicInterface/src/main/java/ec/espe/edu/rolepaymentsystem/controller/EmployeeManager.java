@@ -22,56 +22,65 @@ import java.lang.reflect.Type;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  *
  * @author Code Maters
  */
 public class EmployeeManager {
-    private final String employeesFile = "employees.json";
-    private Gson GSON = new GsonBuilder().setPrettyPrinting().create();
-    private final List<Employee> employees;
-        public EmployeeManager() {
-        GSON = new GsonBuilder()
+    private final String employeeFilePath = "employees.json";
+    private Gson gsonInstance = new GsonBuilder().setPrettyPrinting().create();
+    private final List<Employee> employeeList;
+    public EmployeeManager() {
+        gsonInstance = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(Date.class, new DateAdapter())
             .create();
     List<Employee> loadedEmployees = loadEmployees();
-    employees = (loadedEmployees != null) ? loadedEmployees : new ArrayList<>();
+    employeeList = (loadedEmployees != null) ? loadedEmployees : new ArrayList<>();
     }
 
     public void addEmployee(Employee employee) {
-        employees.add(employee);
+        employeeList.add(employee);
     }
 
     public void updateEmployee(Employee updatedEmployee) {
-    for (int i = 0; i < employees.size(); i++) {
-        if (employees.get(i).getIdNumber().equals(updatedEmployee.getIdNumber())) {
-            employees.set(i, updatedEmployee);
+    for (int i = 0; i < employeeList.size(); i++) {
+        if (employeeList.get(i).getIdNumber().equals(updatedEmployee.getIdNumber())) {
+            employeeList.set(i, updatedEmployee);
             break;
         }
     }
     }
     public void removeEmployee(int index) {
-        if (index >= 0 && index < employees.size()) {
-            employees.remove(index);
+        if (index >= 0 && index < employeeList.size()) {
+            employeeList.remove(index);
         }
     }
     public List<Employee> getEmployees() {
-        return employees;
+        return employeeList;
     }
-   private List<Employee> loadEmployees() {
-        List<Employee> employees = new ArrayList<>();
-        try (Reader reader = new FileReader(employeesFile)) {
-            Type listType = new TypeToken<ArrayList<Employee>>(){}.getType();
-            employees = GSON.fromJson(reader, listType);
+    private List<Employee> loadEmployees() {
+        try (Reader reader = new FileReader(employeeFilePath)) {
+            return parseEmployeesFromJson(reader);
         } catch (IOException e) {
-            System.out.println("Error al cargar los empleados: " + e.getMessage());
+            handleLoadError(e);
+            return new ArrayList<>();
         }
-        return employees != null ? employees : new ArrayList<>();
+    }
+
+    private List<Employee> parseEmployeesFromJson(Reader reader) {
+        Type listType = new TypeToken<List<Employee>>(){}.getType();
+        return gsonInstance.fromJson(reader, listType);
+    }
+
+    private void handleLoadError(IOException e) {
+        System.out.println("Error al cargar los empleados: " + e.getMessage());
     }
     private static class DateAdapter implements JsonSerializer<Date>, JsonDeserializer<Date> {
         private final SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -88,13 +97,17 @@ public class EmployeeManager {
         @Override
         public Date deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
             String dateStr = json.getAsString();
-            for (SimpleDateFormat format : inputFormats) {
-                try {
-                    return format.parse(dateStr);
-                } catch (ParseException e) {
-                }
-            }
-            throw new JsonParseException("Unparseable date: \"" + dateStr + "\"");
+            return Arrays.stream(inputFormats)
+                .map(format -> {
+                    try {
+                        return format.parse(dateStr);
+                    } catch (ParseException e) {
+                        return null;
+                    }
+                })
+                .filter(Objects::nonNull)
+                .findFirst()
+                .orElseThrow(() -> new JsonParseException("Unparseable date: \"" + dateStr + "\""));
         }
     }
 }

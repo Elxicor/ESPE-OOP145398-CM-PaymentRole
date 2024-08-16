@@ -20,21 +20,9 @@ public class Validations {
         String regex = "^[LOlo][a-zA-Z0-9]+$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(value);
-        if(matcher.matches()&& value.length()==10){
         return matcher.matches();
-        }else {
-        return false;
-        }
     }
 
-    public boolean getIntInput(String value) {
-        try {
-            Integer.parseInt(value);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
     public boolean getDoubleInput(String value) {
         try {
             Double.parseDouble(value);
@@ -68,21 +56,3 @@ public class Validations {
         });
     }
 }
-//     public static void validate(JTextField field, Class<?> type) {
-//        try {
-//            if (type == Integer.class) {
-//                Integer.parseInt(field.getText());
-//            } else if (type == Double.class) {
-//                Double.parseDouble(field.getText());
-//            } else if (type == String.class) {
-//                getStringInput(
-//            } else {
-//                throw new UnsupportedOperationException("Unsupported type: " + type.getName());
-//            }
-//            field.setForeground(Color.BLACK);
-//            field.setBackground(Color.WHITE);
-//        } catch (NumberFormatException ex) {
-//            field.setForeground(Color.RED);
-//            field.setBackground(Color.YELLOW);
-//        }
-//    }
