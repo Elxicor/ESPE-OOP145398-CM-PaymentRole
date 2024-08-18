@@ -9,12 +9,12 @@ package ec.espe.edu.rolepaymentsystem.model;
  * @author Code Master
  */
 public class Constants {
-    private static double iessPercentage;
-    private static double overtimeHourIncrease;
-    private static double reserveFundsPercentage;
-    private static double employerContributionPercentage;
-    private static double regularHoursPerMonth;
-    private static double basicSalary;
+    private static double iessPercentage = 0.0945;
+    private static double overtimeHourIncrease = 1.5;
+    private static double reserveFundsPercentage = 0.0833;
+    private static double employerContributionPercentage = 0.1215;
+    private static double regularHoursPerMonth = 240.0;
+    private static double basicSalary = 460.0;
 
     public static double getIessPercentage() {
         return iessPercentage;

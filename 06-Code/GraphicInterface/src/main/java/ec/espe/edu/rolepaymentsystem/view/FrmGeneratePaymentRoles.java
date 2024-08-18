@@ -297,11 +297,17 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGeneratePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePayrollActionPerformed
+    EmployeeToMongo mongoManager = new EmployeeToMongo();
     List<Employee> employees = employeeManager.getEmployees();
 
     if (!employees.isEmpty()) {
         try {
             saveManager.saveEmployees(employees); 
+            Date startDate = new Date();
+            Date endDate = new Date(); 
+            for (Employee employee : employees) {
+            mongoManager.savePDFMetadata(employee.getIdNumber(), startDate, endDate);
+            }
             JOptionPane.showMessageDialog(this, "Se generó el rol de pagos", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.err.println("Error al generar el rol de pagos: " + e.getMessage());
@@ -313,11 +319,15 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGeneratePayrollActionPerformed
 
     private void btnGenerateIndividuallyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateIndividuallyActionPerformed
+    EmployeeToMongo mongoManager = new EmployeeToMongo();
     int selected = cmbAddEmployee.getSelectedIndex();
     if (selected != -1) { 
         Employee selectedEmployee = employeeManager.getEmployees().get(selected);
         try {
             saveManager.saveIndividualEmployee(selectedEmployee);
+            Date startDate = new Date(); 
+            Date endDate = new Date(); 
+            mongoManager.savePDFMetadata(selectedEmployee.getIdNumber(), startDate, endDate);
             JOptionPane.showMessageDialog(this, "Se generó el rol de pago para el empleado seleccionado", "Generación Exitosa", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             System.err.println("Error al guardar localmente: " + e.getMessage());

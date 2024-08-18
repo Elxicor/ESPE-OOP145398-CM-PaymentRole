@@ -31,6 +31,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$4.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$13.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystemSplash$1.class
+ec\espe\edu\rolepaymentsystem\model\SalaryUpdate.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$5.class

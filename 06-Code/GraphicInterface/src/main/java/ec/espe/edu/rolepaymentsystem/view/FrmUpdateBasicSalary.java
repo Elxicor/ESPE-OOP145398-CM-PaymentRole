@@ -4,8 +4,12 @@
  */
 package ec.espe.edu.rolepaymentsystem.view;
 
+import com.mongodb.client.MongoCollection;
 import ec.espe.edu.rolepaymentsystem.model.Constants;
+import ec.espe.edu.rolepaymentsystem.model.SalaryUpdate;
+import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import javax.swing.JOptionPane;
+import org.bson.Document;
 
 /**
  *
@@ -177,7 +181,14 @@ public class FrmUpdateBasicSalary extends javax.swing.JFrame {
         
         // Si el usuario selecciona "Sí", actualizar el salario básico
         if (response == JOptionPane.YES_OPTION) {
+            double oldSalary = Constants.getBasicSalary();
             Constants.setBasicSalary(newValue);
+            EmployeeToMongo mongo = new EmployeeToMongo();
+            SalaryUpdate salaryUpdate = new SalaryUpdate(oldSalary, newValue);
+            mongo.saveSalaryUpdate(salaryUpdate);
+            MongoCollection<Document> collection = mongo.getCollection();
+            collection.updateMany(new Document(), new Document("$set", new Document("basicSalary", newValue)));
+            
             JOptionPane.showMessageDialog(this, "El salario básico ha sido actualizado a " + newValue);
         }
     } catch (NumberFormatException e) {

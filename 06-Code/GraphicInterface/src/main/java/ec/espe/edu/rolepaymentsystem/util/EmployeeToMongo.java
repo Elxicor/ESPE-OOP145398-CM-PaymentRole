@@ -20,6 +20,8 @@ import com.mongodb.client.result.UpdateResult;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.model.Password;
+import ec.espe.edu.rolepaymentsystem.model.SalaryUpdate;
+import java.util.Date;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 /**
@@ -29,10 +31,13 @@ import org.bson.conversions.Bson;
 public class EmployeeToMongo {
     private static final String CONNECTION_STRING = "mongodb+srv://yasisalema:yasisalema@cluster0.51fic9g.mongodb.net/";
     private static final String DATABASE_NAME = "RolePaymentSystem";
-    private static final String COLLECTION_NAME = "employees";
-    private static final String PASSWORD="password";
+    private static final String COLLECTION_EMPLOYEES = "employees";
+    private static final String COLLECTION_PASSWORD="password";
     private static final String COLLECTION_CALCULATOR="calculator";
-
+    private static final String COLLECTION_AMOUNT="amount";
+    private static final String COLLECTION_SALARY_UPDATES = "salary_updates";
+    private static final String COLLECTION_PDF = "pdf_reports";
+    
     private MongoClient mongoClient;
     private MongoDatabase database;
 
@@ -56,13 +61,14 @@ public class EmployeeToMongo {
         try {
             saveEmployeeToDatabase(employee, database);
             savePaymentDetailsToDatabase(paymentDetails,database);
+            saveAmountToDatabase(employee,database);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
     
     private void saveEmployeeToDatabase(Employee employee, MongoDatabase database) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
         Document employeeDocument = new Document("id", employee.getIdNumber())
                 .append("nombre", employee.getName())
                 .append("apellido", employee.getLastName())
@@ -75,6 +81,7 @@ public class EmployeeToMongo {
             e.printStackTrace();
         }
     }
+
     private void savePaymentDetailsToDatabase(EmployeePaymentDetails paymentDetails, MongoDatabase database) {
         MongoCollection<Document> collection = database.getCollection(COLLECTION_CALCULATOR); 
         Document paymentDetailsDocument = new Document("overtimePayment", paymentDetails.getOvertimePayment())
@@ -95,6 +102,21 @@ public class EmployeeToMongo {
             e.printStackTrace();
         }
     }
+    private void saveAmountToDatabase(Employee employee, MongoDatabase database) {
+        Calculator calculator=new Calculator();
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_AMOUNT); 
+        Document paymentDetailsDocument = new Document("Id", employee.getIdNumber())
+                .append("Nombre", employee.getName())
+                .append("Monto", calculator.calculateTotalAmount(employee))
+                .append("Estado", "Pagado");
+        try {
+            collection.insertOne(paymentDetailsDocument);
+            System.out.println("Detalles de pago guardados exitosamente!");
+        } catch (MongoException e) {
+            e.printStackTrace();
+        }
+    }    
+
 
    public void uploadPasswordData(Password password) {
         try {
@@ -104,7 +126,7 @@ public class EmployeeToMongo {
         }
     }
    private void savePasswordToDatabase( Password password,MongoDatabase database) {
-        MongoCollection<Document> collection = database.getCollection(PASSWORD);
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_PASSWORD);
         Document passwordDocument = new Document("usuario", password.getUser())
                 .append("contraseña", password.getPassword());
                 
@@ -115,9 +137,51 @@ public class EmployeeToMongo {
             e.printStackTrace();
         }
     }
+    public void saveSalaryUpdate(SalaryUpdate salaryUpdate) {
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_SALARY_UPDATES);
+        Document document = new Document("oldSalary", salaryUpdate.getOldSalary())
+                .append("newSalary", salaryUpdate.getNewSalary())
+                .append("updateDate", salaryUpdate.getUpdateDate());
+        try {
+            collection.insertOne(document);
+            System.out.println("Actualización de salario guardada exitosamente!");
+        } catch (MongoException e) {
+            e.printStackTrace();
+        }
+    }
+    public void savePDFMetadata(String employeeId, Date startDate, Date endDate) {
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_PDF);
+        Document metadata = new Document()
+            .append("employeeId", employeeId)
+            .append("startDate", startDate)
+            .append("endDate", endDate)
+            .append("generationDate", new Date())
+            .append("type", "payroll");
+        try {
+            collection.insertOne(metadata);
+            System.out.println("Metadatos del PDF guardados exitosamente!");
+        } catch (MongoException e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateEmployeeSalary(String employeeId, double newSalary) {
+        try {
+            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+            Bson filter = eq("id", employeeId);
+            Bson update = set("basicSalary", newSalary);
+            UpdateResult result = collection.updateOne(filter, update);
+            if (result.getMatchedCount() > 0) {
+                System.out.println("Salario del empleado actualizado exitosamente!");
+            } else {
+                System.out.println("Empleado no encontrado.");
+            }
+        } catch (MongoException e) {
+            e.printStackTrace();
+        }
+    }
     public void updateEmployeeData(Employee employee) {
         try {
-            MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
             Bson filter = eq("id", employee.getIdNumber());
             Bson updates = combine(
                     set("nombre", employee.getName()),
@@ -135,11 +199,11 @@ public class EmployeeToMongo {
         }
     }
         public MongoCollection<Document> getCollection() {
-        return database.getCollection(COLLECTION_NAME);
+        return database.getCollection(COLLECTION_EMPLOYEES);
     }
     public void deleteEmployeeData(String employeeId) {
         try {
-            MongoCollection<Document> collection = database.getCollection(COLLECTION_NAME);
+            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
             Bson filter = eq("id", employeeId);
             DeleteResult result = collection.deleteOne(filter);
             if (result.getDeletedCount() > 0) {
