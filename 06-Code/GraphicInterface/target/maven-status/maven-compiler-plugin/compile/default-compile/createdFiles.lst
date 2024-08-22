@@ -51,6 +51,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmSupportContact.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$1.class
+ec\espe\edu\rolepaymentsystem\util\EmployeeRepository.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory$2.class
 ec\espe\edu\rolepaymentsystem\model\Password.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$7.class
@@ -62,8 +63,10 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$11.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmAnnualPayrollReport$2.class
+ec\espe\edu\rolepaymentsystem\util\IEmployeeRepository.class
 ec\espe\edu\rolepaymentsystem\model\EmployeePaymentDetails.class
 ec\espe\edu\rolepaymentsystem\view\FrmLogin$3.class
+ec\espe\edu\rolepaymentsystem\util\MongoDBClient.class
 ec\espe\edu\rolepaymentsystem\view\FrmAnnualPayrollReport.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$4.class
@@ -79,6 +82,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$8.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$9.class
+ec\espe\edu\rolepaymentsystem\util\ICalculator.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$12.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$4.class
@@ -91,6 +95,7 @@ ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$7.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$13.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$10.class
+ec\espe\edu\rolepaymentsystem\util\IMongoDBClient.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$8.class
 ec\espe\edu\rolepaymentsystem\controller\EmployeeManager$1.class
