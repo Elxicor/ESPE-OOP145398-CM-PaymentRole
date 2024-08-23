@@ -32,7 +32,7 @@ import java.util.Objects;
  *
  * @author Code Maters
  */
-public class EmployeeManager {
+public class EmployeeManager implements IEmployeeRepository  {
     private final String employeeFilePath = "employees.json";
     private Gson gsonInstance = new GsonBuilder().setPrettyPrinting().create();
     private final List<Employee> employeeList;
@@ -45,10 +45,12 @@ public class EmployeeManager {
     employeeList = (loadedEmployees != null) ? loadedEmployees : new ArrayList<>();
     }
 
+    @Override
     public void addEmployee(Employee employee) {
         employeeList.add(employee);
     }
 
+    @Override
     public void updateEmployee(Employee updatedEmployee) {
     for (int i = 0; i < employeeList.size(); i++) {
         if (employeeList.get(i).getIdNumber().equals(updatedEmployee.getIdNumber())) {
@@ -57,11 +59,13 @@ public class EmployeeManager {
         }
     }
     }
+    @Override
     public void removeEmployee(int index) {
         if (index >= 0 && index < employeeList.size()) {
             employeeList.remove(index);
         }
     }
+    @Override
     public List<Employee> getEmployees() {
         return employeeList;
     }

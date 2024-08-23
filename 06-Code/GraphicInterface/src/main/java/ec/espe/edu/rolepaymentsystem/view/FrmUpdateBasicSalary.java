@@ -8,15 +8,15 @@ import com.mongodb.client.MongoCollection;
 import ec.espe.edu.rolepaymentsystem.model.Constants;
 import ec.espe.edu.rolepaymentsystem.model.SalaryUpdate;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import javax.swing.JOptionPane;
 import org.bson.Document;
 
 /**
  *
- * @author Erick Tufiño
+ * @author Code Master
  */
 public class FrmUpdateBasicSalary extends javax.swing.JFrame {
-
     /**
      * Creates new form FrmUpdateBasicSalary
      */
@@ -183,11 +183,12 @@ public class FrmUpdateBasicSalary extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION) {
             double oldSalary = Constants.getBasicSalary();
             Constants.setBasicSalary(newValue);
-            EmployeeToMongo mongo = new EmployeeToMongo();
+            MongoDBClient mongoDBClient = new MongoDBClient();
+            EmployeeToMongo mongo = new EmployeeToMongo(mongoDBClient);
             SalaryUpdate salaryUpdate = new SalaryUpdate(oldSalary, newValue);
             mongo.saveSalaryUpdate(salaryUpdate);
-            MongoCollection<Document> collection = mongo.getCollection();
-            collection.updateMany(new Document(), new Document("$set", new Document("basicSalary", newValue)));
+            
+            mongo.updateAllEmployeesSalary(newValue);
             
             JOptionPane.showMessageDialog(this, "El salario básico ha sido actualizado a " + newValue);
         }

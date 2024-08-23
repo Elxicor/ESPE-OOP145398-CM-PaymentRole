@@ -8,7 +8,7 @@ import com.mongodb.client.MongoDatabase;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public interface IMongoDBClient {
     MongoDatabase getDatabase();

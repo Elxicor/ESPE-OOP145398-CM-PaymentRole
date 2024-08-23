@@ -14,7 +14,7 @@ import com.mongodb.client.MongoDatabase;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public class MongoDBClient implements IMongoDBClient{
     private static final String CONNECTION_STRING = "mongodb+srv://yasisalema:yasisalema@cluster0.51fic9g.mongodb.net/";

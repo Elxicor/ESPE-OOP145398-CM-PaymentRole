@@ -12,6 +12,7 @@ import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -424,7 +425,8 @@ public class FrmAddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnRegisterEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEmployeeActionPerformed
-    EmployeeToMongo employeeToMongo=new EmployeeToMongo();
+    MongoDBClient mongoDBClient = new MongoDBClient();
+    EmployeeToMongo employeeToMongo=new EmployeeToMongo(mongoDBClient);
     List<Employee> employees = employeeManager.getEmployees();
     Calculator calculator = new Calculator();
     Employee employee;

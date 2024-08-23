@@ -77,12 +77,12 @@ ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmSupportContact$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$3.class
 ec\espe\edu\rolepaymentsystem\view\FrmEmployeeDetails$1.class
+ec\espe\edu\rolepaymentsystem\controller\IEmployeeRepository.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$9.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$8.class
 ec\espe\edu\rolepaymentsystem\view\FrmUpdateBasicSalary$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$9.class
-ec\espe\edu\rolepaymentsystem\util\ICalculator.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$12.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$5.class
 ec\espe\edu\rolepaymentsystem\view\FrmEditEmployee$4.class

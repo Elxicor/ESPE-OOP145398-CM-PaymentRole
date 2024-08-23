@@ -12,7 +12,7 @@ import java.util.Date;
 
 /**
  *
- * @author PAOLA-SSD
+ * @author Code Master
  */
 public interface IEmployeeRepository {
     void saveEmployee(Employee employee);
@@ -23,6 +23,7 @@ public interface IEmployeeRepository {
     void savePDFMetadata(String employeeId, Date startDate, Date endDate);
     void updateEmployeeSalary(String employeeId, double newSalary);
     void updateEmployeeData(Employee employee);
+    void updateAllEmployeesSalary(double newSalary);
     void deleteEmployeeData(String employeeId);
 }
 

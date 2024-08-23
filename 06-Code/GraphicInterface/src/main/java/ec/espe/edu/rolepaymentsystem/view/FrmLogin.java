@@ -3,6 +3,8 @@ package ec.espe.edu.rolepaymentsystem.view;
 
 import ec.espe.edu.rolepaymentsystem.model.Password;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.IMongoDBClient;
+import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import javax.swing.JOptionPane;
 
 /**
@@ -10,12 +12,16 @@ import javax.swing.JOptionPane;
  * @author Code Master
  */
 public class FrmLogin extends javax.swing.JFrame {
-EmployeeToMongo employeeToMongo=new EmployeeToMongo(); 
+    private final EmployeeToMongo employeeToMongo;
+    
     /**
      * Creates new form FrmLogin
      */
     public FrmLogin() {
         initComponents();
+        MongoDBClient mongoDBClient = new MongoDBClient();
+        this.employeeToMongo = new EmployeeToMongo(mongoDBClient);
+        
     }
 
     /**

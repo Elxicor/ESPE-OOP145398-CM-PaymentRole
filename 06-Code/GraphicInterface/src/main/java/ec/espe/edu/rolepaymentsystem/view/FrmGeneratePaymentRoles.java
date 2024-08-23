@@ -8,6 +8,7 @@ import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -297,7 +298,8 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGeneratePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePayrollActionPerformed
-    EmployeeToMongo mongoManager = new EmployeeToMongo();
+    MongoDBClient mongoDBClient = new MongoDBClient();
+    EmployeeToMongo mongoManager = new EmployeeToMongo(mongoDBClient);
     List<Employee> employees = employeeManager.getEmployees();
 
     if (!employees.isEmpty()) {
@@ -319,7 +321,8 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGeneratePayrollActionPerformed
 
     private void btnGenerateIndividuallyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateIndividuallyActionPerformed
-    EmployeeToMongo mongoManager = new EmployeeToMongo();
+    MongoDBClient mongoDBClient = new MongoDBClient();
+    EmployeeToMongo mongoManager = new EmployeeToMongo(mongoDBClient);
     int selected = cmbAddEmployee.getSelectedIndex();
     if (selected != -1) { 
         Employee selectedEmployee = employeeManager.getEmployees().get(selected);

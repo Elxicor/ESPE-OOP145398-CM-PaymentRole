@@ -6,6 +6,7 @@ package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
+import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -25,7 +26,8 @@ public class FrmAllEmployee extends javax.swing.JFrame {
     public FrmAllEmployee() {
         initComponents();
         employeeManager = new EmployeeManager();
-        employeeToMongo=new EmployeeToMongo();
+        MongoDBClient mongoDBClient = new MongoDBClient();
+        employeeToMongo=new EmployeeToMongo(mongoDBClient);
         this.saveManager = new SaveManager();
         initializeTable();
         updateTable();

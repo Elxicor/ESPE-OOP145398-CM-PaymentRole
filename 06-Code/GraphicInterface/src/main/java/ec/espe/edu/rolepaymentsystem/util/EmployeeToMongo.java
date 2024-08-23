@@ -28,201 +28,246 @@ import org.bson.conversions.Bson;
  *
  * @author Code Master
  */
-public class EmployeeToMongo {
-    private static final String CONNECTION_STRING = "mongodb+srv://yasisalema:yasisalema@cluster0.51fic9g.mongodb.net/";
-    private static final String DATABASE_NAME = "RolePaymentSystem";
-    private static final String COLLECTION_EMPLOYEES = "employees";
-    private static final String COLLECTION_PASSWORD="password";
-    private static final String COLLECTION_CALCULATOR="calculator";
-    private static final String COLLECTION_AMOUNT="amount";
-    private static final String COLLECTION_SALARY_UPDATES = "salary_updates";
-    private static final String COLLECTION_PDF = "pdf_reports";
-    
-    private MongoClient mongoClient;
-    private MongoDatabase database;
+public class EmployeeToMongo  {
+//    private static final String CONNECTION_STRING = "mongodb+srv://yasisalema:yasisalema@cluster0.51fic9g.mongodb.net/";
+//    private static final String DATABASE_NAME = "RolePaymentSystem";
+//    private static final String COLLECTION_EMPLOYEES = "employees";
+//    private static final String COLLECTION_PASSWORD="password";
+//    private static final String COLLECTION_CALCULATOR="calculator";
+//    private static final String COLLECTION_AMOUNT="amount";
+//    private static final String COLLECTION_SALARY_UPDATES = "salary_updates";
+//    private static final String COLLECTION_PDF = "pdf_reports";
+//    
+//    private MongoClient mongoClient;
+//    private MongoDatabase database;
+//
+//    public EmployeeToMongo() {
+//        this.mongoClient = createMongoClient();
+//        this.database = mongoClient.getDatabase(DATABASE_NAME);
+//    }
+//
+//    private static MongoClient createMongoClient() {
+//        ServerApi serverApi = ServerApi.builder().version(ServerApiVersion.V1).build();
+//        
+//        MongoClientSettings settings = MongoClientSettings.builder()
+//                .applyConnectionString(new ConnectionString(CONNECTION_STRING))
+//                .serverApi(serverApi)
+//                .build();
+//     
+//        return MongoClients.create(settings);
+//    }
+//    
+//    public void uploadEmployeeData(Employee employee,EmployeePaymentDetails paymentDetails) {
+//        try {
+//            saveEmployeeToDatabase(employee, database);
+//            savePaymentDetailsToDatabase(paymentDetails,database);
+//            saveAmountToDatabase(employee,database);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    
+//    private void saveEmployeeToDatabase(Employee employee, MongoDatabase database) {
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+//        Document employeeDocument = new Document("id", employee.getIdNumber())
+//                .append("nombre", employee.getName())
+//                .append("apellido", employee.getLastName())
+//                .append("fechaContratacion", employee.getHireDate());
+//                
+//        try {
+//            collection.insertOne(employeeDocument);
+//            System.out.println("Empleado guardado exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    private void savePaymentDetailsToDatabase(EmployeePaymentDetails paymentDetails, MongoDatabase database) {
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_CALCULATOR); 
+//        Document paymentDetailsDocument = new Document("overtimePayment", paymentDetails.getOvertimePayment())
+//                .append("reserveFunds", paymentDetails.getReserveFunds())
+//                .append("totalIncome", paymentDetails.getTotalIncome())
+//                .append("iessContribution", paymentDetails.getIessContribution())
+//                .append("biweeklyAdvance", paymentDetails.getBiweeklyAdvance())
+//                .append("foodDeduction", paymentDetails.getFoodDeduction())
+//                .append("totalExpenses", paymentDetails.getTotalExpenses())
+//                .append("netPayment", paymentDetails.getNetPayment())
+//                .append("employerContribution", paymentDetails.getEmployerContribution())
+//                .append("totalEmployeeCost", paymentDetails.getTotalEmployeeCost());
+//
+//        try {
+//            collection.insertOne(paymentDetailsDocument);
+//            System.out.println("Detalles de pago guardados exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    private void saveAmountToDatabase(Employee employee, MongoDatabase database) {
+//        Calculator calculator=new Calculator();
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_AMOUNT); 
+//        Document paymentDetailsDocument = new Document("Id", employee.getIdNumber())
+//                .append("Nombre", employee.getName())
+//                .append("Monto", calculator.calculateTotalAmount(employee))
+//                .append("Estado", "Pagado");
+//        try {
+//            collection.insertOne(paymentDetailsDocument);
+//            System.out.println("Detalles de pago guardados exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }    
+//
+//
+//   public void uploadPasswordData(Password password) {
+//        try {
+//            savePasswordToDatabase(password, database);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
+//   private void savePasswordToDatabase( Password password,MongoDatabase database) {
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_PASSWORD);
+//        Document passwordDocument = new Document("usuario", password.getUser())
+//                .append("contraseña", password.getPassword());
+//                
+//        try {
+//            collection.insertOne(passwordDocument);
+//            System.out.println("Contraseña guardado exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void saveSalaryUpdate(SalaryUpdate salaryUpdate) {
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_SALARY_UPDATES);
+//        Document document = new Document("oldSalary", salaryUpdate.getOldSalary())
+//                .append("newSalary", salaryUpdate.getNewSalary())
+//                .append("updateDate", salaryUpdate.getUpdateDate());
+//        try {
+//            collection.insertOne(document);
+//            System.out.println("Actualización de salario guardada exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void savePDFMetadata(String employeeId, Date startDate, Date endDate) {
+//        MongoCollection<Document> collection = database.getCollection(COLLECTION_PDF);
+//        Document metadata = new Document()
+//            .append("employeeId", employeeId)
+//            .append("startDate", startDate)
+//            .append("endDate", endDate)
+//            .append("generationDate", new Date())
+//            .append("type", "payroll");
+//        try {
+//            collection.insertOne(metadata);
+//            System.out.println("Metadatos del PDF guardados exitosamente!");
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void updateEmployeeSalary(String employeeId, double newSalary) {
+//        try {
+//            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+//            Bson filter = eq("id", employeeId);
+//            Bson update = set("basicSalary", newSalary);
+//            UpdateResult result = collection.updateOne(filter, update);
+//            if (result.getMatchedCount() > 0) {
+//                System.out.println("Salario del empleado actualizado exitosamente!");
+//            } else {
+//                System.out.println("Empleado no encontrado.");
+//            }
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public void updateEmployeeData(Employee employee) {
+//        try {
+//            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+//            Bson filter = eq("id", employee.getIdNumber());
+//            Bson updates = combine(
+//                    set("nombre", employee.getName()),
+//                    set("apellido", employee.getLastName()),
+//                    set("fechaContratacion", employee.getHireDate())
+//            );
+//            UpdateResult result = collection.updateOne(filter, updates);
+//            if (result.getMatchedCount() > 0) {
+//                System.out.println("Empleado actualizado exitosamente!");
+//            } else {
+//                System.out.println("Empleado no encontrado.");
+//            }
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//    public MongoCollection<Document> getCollection() {
+//        return database.getCollection(COLLECTION_EMPLOYEES);
+//    }
+//    public void deleteEmployeeData(String employeeId) {
+//        try {
+//            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+//            Bson filter = eq("id", employeeId);
+//            DeleteResult result = collection.deleteOne(filter);
+//            if (result.getDeletedCount() > 0) {
+//                System.out.println("Empleado eliminado exitosamente!");
+//            } else {
+//                System.out.println("Empleado no encontrado.");
+//            }
+//        } catch (MongoException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public MongoDatabase getDatabase() {
+//        return database;
+//    }
+//
+//    public void closeConnection() {
+//        if (mongoClient != null) {
+//            mongoClient.close();
+//        }
+//    }
+    private final MongoDBClient mongoDBClient;
+    private final EmployeeRepository employeeRepository;
 
-    public EmployeeToMongo() {
-        this.mongoClient = createMongoClient();
-        this.database = mongoClient.getDatabase(DATABASE_NAME);
+    public EmployeeToMongo(MongoDBClient mongoDBClient) {
+        this.mongoDBClient = mongoDBClient;
+        this.employeeRepository = new EmployeeRepository(mongoDBClient.getDatabase());
     }
 
-    private static MongoClient createMongoClient() {
-        ServerApi serverApi = ServerApi.builder().version(ServerApiVersion.V1).build();
-        
-        MongoClientSettings settings = MongoClientSettings.builder()
-                .applyConnectionString(new ConnectionString(CONNECTION_STRING))
-                .serverApi(serverApi)
-                .build();
-     
-        return MongoClients.create(settings);
-    }
-    
-    public void uploadEmployeeData(Employee employee,EmployeePaymentDetails paymentDetails) {
-        try {
-            saveEmployeeToDatabase(employee, database);
-            savePaymentDetailsToDatabase(paymentDetails,database);
-            saveAmountToDatabase(employee,database);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    
-    private void saveEmployeeToDatabase(Employee employee, MongoDatabase database) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
-        Document employeeDocument = new Document("id", employee.getIdNumber())
-                .append("nombre", employee.getName())
-                .append("apellido", employee.getLastName())
-                .append("fechaContratacion", employee.getHireDate());
-                
-        try {
-            collection.insertOne(employeeDocument);
-            System.out.println("Empleado guardado exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
+    public void uploadEmployeeData(Employee employee, EmployeePaymentDetails paymentDetails) {
+        employeeRepository.saveEmployee(employee);
+        employeeRepository.savePaymentDetails(paymentDetails);
+        employeeRepository.saveAmount(employee);
     }
 
-    private void savePaymentDetailsToDatabase(EmployeePaymentDetails paymentDetails, MongoDatabase database) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_CALCULATOR); 
-        Document paymentDetailsDocument = new Document("overtimePayment", paymentDetails.getOvertimePayment())
-                .append("reserveFunds", paymentDetails.getReserveFunds())
-                .append("totalIncome", paymentDetails.getTotalIncome())
-                .append("iessContribution", paymentDetails.getIessContribution())
-                .append("biweeklyAdvance", paymentDetails.getBiweeklyAdvance())
-                .append("foodDeduction", paymentDetails.getFoodDeduction())
-                .append("totalExpenses", paymentDetails.getTotalExpenses())
-                .append("netPayment", paymentDetails.getNetPayment())
-                .append("employerContribution", paymentDetails.getEmployerContribution())
-                .append("totalEmployeeCost", paymentDetails.getTotalEmployeeCost());
-
-        try {
-            collection.insertOne(paymentDetailsDocument);
-            System.out.println("Detalles de pago guardados exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
+    public void uploadPasswordData(Password password) {
+        employeeRepository.savePassword(password);
     }
-    private void saveAmountToDatabase(Employee employee, MongoDatabase database) {
-        Calculator calculator=new Calculator();
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_AMOUNT); 
-        Document paymentDetailsDocument = new Document("Id", employee.getIdNumber())
-                .append("Nombre", employee.getName())
-                .append("Monto", calculator.calculateTotalAmount(employee))
-                .append("Estado", "Pagado");
-        try {
-            collection.insertOne(paymentDetailsDocument);
-            System.out.println("Detalles de pago guardados exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }    
 
-
-   public void uploadPasswordData(Password password) {
-        try {
-            savePasswordToDatabase(password, database);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-   private void savePasswordToDatabase( Password password,MongoDatabase database) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_PASSWORD);
-        Document passwordDocument = new Document("usuario", password.getUser())
-                .append("contraseña", password.getPassword());
-                
-        try {
-            collection.insertOne(passwordDocument);
-            System.out.println("Contraseña guardado exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }
     public void saveSalaryUpdate(SalaryUpdate salaryUpdate) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_SALARY_UPDATES);
-        Document document = new Document("oldSalary", salaryUpdate.getOldSalary())
-                .append("newSalary", salaryUpdate.getNewSalary())
-                .append("updateDate", salaryUpdate.getUpdateDate());
-        try {
-            collection.insertOne(document);
-            System.out.println("Actualización de salario guardada exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }
-    public void savePDFMetadata(String employeeId, Date startDate, Date endDate) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_PDF);
-        Document metadata = new Document()
-            .append("employeeId", employeeId)
-            .append("startDate", startDate)
-            .append("endDate", endDate)
-            .append("generationDate", new Date())
-            .append("type", "payroll");
-        try {
-            collection.insertOne(metadata);
-            System.out.println("Metadatos del PDF guardados exitosamente!");
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }
-    public void updateEmployeeSalary(String employeeId, double newSalary) {
-        try {
-            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
-            Bson filter = eq("id", employeeId);
-            Bson update = set("basicSalary", newSalary);
-            UpdateResult result = collection.updateOne(filter, update);
-            if (result.getMatchedCount() > 0) {
-                System.out.println("Salario del empleado actualizado exitosamente!");
-            } else {
-                System.out.println("Empleado no encontrado.");
-            }
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }
-    public void updateEmployeeData(Employee employee) {
-        try {
-            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
-            Bson filter = eq("id", employee.getIdNumber());
-            Bson updates = combine(
-                    set("nombre", employee.getName()),
-                    set("apellido", employee.getLastName()),
-                    set("fechaContratacion", employee.getHireDate())
-            );
-            UpdateResult result = collection.updateOne(filter, updates);
-            if (result.getMatchedCount() > 0) {
-                System.out.println("Empleado actualizado exitosamente!");
-            } else {
-                System.out.println("Empleado no encontrado.");
-            }
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
-    }
-        public MongoCollection<Document> getCollection() {
-        return database.getCollection(COLLECTION_EMPLOYEES);
-    }
-    public void deleteEmployeeData(String employeeId) {
-        try {
-            MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
-            Bson filter = eq("id", employeeId);
-            DeleteResult result = collection.deleteOne(filter);
-            if (result.getDeletedCount() > 0) {
-                System.out.println("Empleado eliminado exitosamente!");
-            } else {
-                System.out.println("Empleado no encontrado.");
-            }
-        } catch (MongoException e) {
-            e.printStackTrace();
-        }
+        employeeRepository.saveSalaryUpdate(salaryUpdate);
     }
 
-    public MongoDatabase getDatabase() {
-        return database;
+    public void savePDFMetadata(String employeeId, Date startDate, Date endDate) {
+        employeeRepository.savePDFMetadata(employeeId, startDate, endDate);
+    }
+
+    public void updateEmployeeSalary(String employeeId, double newSalary) {
+        employeeRepository.updateEmployeeSalary(employeeId, newSalary);
+    }
+
+    public void updateEmployeeData(Employee employee) {
+        employeeRepository.updateEmployeeData(employee);
+    }
+
+    public void deleteEmployeeData(String employeeId) {
+        employeeRepository.deleteEmployeeData(employeeId);
+    }
+    public void updateAllEmployeesSalary(double newSalary) {
+        employeeRepository.updateAllEmployeesSalary(newSalary);
     }
 
     public void closeConnection() {
-        if (mongoClient != null) {
-            mongoClient.close();
-        }
+        mongoDBClient.close();
     }
 }
+

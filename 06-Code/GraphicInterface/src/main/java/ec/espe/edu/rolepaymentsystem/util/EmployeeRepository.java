@@ -119,6 +119,12 @@ public class EmployeeRepository implements IEmployeeRepository {
         );
         collection.updateOne(filter, updates);
     }
+    
+    @Override
+    public void updateAllEmployeesSalary(double newSalary) {
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
+        collection.updateMany(new Document(), new Document("$set", new Document("basicSalary", newSalary)));
+    }
 
     @Override
     public void deleteEmployeeData(String employeeId) {
