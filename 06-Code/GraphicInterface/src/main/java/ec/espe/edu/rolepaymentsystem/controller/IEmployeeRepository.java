@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface IEmployeeRepository {
     void addEmployee(Employee employee);
-    void updateEmployee(Employee employee);
-    void removeEmployee(int index);
+    void updateEmployee(Employee updatedEmployee);
+    void removeEmployee(String idNumber);
     List<Employee> getEmployees();
 }
