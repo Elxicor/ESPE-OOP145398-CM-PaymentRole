@@ -1,14 +1,16 @@
+
 package ec.espe.edu.rolepaymentsystem.controller;
 
-import ec.espe.edu.rolepaymentsystem.model.Employee;
-import java.util.List;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
 
 /**
  *
  * @author Code Master
  */
-
 public interface IEmployeeStorage {
-    List<Employee> load();
-    void save(List<Employee> employees);
+    Reader getReader(String filePath) throws IOException;
+    Writer getWriter(String filePath) throws IOException;
 }
+

@@ -13,7 +13,7 @@ public class Constants {
     private static double overtimeHourIncrease = 1.5;
     private static double reserveFundsPercentage = 0.0833;
     private static double employerContributionPercentage = 0.1215;
-    private static double regularHoursPerMonth = 240.0;
+    private static int regularHoursPerMonth = 240;
     private static double basicSalary = 460.0;
 
     public static double getIessPercentage() {
@@ -48,11 +48,11 @@ public class Constants {
         Constants.employerContributionPercentage = employerContributionPercentage;
     }
 
-    public static double getRegularHoursPerMonth() {
+    public static int getRegularHoursPerMonth() {
         return regularHoursPerMonth;
     }
 
-    public static void setRegularHoursPerMonth(double regularHoursPerMonth) {
+    public static void setRegularHoursPerMonth(int regularHoursPerMonth) {
         Constants.regularHoursPerMonth = regularHoursPerMonth;
     }
 

@@ -33,8 +33,9 @@ public class EmployeeManagerTest {
     
     @BeforeEach
     public void setUp() {
-         instance = new EmployeeManager();
-         instance.getEmployees().clear();
+        IEmployeeStorage storage = new FileEmployeeStorage();
+        instance = new EmployeeManager("employees.json", storage);
+        instance.getEmployees().clear();
     }
     
     @AfterEach

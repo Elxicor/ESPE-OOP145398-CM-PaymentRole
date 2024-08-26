@@ -5,6 +5,8 @@
 package ec.espe.edu.rolepaymentsystem.view;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.controller.IEmployeeStorage;
+import ec.espe.edu.rolepaymentsystem.controller.FileEmployeeStorage;
 import ec.espe.edu.rolepaymentsystem.util.EmployeeToMongo;
 import ec.espe.edu.rolepaymentsystem.util.MongoDBClient;
 import ec.espe.edu.rolepaymentsystem.util.SaveManager;
@@ -25,9 +27,10 @@ public class FrmAllEmployee extends javax.swing.JFrame {
 
     public FrmAllEmployee() {
         initComponents();
-        employeeManager = new EmployeeManager();
+        IEmployeeStorage storage = new FileEmployeeStorage();
+        this.employeeManager = new EmployeeManager("employees.json", storage);
         MongoDBClient mongoDBClient = new MongoDBClient();
-        employeeToMongo=new EmployeeToMongo(mongoDBClient);
+        this.employeeToMongo = new EmployeeToMongo(mongoDBClient);
         this.saveManager = new SaveManager();
         initializeTable();
         updateTable();
@@ -50,16 +53,22 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         List<Employee> employees = employeeManager.getEmployees();
         for (Employee emp : employees) {
             String hireDateEmployee = (emp.getHireDate() != null) ? simpleDateFormat.format(emp.getHireDate()) : "";
-            defaultTableModel.addRow(new Object[]{emp.getName(), emp.getLastName(), emp.getIdNumber(), hireDateEmployee
+            defaultTableModel.addRow(new Object[]{
+                emp.getName(), 
+                emp.getLastName(), 
+                emp.getIdNumber(), 
+                hireDateEmployee
             });
         }
         tableAllEmployee.repaint();
     }
+
     public EmployeeManager getEmployeeManager() {
         return employeeManager;
     }
+
     public DefaultTableModel getTableModel() {
-    return defaultTableModel;
+        return defaultTableModel;
     }
     /**
      * This method is called from within the constructor to initialize the form.

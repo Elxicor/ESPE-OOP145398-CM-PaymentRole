@@ -12,6 +12,7 @@ import static com.mongodb.client.model.Updates.set;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.model.Password;
+import ec.espe.edu.rolepaymentsystem.model.RatesParametersUpdate;
 import ec.espe.edu.rolepaymentsystem.model.SalaryUpdate;
 import java.util.Date;
 import org.bson.Document;
@@ -29,6 +30,7 @@ public class EmployeeRepository implements IEmployeeRepository {
     private static final String COLLECTION_AMOUNT="amount";
     private static final String COLLECTION_SALARY_UPDATES = "salary_updates";
     private static final String COLLECTION_PDF = "pdf_reports";
+    private static final String COLLECTION_RATES_PARAMETERS = "rates_parameters";
 
     public EmployeeRepository(MongoDatabase database) {
         this.database = database;
@@ -125,6 +127,25 @@ public class EmployeeRepository implements IEmployeeRepository {
         MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
         collection.updateMany(new Document(), new Document("$set", new Document("basicSalary", newSalary)));
     }
+    @Override
+    public void saveRatesParametersUpdate(RatesParametersUpdate update) {
+        MongoCollection<Document> collection = database.getCollection(COLLECTION_RATES_PARAMETERS);
+        
+        Document updateDocument = new Document()
+            .append("oldIessPercentage", update.getOldIessPercentage())
+            .append("newIessPercentage", update.getNewIessPercentage())
+            .append("oldReserveFundsPercentage", update.getOldReserveFundsPercentage())
+            .append("newReserveFundsPercentage", update.getNewReserveFundsPercentage())
+            .append("oldOvertimeHourIncrease", update.getOldOvertimeHourIncrease())
+            .append("newOvertimeHourIncrease", update.getNewOvertimeHourIncrease())
+            .append("oldEmployerContributionPercentage", update.getOldEmployerContributionPercentage())
+            .append("newEmployerContributionPercentage", update.getNewEmployerContributionPercentage())
+            .append("oldRegularHoursPerMonth", update.getOldRegularHoursPerMonth())
+            .append("newRegularHoursPerMonth", update.getNewRegularHoursPerMonth())
+            .append("updateDate", update.getUpdateDate());
+
+        collection.insertOne(updateDocument);
+    }
 
     @Override
     public void deleteEmployeeData(String employeeId) {
@@ -133,4 +154,3 @@ public class EmployeeRepository implements IEmployeeRepository {
         collection.deleteOne(filter);
     }
 }
-

@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package ec.espe.edu.rolepaymentsystem.view;
 
-//import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
-
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.controller.FileEmployeeStorage;
+import ec.espe.edu.rolepaymentsystem.controller.IEmployeeStorage;
 
 
 /**
@@ -49,9 +45,9 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
         jMenu9 = new javax.swing.JMenu();
         mnPayrollPeriodReport = new javax.swing.JMenuItem();
         mnAnnualPayrollReport = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
+        mnConfigureRatesandParameters = new javax.swing.JMenu();
+        mnConfigureRatesAndParameters = new javax.swing.JMenuItem();
+        mnUpdateBasicSalary = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         mnUserManual = new javax.swing.JMenuItem();
@@ -166,23 +162,33 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setText("Configuracion");
+        mnConfigureRatesandParameters.setText("Configuracion");
 
-        jMenuItem4.setText("Configurar tasas impositivas");
-        jMenu5.add(jMenuItem4);
-
-        jMenuItem10.setText("Ajustar el salario base");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        mnConfigureRatesAndParameters.setText("Configurar Tasas y Parámetros");
+        mnConfigureRatesAndParameters.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                mnConfigureRatesAndParametersActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem10);
+        mnConfigureRatesandParameters.add(mnConfigureRatesAndParameters);
+
+        mnUpdateBasicSalary.setText("Ajustar el salario base");
+        mnUpdateBasicSalary.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnUpdateBasicSalaryActionPerformed(evt);
+            }
+        });
+        mnConfigureRatesandParameters.add(mnUpdateBasicSalary);
 
         jMenuItem5.setText("Administrador de usuarios");
-        jMenu5.add(jMenuItem5);
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        mnConfigureRatesandParameters.add(jMenuItem5);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(mnConfigureRatesandParameters);
 
         jMenu6.setText("Help");
 
@@ -245,7 +251,8 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnExitActionPerformed
 
     private void mnPayrollPeriodReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnPayrollPeriodReportActionPerformed
-        EmployeeManager employeeManager=new EmployeeManager();
+        IEmployeeStorage storage = new FileEmployeeStorage();
+        EmployeeManager employeeManager = new EmployeeManager("employees.json", storage);
         FrmPayrollPeriodReport frmPayrollPeriodReport=new FrmPayrollPeriodReport(employeeManager);
         this.setVisible(false);
         frmPayrollPeriodReport.setVisible(true);        
@@ -265,11 +272,11 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
         frmLogin.setVisible(true);
     }//GEN-LAST:event_mnLoginActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void mnUpdateBasicSalaryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnUpdateBasicSalaryActionPerformed
         FrmUpdateBasicSalary frmUpdateBasicSalary=new FrmUpdateBasicSalary();
         this.setVisible(false);
         frmUpdateBasicSalary.setVisible(true);    
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_mnUpdateBasicSalaryActionPerformed
 
     private void itemGenaratePaymentRolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGenaratePaymentRolesActionPerformed
     FrmGeneratePaymentRoles frmGeneratePaymentRoles = new FrmGeneratePaymentRoles(allEmployeeForm); 
@@ -296,12 +303,23 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     }//GEN-LAST:event_mnSupportContactActionPerformed
 
     private void mnAnnualPayrollReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnAnnualPayrollReportActionPerformed
-        EmployeeManager employeeManager=new EmployeeManager();
+        IEmployeeStorage storage = new FileEmployeeStorage();
+         EmployeeManager employeeManager = new EmployeeManager("employees.json", storage);
         FrmAnnualPayrollReport frmAnnualPayrollReport=new FrmAnnualPayrollReport(employeeManager);
         this.setVisible(false);
         frmAnnualPayrollReport.setVisible(true);     
         
     }//GEN-LAST:event_mnAnnualPayrollReportActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void mnConfigureRatesAndParametersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnConfigureRatesAndParametersActionPerformed
+        FrmConfigureRatesandParameters frmConfigureRatesandParameters=new FrmConfigureRatesandParameters();
+        this.setVisible(false);
+        frmConfigureRatesandParameters.setVisible(true);    
+    }//GEN-LAST:event_mnConfigureRatesAndParametersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -347,22 +365,22 @@ public class FrmRolePaymentSystem extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem mnAddEmployee;
     private javax.swing.JMenuItem mnAllEmployee;
     private javax.swing.JMenuItem mnAnnualPayrollReport;
+    private javax.swing.JMenuItem mnConfigureRatesAndParameters;
+    private javax.swing.JMenu mnConfigureRatesandParameters;
     private javax.swing.JMenuItem mnExit;
     private javax.swing.JMenuItem mnFAQ;
     private javax.swing.JMenuItem mnLogin;
     private javax.swing.JMenuItem mnPayrollPeriodReport;
     private javax.swing.JMenuItem mnSupportContact;
+    private javax.swing.JMenuItem mnUpdateBasicSalary;
     private javax.swing.JMenuItem mnUserManual;
     // End of variables declaration//GEN-END:variables
 }

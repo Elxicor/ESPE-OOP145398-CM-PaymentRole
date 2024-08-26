@@ -5,6 +5,8 @@
 package ec.espe.edu.rolepaymentsystem.view;
 
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.controller.FileEmployeeStorage;
+import ec.espe.edu.rolepaymentsystem.controller.IEmployeeStorage;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
 import org.jfree.chart.ChartFactory;
@@ -16,14 +18,12 @@ import java.util.List;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.category.DefaultCategoryDataset;
-import org.jfree.data.xy.XYDataItem;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -218,7 +218,7 @@ public class FrmPayrollPeriodReport extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(272, 272, 272)
                         .addComponent(btnBack)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -239,9 +239,7 @@ public class FrmPayrollPeriodReport extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +287,8 @@ public class FrmPayrollPeriodReport extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EmployeeManager employeeManager=new EmployeeManager();
+                IEmployeeStorage storage = new FileEmployeeStorage();
+                EmployeeManager employeeManager = new EmployeeManager("employees.json", storage);
                 FrmPayrollPeriodReport frmPayrollPeriodReport= new FrmPayrollPeriodReport(employeeManager);
                 frmPayrollPeriodReport.setVisible(true);
             }

@@ -1,57 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.172" tests="4" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.662" tests="4" errors="0" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface\target\test-classes;C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface\target\classes;C:\Users\ERICK\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE220\AbsoluteLayout-RELEASE220.jar;C:\Users\ERICK\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\ERICK\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\ERICK\.m2\repository\org\mongodb\mongodb-driver-sync\4.11.1\mongodb-driver-sync-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\bson\4.11.1\bson-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\mongodb-driver-core\4.11.1\mongodb-driver-core-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\bson-record-codec\4.11.1\bson-record-codec-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\jfree\jfreechart\1.5.5\jfreechart-1.5.5.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\ERICK\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\ERICK\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="java.class.path" value="C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface\target\test-classes;C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface\target\classes;C:\Users\PAOLA-SSD\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE220\AbsoluteLayout-RELEASE220.jar;C:\Users\PAOLA-SSD\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\PAOLA-SSD\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\mongodb-driver-sync\4.11.1\mongodb-driver-sync-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\bson\4.11.1\bson-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\mongodb-driver-core\4.11.1\mongodb-driver-core-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\bson-record-codec\4.11.1\bson-record-codec-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\jfree\jfreechart\1.5.5\jfreechart-1.5.5.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\PAOLA-SSD\.m2\repository\org\slf4j\slf4j-simple\1.7.32\slf4j-simple-1.7.32.jar;C:\Users\PAOLA-SSD\.m2\repository\com\itextpdf\itextpdf\5.5.13.4\itextpdf-5.5.13.4.jar;"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://java.oracle.com/"/>
     <property name="user.timezone" value="America/Guayaquil"/>
-    <property name="os.name" value="Windows 11"/>
+    <property name="os.name" value="Windows 10"/>
     <property name="java.vm.specification.version" value="22"/>
-    <property name="user.country" value="ES"/>
+    <property name="user.country" value="EC"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-22\bin"/>
-    <property name="sun.java.command" value="C:\Users\ERICK\AppData\Local\Temp\surefire14423401266306549158\surefirebooter-20240724223557951_3.jar C:\Users\ERICK\AppData\Local\Temp\surefire14423401266306549158 2024-07-24T22-35-57_737-jvmRun1 surefire-20240724223557951_1tmp surefire_0-20240724223557951_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\PAOLA-SSD\AppData\Local\Temp\surefire5756464081754187768\surefirebooter-20240825191713565_3.jar C:\Users\PAOLA-SSD\AppData\Local\Temp\surefire5756464081754187768 2024-08-25T19-17-13_257-jvmRun1 surefire-20240825191713565_1tmp surefire_0-20240825191713565_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface\target\test-classes;C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface\target\classes;C:\Users\ERICK\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE220\AbsoluteLayout-RELEASE220.jar;C:\Users\ERICK\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\ERICK\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\ERICK\.m2\repository\org\mongodb\mongodb-driver-sync\4.11.1\mongodb-driver-sync-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\bson\4.11.1\bson-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\mongodb-driver-core\4.11.1\mongodb-driver-core-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\mongodb\bson-record-codec\4.11.1\bson-record-codec-4.11.1.jar;C:\Users\ERICK\.m2\repository\org\jfree\jfreechart\1.5.5\jfreechart-1.5.5.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\ERICK\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\ERICK\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\ERICK\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="test" value="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest"/>
+    <property name="surefire.test.class.path" value="C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface\target\test-classes;C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface\target\classes;C:\Users\PAOLA-SSD\.m2\repository\org\netbeans\external\AbsoluteLayout\RELEASE220\AbsoluteLayout-RELEASE220.jar;C:\Users\PAOLA-SSD\.m2\repository\com\google\code\gson\gson\2.8.9\gson-2.8.9.jar;C:\Users\PAOLA-SSD\.m2\repository\com\toedter\jcalendar\1.4\jcalendar-1.4.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\mongodb-driver-sync\4.11.1\mongodb-driver-sync-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\bson\4.11.1\bson-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\mongodb-driver-core\4.11.1\mongodb-driver-core-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\mongodb\bson-record-codec\4.11.1\bson-record-codec-4.11.1.jar;C:\Users\PAOLA-SSD\.m2\repository\org\jfree\jfreechart\1.5.5\jfreechart-1.5.5.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;C:\Users\PAOLA-SSD\.m2\repository\org\slf4j\slf4j-api\1.7.32\slf4j-api-1.7.32.jar;C:\Users\PAOLA-SSD\.m2\repository\org\slf4j\slf4j-simple\1.7.32\slf4j-simple-1.7.32.jar;C:\Users\PAOLA-SSD\.m2\repository\com\itextpdf\itextpdf\5.5.13.4\itextpdf-5.5.13.4.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\ERICK"/>
+    <property name="user.home" value="C:\Users\PAOLA-SSD"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2024-04-16"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-22"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface"/>
-    <property name="java.vm.compressedOopsMode" value="Zero based"/>
+    <property name="basedir" value="C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface"/>
+    <property name="java.vm.compressedOopsMode" value="32-bit"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\ERICK\AppData\Local\Temp\surefire14423401266306549158\surefirebooter-20240724223557951_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\PAOLA-SSD\AppData\Local\Temp\surefire5756464081754187768\surefirebooter-20240825191713565_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="22.0.1+8-16"/>
-    <property name="user.name" value="ERICK"/>
+    <property name="user.name" value="PAOLA-SSD"/>
     <property name="stdout.encoding" value="Cp1252"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="file.encoding" value="UTF-8"/>
     <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
-    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-21\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
-    <property name="localRepository" value="C:\Users\ERICK\.m2\repository"/>
+    <property name="maven.ext.class.path" value="C:\Program Files\NetBeans-22\netbeans\java\maven-nblib\netbeans-eventspy.jar"/>
+    <property name="localRepository" value="C:\Users\PAOLA-SSD\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://bugreport.java.com/bugreport/"/>
-    <property name="java.io.tmpdir" value="C:\Users\ERICK\AppData\Local\Temp\"/>
+    <property name="java.io.tmpdir" value="C:\Users\PAOLA-~1\AppData\Local\Temp\"/>
     <property name="java.version" value="22.0.1"/>
-    <property name="user.dir" value="C:\Users\ERICK\Descargas\Nueva carpeta (4)\GraphicInterface\GraphicInterface"/>
+    <property name="user.dir" value="C:\Users\PAOLA-SSD\Music\Proyecto\ESPE-OOP145398-CM-PaymentRole\06-Code\GraphicInterface"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Program Files\Java\jdk-22\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\java8path;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Users\ERICK\AppData\Local\Programs\Python\Python311;C:\Users\ERICK\AppData\Local\Programs\Python\Python311\Scripts;C:\Program Files\nodejs\;C:\Users\ERICK\AppData\Local\Microsoft\WindowsApps;C:\Users\ERICK\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\ERICK\AppData\Roaming\npm;C:\Users\ERICK\Documents\mongosh-2.2.10-win32-x64\bin;;."/>
+    <property name="java.library.path" value="C:\Program Files\Java\jdk-22\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Users\PAOLA-SSD\AppData\Local\Programs\Python\Python312\Scripts\;C:\Users\PAOLA-SSD\AppData\Local\Programs\Python\Python312\;C:\Users\PAOLA-SSD\AppData\Local\Microsoft\WindowsApps;C:\Users\PAOLA-SSD\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\PAOLA-SSD\AppData\Roaming\npm;C:\Users\PAOLA-SSD\AppData\Local\Programs\mongosh\;C:\Program Files\MongoDB\Server\7.0\bin;C:\Program Files\MongoDB\mongosh-2.2.10-win32-x64\bin;;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
     <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Oracle Corporation"/>
@@ -60,8 +61,21 @@
     <property name="java.class.version" value="66.0"/>
     <property name="argLine" value="--enable-preview"/>
   </properties>
-  <testcase name="testRemoveEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.101"/>
-  <testcase name="testGetEmployees" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.014"/>
-  <testcase name="testAddEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.005"/>
-  <testcase name="testUpdateEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.007"/>
+  <testcase name="testRemoveEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.342"/>
+  <testcase name="testGetEmployees" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.021">
+    <failure message="expected: &lt;true&gt; but was: &lt;false&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest.testGetEmployees(EmployeeManagerTest.java:295)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+]]></failure>
+  </testcase>
+  <testcase name="testAddEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.096"/>
+  <testcase name="testUpdateEmployee" classname="ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest" time="0.106"/>
 </testsuite>

@@ -5,6 +5,8 @@
 package ec.espe.edu.rolepaymentsystem.view;
 
 import ec.espe.edu.rolepaymentsystem.controller.EmployeeManager;
+import ec.espe.edu.rolepaymentsystem.controller.FileEmployeeStorage;
+import ec.espe.edu.rolepaymentsystem.controller.IEmployeeStorage;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.util.Calculator;
 import org.jfree.chart.ChartFactory;
@@ -254,7 +256,8 @@ private void updateChart() {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EmployeeManager employeeManager=new EmployeeManager();
+                IEmployeeStorage storage = new FileEmployeeStorage();
+                EmployeeManager employeeManager = new EmployeeManager("employees.json", storage);
                 FrmAnnualPayrollReport frmAnnualPayrollReport= new FrmAnnualPayrollReport(employeeManager);
                 frmAnnualPayrollReport.setVisible(true);
             }

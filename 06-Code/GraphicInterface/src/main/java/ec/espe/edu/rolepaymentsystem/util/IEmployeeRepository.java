@@ -7,6 +7,7 @@ package ec.espe.edu.rolepaymentsystem.util;
 import ec.espe.edu.rolepaymentsystem.model.Employee;
 import ec.espe.edu.rolepaymentsystem.model.EmployeePaymentDetails;
 import ec.espe.edu.rolepaymentsystem.model.Password;
+import ec.espe.edu.rolepaymentsystem.model.RatesParametersUpdate;
 import ec.espe.edu.rolepaymentsystem.model.SalaryUpdate;
 import java.util.Date;
 
@@ -16,14 +17,17 @@ import java.util.Date;
  */
 public interface IEmployeeRepository {
     void saveEmployee(Employee employee);
+    void updateEmployeeData(Employee employee);
     void savePaymentDetails(EmployeePaymentDetails paymentDetails);
     void saveAmount(Employee employee);
     void savePassword(Password password);
     void saveSalaryUpdate(SalaryUpdate salaryUpdate);
     void savePDFMetadata(String employeeId, Date startDate, Date endDate);
     void updateEmployeeSalary(String employeeId, double newSalary);
-    void updateEmployeeData(Employee employee);
     void updateAllEmployeesSalary(double newSalary);
+    void saveRatesParametersUpdate(RatesParametersUpdate update);
     void deleteEmployeeData(String employeeId);
 }
+
+
 
