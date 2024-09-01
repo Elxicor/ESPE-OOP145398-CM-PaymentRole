@@ -18,7 +18,7 @@ public class EmployeeToMongo  {
     public EmployeeToMongo(MongoDBClient mongoDBClient) {
         this.mongoDBClient = mongoDBClient;
         EmployeeRepositoryFactory factory = new EmployeeRepositoryFactoryImpl();
-    this.employeeRepository = factory.createRepository("MongoDB");
+        this.employeeRepository = factory.createRepository("MongoDB");
     }
         public void uploadEmployeeData(Employee employee, EmployeePaymentDetails paymentDetails) {
         employeeRepository.saveEmployee(employee);
