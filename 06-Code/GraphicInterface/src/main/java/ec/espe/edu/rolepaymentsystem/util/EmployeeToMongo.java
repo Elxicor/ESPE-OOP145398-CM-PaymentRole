@@ -13,11 +13,12 @@ import java.util.Date;
  */
 public class EmployeeToMongo  {  
     private final MongoDBClient mongoDBClient;
-    private final EmployeeRepository employeeRepository;
+    private final IEmployeeRepository employeeRepository;
 
     public EmployeeToMongo(MongoDBClient mongoDBClient) {
         this.mongoDBClient = mongoDBClient;
-        this.employeeRepository = new EmployeeRepository(mongoDBClient.getDatabase());
+        EmployeeRepositoryFactory factory = new EmployeeRepositoryFactoryImpl();
+    this.employeeRepository = factory.createRepository("MongoDB");
     }
         public void uploadEmployeeData(Employee employee, EmployeePaymentDetails paymentDetails) {
         employeeRepository.saveEmployee(employee);
