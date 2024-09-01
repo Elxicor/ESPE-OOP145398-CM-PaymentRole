@@ -29,7 +29,7 @@ public class FrmAllEmployee extends javax.swing.JFrame {
         initComponents();
         IEmployeeStorage storage = new FileEmployeeStorage();
         this.employeeManager = new EmployeeManager("employees.json", storage);
-        MongoDBClient mongoDBClient = new MongoDBClient();
+        MongoDBClient mongoDBClient = MongoDBClient.getInstance();
         this.employeeToMongo = new EmployeeToMongo(mongoDBClient);
         this.saveManager = new SaveManager();
         initializeTable();

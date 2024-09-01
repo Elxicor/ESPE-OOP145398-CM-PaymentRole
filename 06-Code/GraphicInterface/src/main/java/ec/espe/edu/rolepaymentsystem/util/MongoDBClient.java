@@ -21,10 +21,11 @@ public class MongoDBClient implements IMongoDBClient{
     private static final String CONNECTION_STRING = "mongodb+srv://yasisalema:yasisalema@cluster0.51fic9g.mongodb.net/";
     private static final String DATABASE_NAME = "RolePaymentSystem";
     
+    private static MongoDBClient instance;
     private final MongoClient mongoClient;
     private final MongoDatabase database;
 
-    public MongoDBClient() {
+    private MongoDBClient() {
         this.mongoClient = createMongoClient();
         this.database = mongoClient.getDatabase(DATABASE_NAME);
     }
@@ -38,6 +39,13 @@ public class MongoDBClient implements IMongoDBClient{
                 .build();
      
         return MongoClients.create(settings);
+    }
+    
+    public static MongoDBClient getInstance() {
+        if (instance == null) {
+            instance = new MongoDBClient();
+        }
+        return instance;
     }
 
     @Override

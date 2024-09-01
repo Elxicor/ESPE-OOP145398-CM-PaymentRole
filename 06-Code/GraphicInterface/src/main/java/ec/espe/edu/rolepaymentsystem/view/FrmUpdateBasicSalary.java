@@ -183,7 +183,7 @@ public class FrmUpdateBasicSalary extends javax.swing.JFrame {
         if (response == JOptionPane.YES_OPTION) {
             double oldSalary = Constants.getBasicSalary();
             Constants.setBasicSalary(newValue);
-            MongoDBClient mongoDBClient = new MongoDBClient();
+            MongoDBClient mongoDBClient = MongoDBClient.getInstance();
             EmployeeToMongo mongo = new EmployeeToMongo(mongoDBClient);
             SalaryUpdate salaryUpdate = new SalaryUpdate(oldSalary, newValue);
             mongo.saveSalaryUpdate(salaryUpdate);

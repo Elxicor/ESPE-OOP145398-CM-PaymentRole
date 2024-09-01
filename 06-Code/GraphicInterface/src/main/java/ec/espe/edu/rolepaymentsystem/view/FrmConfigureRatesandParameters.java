@@ -94,7 +94,7 @@ Validations validations=new Validations();
         oldRegularHoursPerMonth, newRegularHoursPerMonth
     );
 
-    MongoDBClient mongoDBClient = new MongoDBClient();
+    MongoDBClient mongoDBClient = MongoDBClient.getInstance();
     EmployeeToMongo mongo = new EmployeeToMongo(mongoDBClient);
     mongo.saveRatesParametersUpdate(update);
 

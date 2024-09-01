@@ -298,7 +298,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnGeneratePayrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGeneratePayrollActionPerformed
-    MongoDBClient mongoDBClient = new MongoDBClient();
+    MongoDBClient mongoDBClient = MongoDBClient.getInstance();
     EmployeeToMongo mongoManager = new EmployeeToMongo(mongoDBClient);
     List<Employee> employees = employeeManager.getEmployees();
 
@@ -321,7 +321,7 @@ public class FrmGeneratePaymentRoles extends javax.swing.JFrame {
     }//GEN-LAST:event_btnGeneratePayrollActionPerformed
 
     private void btnGenerateIndividuallyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerateIndividuallyActionPerformed
-    MongoDBClient mongoDBClient = new MongoDBClient();
+    MongoDBClient mongoDBClient = MongoDBClient.getInstance();
     EmployeeToMongo mongoManager = new EmployeeToMongo(mongoDBClient);
     int selected = cmbAddEmployee.getSelectedIndex();
     if (selected != -1) { 

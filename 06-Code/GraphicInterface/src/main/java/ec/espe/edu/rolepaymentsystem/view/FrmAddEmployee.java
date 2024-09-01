@@ -425,7 +425,7 @@ public class FrmAddEmployee extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdActionPerformed
 
     private void btnRegisterEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEmployeeActionPerformed
-    MongoDBClient mongoDBClient = new MongoDBClient();
+    MongoDBClient mongoDBClient = MongoDBClient.getInstance();
     EmployeeToMongo employeeToMongo=new EmployeeToMongo(mongoDBClient);
     List<Employee> employees = employeeManager.getEmployees();
     Calculator calculator = new Calculator();

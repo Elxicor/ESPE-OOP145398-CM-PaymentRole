@@ -19,7 +19,7 @@ public class FrmLogin extends javax.swing.JFrame {
      */
     public FrmLogin() {
         initComponents();
-        MongoDBClient mongoDBClient = new MongoDBClient();
+        MongoDBClient mongoDBClient = MongoDBClient.getInstance();
         this.employeeToMongo = new EmployeeToMongo(mongoDBClient);
         
     }
