@@ -1,0 +1,17 @@
+-------------------------------------------------------------------------------
+Test set: ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.662 s <<< FAILURE! -- in ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest
+ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest.testGetEmployees -- Time elapsed: 0.021 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:31)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:183)
+	at ec.espe.edu.rolepaymentsystem.controller.EmployeeManagerTest.testGetEmployees(EmployeeManagerTest.java:295)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
+
