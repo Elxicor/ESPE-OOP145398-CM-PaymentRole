@@ -320,5 +320,19 @@
     "companyLoans": 123.0,
     "fines": 21.0,
     "bringOwnFood": false
+  },
+  {
+    "name": "Juan",
+    "lastName": "Flores",
+    "idNumber": "LO1414114814",
+    "hireDate": "05/09/2024",
+    "basicSalary": 460.0,
+    "overtimeHours": 1.0,
+    "absentDays": 4.0,
+    "bonuses": 1121.0,
+    "iessLoans": 14.0,
+    "companyLoans": 1.0,
+    "fines": 8.0,
+    "bringOwnFood": true
   }
 ]

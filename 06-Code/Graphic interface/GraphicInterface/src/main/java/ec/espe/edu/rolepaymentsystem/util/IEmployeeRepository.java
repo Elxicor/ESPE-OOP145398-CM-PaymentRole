@@ -25,7 +25,17 @@ public interface IEmployeeRepository {
     void savePDFMetadata(String employeeId, Date startDate, Date endDate);
     void updateEmployeeSalary(String employeeId, double newSalary);
     void updateAllEmployeesSalary(double newSalary);
-    void saveRatesParametersUpdate(RatesParametersUpdate update);
+ 
+    void saveOldIessPercentage(RatesParametersUpdate update);
+    
+void saveReserveFundsPercentage(RatesParametersUpdate update);
+
+void saveOvertimeHourIncrease(RatesParametersUpdate update);
+
+void saveEmployerContributionPercentage(RatesParametersUpdate update);
+
+void saveRegularHoursPerMonth(RatesParametersUpdate update);
+    
     void deleteEmployeeData(String employeeId);
 }
 

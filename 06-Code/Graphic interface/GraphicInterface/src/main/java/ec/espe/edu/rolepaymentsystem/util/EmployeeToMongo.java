@@ -46,8 +46,15 @@ public class EmployeeToMongo  {
     public void updateAllEmployeesSalary(double newSalary) {
         employeeRepository.updateAllEmployeesSalary(newSalary);
     }
+    
+    
     public void saveRatesParametersUpdate(RatesParametersUpdate update) {
-        employeeRepository.saveRatesParametersUpdate(update);
+       
+        employeeRepository.saveOldIessPercentage(update);
+        employeeRepository.saveReserveFundsPercentage(update);
+        employeeRepository.saveOvertimeHourIncrease(update);
+        employeeRepository.saveEmployerContributionPercentage(update);
+        employeeRepository.saveRegularHoursPerMonth(update);
     }
     public void closeConnection() {
         mongoDBClient.close();

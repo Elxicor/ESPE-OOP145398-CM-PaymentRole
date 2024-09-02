@@ -113,6 +113,7 @@ ec\espe\edu\rolepaymentsystem\model\Employee.class
 ec\espe\edu\rolepaymentsystem\controller\EmployeeManager$DateAdapter.class
 ec\espe\edu\rolepaymentsystem\view\FrmNominalHistory$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmConfigureRatesandParameters$3.class
+ec\espe\edu\rolepaymentsystem\util\EmployeeRepositoryFactory.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee$6.class
 ec\espe\edu\rolepaymentsystem\view\FrmFAQ$2.class
 ec\espe\edu\rolepaymentsystem\view\FrmPayrollPeriodReport.class
@@ -123,5 +124,6 @@ ec\espe\edu\rolepaymentsystem\view\FrmGeneratePaymentRoles$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmAddEmployee.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$14.class
 ec\espe\edu\rolepaymentsystem\view\FrmRolePaymentSystem$4.class
+ec\espe\edu\rolepaymentsystem\util\EmployeeRepositoryFactoryImpl.class
 ec\espe\edu\rolepaymentsystem\util\Validations$1.class
 ec\espe\edu\rolepaymentsystem\view\FrmAllEmployee$1.class

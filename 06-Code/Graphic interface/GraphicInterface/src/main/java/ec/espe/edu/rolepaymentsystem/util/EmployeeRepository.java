@@ -127,26 +127,66 @@ public class EmployeeRepository implements IEmployeeRepository {
         MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
         collection.updateMany(new Document(), new Document("$set", new Document("basicSalary", newSalary)));
     }
+
     @Override
-    public void saveRatesParametersUpdate(RatesParametersUpdate update) {
-        MongoCollection<Document> collection = database.getCollection(COLLECTION_RATES_PARAMETERS);
-        
-        Document updateDocument = new Document()
-            .append("oldIessPercentage", update.getOldIessPercentage())
-            .append("newIessPercentage", update.getNewIessPercentage())
-            .append("oldReserveFundsPercentage", update.getOldReserveFundsPercentage())
-            .append("newReserveFundsPercentage", update.getNewReserveFundsPercentage())
-            .append("oldOvertimeHourIncrease", update.getOldOvertimeHourIncrease())
-            .append("newOvertimeHourIncrease", update.getNewOvertimeHourIncrease())
-            .append("oldEmployerContributionPercentage", update.getOldEmployerContributionPercentage())
-            .append("newEmployerContributionPercentage", update.getNewEmployerContributionPercentage())
-            .append("oldRegularHoursPerMonth", update.getOldRegularHoursPerMonth())
-            .append("newRegularHoursPerMonth", update.getNewRegularHoursPerMonth())
-            .append("updateDate", update.getUpdateDate());
+    public void saveOldIessPercentage(RatesParametersUpdate update) {
+    MongoCollection<Document> collection = database.getCollection(COLLECTION_RATES_PARAMETERS);
+    
+    Document updateDocument = new Document()
+        .append("oldIessPercentage", update.getOldIessPercentage())
+        .append("newIessPercentage", update.getNewIessPercentage())
+        .append("updateDate", update.getUpdateDate());
 
-        collection.insertOne(updateDocument);
-    }
+    collection.insertOne(updateDocument);
+}
 
+    @Override
+    public void saveReserveFundsPercentage(RatesParametersUpdate update) {
+    MongoCollection<Document> collection = database.getCollection("ReserveFundsPercentage");
+    
+    Document updateDocument = new Document()
+        .append("oldReserveFundsPercentage", update.getOldReserveFundsPercentage())
+        .append("newReserveFundsPercentage", update.getNewReserveFundsPercentage())
+        .append("updateDate", update.getUpdateDate());
+
+    collection.insertOne(updateDocument);
+}
+
+    @Override
+    public void saveOvertimeHourIncrease(RatesParametersUpdate update) {
+    MongoCollection<Document> collection = database.getCollection("OvertimeHourIncrease");
+    
+    Document updateDocument = new Document()
+        .append("oldOvertimeHourIncrease", update.getOldOvertimeHourIncrease())
+        .append("newOvertimeHourIncrease", update.getNewOvertimeHourIncrease())
+        .append("updateDate", update.getUpdateDate());
+
+    collection.insertOne(updateDocument);
+}
+
+    @Override
+    public void saveEmployerContributionPercentage(RatesParametersUpdate update) {
+    MongoCollection<Document> collection = database.getCollection("ContributionPercentage");
+    
+    Document updateDocument = new Document()
+        .append("oldEmployerContributionPercentage", update.getOldEmployerContributionPercentage())
+        .append("newEmployerContributionPercentage", update.getNewEmployerContributionPercentage())
+        .append("updateDate", update.getUpdateDate());
+
+    collection.insertOne(updateDocument);
+}
+
+    @Override
+    public void saveRegularHoursPerMonth(RatesParametersUpdate update) {
+    MongoCollection<Document> collection = database.getCollection("RegularHoursPerMonth");
+    
+    Document updateDocument = new Document()
+        .append("oldRegularHoursPerMonth", update.getOldRegularHoursPerMonth())
+        .append("newRegularHoursPerMonth", update.getNewRegularHoursPerMonth())
+        .append("updateDate", update.getUpdateDate());
+
+    collection.insertOne(updateDocument);
+}
     @Override
     public void deleteEmployeeData(String employeeId) {
         MongoCollection<Document> collection = database.getCollection(COLLECTION_EMPLOYEES);
